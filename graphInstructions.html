@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Ontology Graph Process</title>
+   </head>
+
+   <body>
+<h2>
+The Process for Generating the Ontology Graph
+</h2>
+<p>
+The ontology graph can be created as an SVG using the following process.
+<p>
+<p><code>
+python [path to library]/ontology_viz.py -o graph.dot cwva.ttl
+<br/>
+dot -Tsvg -o graph.svg graph.dot
+
+</code>
+<br/>
+<p/>
+The resulting SVG is added to the HTML page for the graph.
+<br/>
+<p/>
+The ontology_viz.py code is available from <a href="https://github.com/usc-isi-i2/ontology-visualization/blob/master/ontology_viz.py">https://github.com/usc-isi-i2/ontology-visualization/blob/master/ontology_viz.py</a>.
+<br/>
+<p/>
+The dot tools are available from <a href="https://www.graphviz.org">https://www.graphviz.org</a>.
+<br/>
+<p/>
+The SVG pan and zoom library is from <a href="https://github.com/ariutta/svg-pan-zoom">https://github.com/ariutta/svg-pan-zoom</a>.
+<p/>
+<p/>
+Note: This site uses a customized jena-based groovy dot encoder rather than ontology_viz.py.
+<p/>
+<p/>
+<center><font size="2" color="#666666">
+<br/><hr/><br/>
+Copyright &copy; 2021 visualartsdna.org. All Rights Reserved.
+</font></center>
+   </body>
+	
+</html>
+

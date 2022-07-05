@@ -1,0 +1,27 @@
+@prefix schema: <https://schema.org/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix work:  <http://visualartsdna.org/work/> .
+@prefix z0:    <http://visualartsdna.org/system/> .
+@prefix vad:   <http://visualartsdna.org/2021/07/16/model#> .
+@prefix tko:   <http://visualartsdna.org/takeout#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xs:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+[ tko:tko  [ a                            "vad:NotaBene" ;
+             tko:color                    "DEFAULT" ;
+             tko:createdTimestampUsec     "1656256496876000"^^xs:long ;
+             tko:filteredText             "While walking the trails at Cochran Shoals on the Chattahoochee River I saw this dead pine tree and it looked as much like an iconic dead tree as I've seen.\n" ;
+             tko:isArchived               false ;
+             tko:isPinned                 false ;
+             tko:isTrashed                false ;
+             tko:labels                   [ tko:name  "publish" ] ;
+             tko:labels                   [ tko:name  "nature" ] ;
+             tko:tags                     "nature" , "publish" ;
+             tko:textContent              "While walking the trails at Cochran Shoals on the Chattahoochee River I saw this dead pine tree and it looked as much like an iconic dead tree as I've seen.\n[identifier=7541eba8-388a-4534-a9ab-e3b6893c3b87]" ;
+             tko:title                    "Dead Tree" ;
+             tko:userEditedTimestampUsec  "1656377924388000"^^xs:long ;
+             schema:identifier            "7541eba8-388a-4534-a9ab-e3b6893c3b87"
+           ] ] .

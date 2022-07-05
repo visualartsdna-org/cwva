@@ -1,0 +1,27 @@
+@prefix schema: <https://schema.org/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix work:  <http://visualartsdna.org/work/> .
+@prefix z0:    <http://visualartsdna.org/system/> .
+@prefix vad:   <http://visualartsdna.org/2021/07/16/model#> .
+@prefix tko:   <http://visualartsdna.org/takeout#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xs:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+[ tko:tko  [ a                            "vad:NotaBene" ;
+             tko:color                    "DEFAULT" ;
+             tko:createdTimestampUsec     "1656256269838000"^^xs:long ;
+             tko:filteredText             "These were seen on a bit of dead tree trunk.  The colors looked familiar to me from my watercolor palette.  I couldn't resist.\n" ;
+             tko:isArchived               false ;
+             tko:isPinned                 false ;
+             tko:isTrashed                false ;
+             tko:labels                   [ tko:name  "nature" ] ;
+             tko:labels                   [ tko:name  "publish" ] ;
+             tko:tags                     "nature" , "publish" ;
+             tko:textContent              "These were seen on a bit of dead tree trunk.  The colors looked familiar to me from my watercolor palette.  I couldn't resist.\n[identifier=9a01b960-d45d-4b1c-9fd3-49582f9ee5f6]" ;
+             tko:title                    "Turkey Tail Mushrooms" ;
+             tko:userEditedTimestampUsec  "1656377857280000"^^xs:long ;
+             schema:identifier            "9a01b960-d45d-4b1c-9fd3-49582f9ee5f6"
+           ] ] .

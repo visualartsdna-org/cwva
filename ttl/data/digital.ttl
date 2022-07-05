@@ -1,0 +1,164 @@
+
+# Generated Wed Jun 08 14:21:55 EDT 2022
+@prefix vad: <http://visualartsdna.org/2021/07/16/model#> .
+@prefix work:	<http://visualartsdna.org/work/> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+
+work:d8554014-f473-40ac-9a4e-363ac733ab06
+	a vad:LindenMayerSystemImage ;
+	skos:label "Enhanced NALS graph of the https://bio.scai.fraunhofer.de/ontology/COVID.owl ontology" ;
+	vad:media	"Graphics" ;
+	schema:height      "10000"^^xs:float ;
+	schema:width       "10000"^^xs:float ;
+	schema:identifier        "d8554014-f473-40ac-9a4e-363ac733ab06" ;
+	schema:description "Generated with Nodes and Arcs Lindenmayer System. Enhanced with fractal-plant rules." ;
+	skos:note "https://bio.scai.fraunhofer.de/ontology/COVID.owl" ;
+	schema:datePublished "2022-06-08T14:21:55"^^xs:dateTime ;
+	schema:dateCreated "2022-06-02T13:32:38"^^xs:dateTime ;
+	schema:encodingFormat "image/jpeg" ;
+	schema:contentUrl <https://tratsi314.wixsite.com/tra-tsi-art> ;
+	vad:artist work:c35a3e70-7a05-4844-81b7-70d7a537797d ;
+	vad:hasArtistProfile work:6a94c8c0-34bf-4e56-991a-15b3600d05e7 ;
+	vad:qrcode <http://visualartsdna.org/images/qrc_d8554014-f473-40ac-9a4e-363ac733ab06.jpg> ;
+	schema:image <http://visualartsdna.org/images/Burnt%20Umber_2ff7743.jpg> ;
+	.
+
+work:4af9eb49-8494-4abc-bfe6-05c8f1b7a539
+	a vad:LindenMayerSystemImage ;
+	skos:label "Enhanced NALS graph of the http://mc.movielabs.com/omc ontology" ;
+	vad:media	"Graphics" ;
+	schema:height      "9000"^^xs:float ;
+	schema:width       "9000"^^xs:float ;
+	schema:identifier        "4af9eb49-8494-4abc-bfe6-05c8f1b7a539" ;
+	schema:description "Generated with Nodes and Arcs Lindenmayer System. Enhanced with fractal-plant rules." ;
+	skos:note "http://mc.movielabs.com/omc" ;
+	schema:datePublished "2022-06-08T14:21:55"^^xs:dateTime ;
+	schema:dateCreated "2022-06-02T13:11:31"^^xs:dateTime ;
+	schema:encodingFormat "image/jpeg" ;
+	schema:contentUrl <https://tratsi314.wixsite.com/tra-tsi-art> ;
+	vad:artist work:c35a3e70-7a05-4844-81b7-70d7a537797d ;
+	vad:hasArtistProfile work:6a94c8c0-34bf-4e56-991a-15b3600d05e7 ;
+	vad:qrcode <http://visualartsdna.org/images/qrc_4af9eb49-8494-4abc-bfe6-05c8f1b7a539.jpg> ;
+	schema:image <http://visualartsdna.org/images/Yellow%20Ochre_d178dbff.jpg> ;
+	.
+
+work:99304a7f-1191-4a5a-87a1-4f1c76d1af26
+	a vad:LindenMayerSystemImage ;
+	skos:label "Enhanced NALS graph of the http://visualartsdna.org/model ontology" ;
+	vad:media	"Graphics" ;
+	schema:height      "8000"^^xs:float ;
+	schema:width       "8000"^^xs:float ;
+	schema:identifier        "99304a7f-1191-4a5a-87a1-4f1c76d1af26" ;
+	schema:description "Generated with Nodes and Arcs Lindenmayer System. Enhanced with fractal-plant rules." ;
+	skos:note "http://visualartsdna.org/model" ;
+	schema:datePublished "2022-06-08T14:21:55"^^xs:dateTime ;
+	schema:dateCreated "2022-06-02T13:38:49"^^xs:dateTime ;
+	schema:encodingFormat "image/jpeg" ;
+	schema:contentUrl <https://tratsi314.wixsite.com/tra-tsi-art> ;
+	vad:artist work:c35a3e70-7a05-4844-81b7-70d7a537797d ;
+	vad:hasArtistProfile work:6a94c8c0-34bf-4e56-991a-15b3600d05e7 ;
+	vad:qrcode <http://visualartsdna.org/images/qrc_99304a7f-1191-4a5a-87a1-4f1c76d1af26.jpg> ;
+	schema:image <http://visualartsdna.org/images/Burnt%20Sienna_52deccd4.jpg> ;
+	.
+
+work:4a5ef421-39fd-42d3-81f5-1ac26088e207
+	a vad:LindenMayerSystemImage ;
+	skos:label "Enhanced NALS graph of the http://purl.org/dc/terms ontology" ;
+	vad:media	"Graphics" ;
+	schema:height      "10000"^^xs:float ;
+	schema:width       "10000"^^xs:float ;
+	schema:identifier        "4a5ef421-39fd-42d3-81f5-1ac26088e207" ;
+	schema:description "Generated with Nodes and Arcs Lindenmayer System. Enhanced with fractal-plant rules." ;
+	skos:note "http://purl.org/dc/terms" ;
+	schema:datePublished "2022-06-08T14:21:55"^^xs:dateTime ;
+	schema:dateCreated "2022-06-01T03:50:23"^^xs:dateTime ;
+	schema:encodingFormat "image/jpeg" ;
+	schema:contentUrl <https://tratsi314.wixsite.com/tra-tsi-art> ;
+	vad:artist work:c35a3e70-7a05-4844-81b7-70d7a537797d ;
+	vad:hasArtistProfile work:6a94c8c0-34bf-4e56-991a-15b3600d05e7 ;
+	vad:qrcode <http://visualartsdna.org/images/qrc_4a5ef421-39fd-42d3-81f5-1ac26088e207.jpg> ;
+	schema:image <http://visualartsdna.org/images/Indigo_38c4e031.jpg> ;
+	.
+
+work:83dc0156-5261-4314-9af1-4fc015ff0dd9
+	a vad:LindenMayerSystemImage ;
+	skos:label "Enhanced NALS graph of the https://spec.edmcouncil.org/fibo/ontology/BE/AllBE/ ontology" ;
+	vad:media	"Graphics" ;
+	schema:height      "10000"^^xs:float ;
+	schema:width       "10000"^^xs:float ;
+	schema:identifier        "83dc0156-5261-4314-9af1-4fc015ff0dd9" ;
+	schema:description "Generated with Nodes and Arcs Lindenmayer System. Enhanced with fractal-plant rules." ;
+	skos:note "https://spec.edmcouncil.org/fibo/ontology/BE/AllBE/" ;
+	schema:datePublished "2022-06-08T14:21:55"^^xs:dateTime ;
+	schema:dateCreated "2022-06-02T13:44:16"^^xs:dateTime ;
+	schema:encodingFormat "image/jpeg" ;
+	schema:contentUrl <https://tratsi314.wixsite.com/tra-tsi-art> ;
+	vad:artist work:c35a3e70-7a05-4844-81b7-70d7a537797d ;
+	vad:hasArtistProfile work:6a94c8c0-34bf-4e56-991a-15b3600d05e7 ;
+	vad:qrcode <http://visualartsdna.org/images/qrc_83dc0156-5261-4314-9af1-4fc015ff0dd9.jpg> ;
+	schema:image <http://visualartsdna.org/images/Cerulean_f0feba2d.jpg> ;
+	.
+
+work:d4ea16e9-630e-4bbc-8931-864fc5aa1389
+	a vad:LindenMayerSystemImage ;
+	skos:label "Enhanced NALS graph of the http://xmlns.com/foaf/0.1 ontology" ;
+	vad:media	"Graphics" ;
+	schema:height      "10000"^^xs:float ;
+	schema:width       "10000"^^xs:float ;
+	schema:identifier        "d4ea16e9-630e-4bbc-8931-864fc5aa1389" ;
+	schema:description "Generated with Nodes and Arcs Lindenmayer System. Enhanced with fractal-plant rules." ;
+	skos:note "http://xmlns.com/foaf/0.1" ;
+	schema:datePublished "2022-06-08T14:21:55"^^xs:dateTime ;
+	schema:dateCreated "2022-05-31T17:50:48"^^xs:dateTime ;
+	schema:encodingFormat "image/jpeg" ;
+	schema:contentUrl <https://tratsi314.wixsite.com/tra-tsi-art> ;
+	vad:artist work:c35a3e70-7a05-4844-81b7-70d7a537797d ;
+	vad:hasArtistProfile work:6a94c8c0-34bf-4e56-991a-15b3600d05e7 ;
+	vad:qrcode <http://visualartsdna.org/images/qrc_d4ea16e9-630e-4bbc-8931-864fc5aa1389.jpg> ;
+	schema:image <http://visualartsdna.org/images/Vermillion_d14b1a26.jpg> ;
+	.
+
+work:4a780fec-cd9d-4dad-bcf0-a600e4682431
+	a vad:LindenMayerSystemImage ;
+	skos:label "Enhanced NALS graph of the http://purl.obolibrary.org/obo/gsso.owl ontology" ;
+	vad:media	"Graphics" ;
+	schema:height      "10000"^^xs:float ;
+	schema:width       "10000"^^xs:float ;
+	schema:identifier        "4a780fec-cd9d-4dad-bcf0-a600e4682431" ;
+	schema:description "Generated with Nodes and Arcs Lindenmayer System. Enhanced with fractal-plant rules." ;
+	skos:note "http://purl.obolibrary.org/obo/gsso.owl" ;
+	schema:datePublished "2022-06-08T14:21:55"^^xs:dateTime ;
+	schema:dateCreated "2022-06-02T15:05:44"^^xs:dateTime ;
+	schema:encodingFormat "image/jpeg" ;
+	schema:contentUrl <https://tratsi314.wixsite.com/tra-tsi-art> ;
+	vad:artist work:c35a3e70-7a05-4844-81b7-70d7a537797d ;
+	vad:hasArtistProfile work:6a94c8c0-34bf-4e56-991a-15b3600d05e7 ;
+	vad:qrcode <http://visualartsdna.org/images/qrc_4a780fec-cd9d-4dad-bcf0-a600e4682431.jpg> ;
+	schema:image <http://visualartsdna.org/images/Raw%20Sienna_b7ec613e.jpg> ;
+	.
+
+work:078c9d0b-09ea-4ad1-a3bd-3b1ba481dbac
+	a vad:LindenMayerSystemImage ;
+	skos:label "Enhanced NALS graph of the http://schema.org ontology" ;
+	vad:media	"Graphics" ;
+	schema:height      "10000"^^xs:float ;
+	schema:width       "10000"^^xs:float ;
+	schema:identifier        "078c9d0b-09ea-4ad1-a3bd-3b1ba481dbac" ;
+	schema:description "Generated with Nodes and Arcs Lindenmayer System. Enhanced with fractal-plant rules." ;
+	skos:note "http://schema.org" ;
+	schema:datePublished "2022-06-08T14:21:55"^^xs:dateTime ;
+	schema:dateCreated "2022-06-01T03:51:26"^^xs:dateTime ;
+	schema:encodingFormat "image/jpeg" ;
+	schema:contentUrl <https://tratsi314.wixsite.com/tra-tsi-art> ;
+	vad:artist work:c35a3e70-7a05-4844-81b7-70d7a537797d ;
+	vad:hasArtistProfile work:6a94c8c0-34bf-4e56-991a-15b3600d05e7 ;
+	vad:qrcode <http://visualartsdna.org/images/qrc_078c9d0b-09ea-4ad1-a3bd-3b1ba481dbac.jpg> ;
+	schema:image <http://visualartsdna.org/images/Manganese%20blue_fb4ffa31.jpg> ;
+	.

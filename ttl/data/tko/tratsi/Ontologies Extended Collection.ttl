@@ -1,0 +1,35 @@
+@prefix schema: <https://schema.org/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix work:  <http://visualartsdna.org/work/> .
+@prefix z0:    <http://visualartsdna.org/system/> .
+@prefix vad:   <http://visualartsdna.org/2021/07/16/model#> .
+@prefix tko:   <http://visualartsdna.org/takeout#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xs:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+[ tko:tko  [ a                            "vad:NotaBene" ;
+             tko:color                    "DEFAULT" ;
+             tko:createdTimestampUsec     "1655408881924000"^^xs:long ;
+             tko:filteredText             "NALS graphics of ontologies extended with Lindenmayer System fractal plants.\n\n\n\n" ;
+             tko:isArchived               false ;
+             tko:isPinned                 true ;
+             tko:isTrashed                false ;
+             tko:labels                   [ tko:name  "informationalism" ] ;
+             tko:labels                   [ tko:name  "algorithmicism" ] ;
+             tko:labels                   [ tko:name  "technicalism" ] ;
+             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "ontology" ] ;
+             tko:labels                   [ tko:name  "gracefulness of form" ] ;
+             tko:labels                   [ tko:name  "stochasticism" ] ;
+             tko:labels                   [ tko:name  "publish" ] ;
+             tko:labels                   [ tko:name  "digital" ] ;
+             tko:labels                   [ tko:name  "fancy" ] ;
+             tko:tags                     "gracefulness of form" , "lsys" , "algorithmicism" , "digital" , "informationalism" , "fancy" , "technicalism" , "stochasticism" , "ontology" , "publish" ;
+             tko:textContent              "NALS graphics of ontologies extended with Lindenmayer System fractal plants.\n\n[identifier=0b2ea129-63eb-421b-9ec0-c622e365a6da]\n\n\n" ;
+             tko:title                    "Ontologies Extended Collection" ;
+             tko:userEditedTimestampUsec  "1655409187940000"^^xs:long ;
+             schema:identifier            "0b2ea129-63eb-421b-9ec0-c622e365a6da"
+           ] ] .

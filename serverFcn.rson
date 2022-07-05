@@ -1,0 +1,11 @@
+# Configuration for the cwaServer
+{
+# port
+	"port":8080,
+# host
+	"host": "http://34.72.230.88:8080/",
+# base folder for all relative config references
+	"dir": "." ,
+# the domain of the server
+	"domain": "http://34.72.230.88:8080/" 
+}

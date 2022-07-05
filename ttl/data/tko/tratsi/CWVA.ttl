@@ -1,0 +1,30 @@
+@prefix schema: <https://schema.org/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix work:  <http://visualartsdna.org/work/> .
+@prefix z0:    <http://visualartsdna.org/system/> .
+@prefix vad:   <http://visualartsdna.org/2021/07/16/model#> .
+@prefix tko:   <http://visualartsdna.org/takeout#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xs:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+[ tko:tko  [ a                            "vad:NotaBene" ;
+             tko:color                    "DEFAULT" ;
+             tko:createdTimestampUsec     "1655856550280000"^^xs:long ;
+             tko:filteredText             "\n" ;
+             tko:isArchived               false ;
+             tko:isPinned                 true ;
+             tko:isTrashed                false ;
+             tko:labels                   [ tko:name  "publish" ] ;
+             tko:labels                   [ tko:name  "ontology" ] ;
+             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:tags                     "publish" , "lsys" , "ontology" ;
+             tko:textContent              "[identifier=99304a7f-1191-4a5a-87a1-4f1c76d1af26]\n[color=Burnt Sienna]\n[pattern=52deccd4]\n\n" ;
+             tko:title                    "CWVA" ;
+             tko:userEditedTimestampUsec  "1655860010588000"^^xs:long ;
+             schema:color                 "Burnt Sienna" ;
+             schema:identifier            "99304a7f-1191-4a5a-87a1-4f1c76d1af26" ;
+             schema:pattern               "52deccd4"
+           ] ] .

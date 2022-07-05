@@ -1,0 +1,199 @@
+@prefix schema: <https://schema.org/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix work:  <http://visualartsdna.org/work/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix voc:   <http://visualartsdna.org/voc#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix z0:    <http://visualartsdna.org/system#> .
+@prefix vad:   <http://visualartsdna.org/2021/07/16/model#> .
+@prefix tko:   <http://visualartsdna.org/takeout#> .
+@prefix xs:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+work:876f93bb  a            skos:Concept , vad:Query ;
+        z0:priority         1 ;
+        z0:query            """# Get data for an Artist
+	describe ?s
+	where {
+		bind (%work as ?s)
+		?s a vad:VisualArtist .
+		#?s ?p ?o .
+		} #order by ?p
+""" ;
+        z0:targetType       vad:VisualArtist ;
+        schema:description  """About the artist""" ;
+        schema:identifier   """876f93bb""" .
+
+work:876f93bbaa  a            skos:Concept , vad:Query ;
+        z0:priority         1 ;
+        z0:query            """# Get data for a work
+	describe ?s
+	where {
+		bind (%work as ?s)
+		#?s a vad:Artist .
+		#?s ?p ?o .
+		} #order by ?p
+""" ;
+        z0:targetType       vad:CreativeWork ;
+        schema:description  """About the work""" ;
+        schema:identifier   """876f93bbaa""" .
+
+work:f88a51ad-6ff5-4936-9ae7-b45b38057ffd
+        a                   vad:QueryCollection ;
+        vad:prefixes        """
+prefix dc:    <http://purl.org/dc/elements/1.1/> 
+prefix foaf:  <http://xmlns.com/foaf/0.1/> 
+prefix owl:   <http://www.w3.org/2002/07/owl#> 
+prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> 
+prefix schema: <https://schema.org/> 
+prefix skos:  <http://www.w3.org/2004/02/skos/core#> 
+prefix tko:   <http://visualartsdna.org/takeout#> 
+prefix vad:   <http://visualartsdna.org/2021/07/16/model#> 
+prefix voc:   <http://visualartsdna.org/voc#> 
+prefix work:  <http://visualartsdna.org/work/> 
+prefix xs:    <http://www.w3.org/2001/XMLSchema#> 
+prefix z0:    <http://visualartsdna.org/system#> 
+""" ;
+        skos:member         work:564456, work:4c2d219b77 , work:207d68a9c , work:888, work:876f93bbaa, work:876f93bb ; 
+        skos:prefLabel      """Queries"""@en ;
+        schema:about        """A list of product queries""" ;
+        schema:category     """Query collection""" ;
+        schema:dateCreated  """2022-06-10T00:00:00Z"""^^xs:dateTime .
+
+
+work:564456  a            vad:Query , skos:Concept ;
+        z0:priority         1 ;
+        z0:query            """
+# print just the tags for the work
+	describe ?s
+	where {
+		bind (%work as ?s)
+		#?s a vad:Artist .
+		#?s ?p ?o .
+		} #order by ?p
+
+""" ;
+        z0:targetType       vad:ArtworkCollection ;
+        schema:description  """Tags for the collection""" ;
+        schema:identifier   """564456""" .
+
+work:888  a            vad:Query , skos:Concept ;
+        z0:priority         1 ;
+        z0:query            """
+# print just the tags for the work
+	describe ?s
+	where {
+		bind (%work as ?s)
+		#?s a vad:Artist .
+		#?s ?p ?o .
+		} #order by ?p
+
+""" ;
+        z0:targetType       vad:SoftwareApplication ;
+        schema:description  """A maker's profile""" ;
+        schema:identifier   """888""" .
+
+work:207d68a9c  a            vad:Query , skos:Concept ;
+        z0:priority         3 ;
+        z0:query            """# combined labels and definitions for work and collection
+
+prefix tko:   <http://visualartsdna.org/takeout#>
+construct {
+[
+#tko:title ?title ;
+tko:label ?label ;
+tko:def ?def ;
+]
+
+}
+{ 
+
+#prefix tko:   <http://visualartsdna.org/takeout#>
+
+select distinct ?label ?def {
+	bind (%work as ?s)
+	{
+	?s ?p ?o .
+	?s schema:identifier ?si .
+	?t schema:identifier ?ti .
+	?t tko:color "DEFAULT" .
+	?t ?p2 ?o2 .
+
+	filter (?si = ?ti)
+	filter (!isBlank(?o))
+	filter (!isBlank(?o2))
+	?t tko:title ?title .
+	?t tko:tags ?label .
+	?tag skos:prefLabel ?label .
+	?tag skos:definition ?def .
+	} union {
+
+	
+	?c skos:member ?s .
+	?c schema:identifier ?ci .
+
+	?ct ?p4 ?o4 .
+	?ct schema:identifier ?ci .
+
+	?ct tko:tags ?label .
+	?tag skos:prefLabel ?label .
+	?tag skos:definition ?def .
+	}
+} 
+}""" ;
+        z0:targetType       vad:CreativeWork ;
+        schema:description  """Tags and definitions for work and collection""" ;
+        schema:identifier   """207d68a9c""" .
+
+
+work:4c2d219b77  a            vad:Query , skos:Concept ;
+        z0:priority         2 ;
+        z0:query            """
+# combined work and collection tko
+construct {
+?s ?p2 ?o2 ;
+  ?p4 ?o4 ;
+.
+}{
+	bind (%work as ?s)
+	?s ?p ?o .
+	?s schema:identifier ?si .
+	?t schema:identifier ?ti .
+	#?t tko:color "DEFAULT" .
+	?t ?p2 ?o2 .
+
+	?c skos:member ?s .
+	?c schema:identifier ?ci .
+
+	?ct ?p4 ?o4 .
+	?ct schema:identifier ?ci .
+
+	#?t tko:tags?tabs .
+	filter (?si = ?ti)
+	filter (!isBlank(?o))
+	filter (!isBlank(?o2))
+	filter (?p2 in (
+		tko:title, 
+		tko:tags, 
+		tko:filteredText, 
+		schema:color, 
+		schema:pattern,
+		tko:query
+))
+	filter (?p4 in (
+		tko:title, 
+		tko:tags, 
+		tko:filteredText, 
+		schema:color, 
+		schema:pattern,
+		tko:query
+))
+} order by ?p ?p2""" ;
+        z0:targetType       vad:CreativeWork ;
+        schema:description  """Instance and takeout data""" ;
+        schema:identifier   """4c2d219b77""" .
+
+

@@ -1,0 +1,29 @@
+@prefix schema: <https://schema.org/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix work:  <http://visualartsdna.org/work/> .
+@prefix z0:    <http://visualartsdna.org/system/> .
+@prefix vad:   <http://visualartsdna.org/2021/07/16/model#> .
+@prefix tko:   <http://visualartsdna.org/takeout#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xs:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+[ tko:tko  [ a                            "vad:NotaBene" ;
+             tko:color                    "DEFAULT" ;
+             tko:createdTimestampUsec     "1655856956505000"^^xs:long ;
+             tko:isArchived               false ;
+             tko:isPinned                 true ;
+             tko:isTrashed                false ;
+             tko:labels                   [ tko:name  "ontology" ] ;
+             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "publish" ] ;
+             tko:tags                     "lsys" , "publish" , "ontology" ;
+             tko:textContent              "[identifier=078c9d0b-09ea-4ad1-a3bd-3b1ba481dbac]\n[color=Manganese blue]\n[pattern=fb4ffa31]\n" ;
+             tko:title                    "Schema" ;
+             tko:userEditedTimestampUsec  "1655859901956000"^^xs:long ;
+             schema:color                 "Manganese blue" ;
+             schema:identifier            "078c9d0b-09ea-4ad1-a3bd-3b1ba481dbac" ;
+             schema:pattern               "fb4ffa31"
+           ] ] .

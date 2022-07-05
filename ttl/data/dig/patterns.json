@@ -1,0 +1,172 @@
+[
+	{
+		"description":"rules for lsys patterns",
+		"type":"meta",
+		"from":"various...",
+		"comment":"rule patterns for generating lsys imagery"
+# add better descriptions for patterns/rules of interest
+# add type of "pattern" where combined rules are used
+#
+	},
+    {
+        "type": "mix",
+        "rule": "X=F[+X]E[-''X]+X,E=E[+E]E[-E][E]",
+        "code": "e6dd3c60",
+        "name": "mix0",
+        "description": "a mix"
+    },
+     {
+        "type": "mix",
+        "rule": "X=F[+X]E[-''X]+X,E=EE-[-E+E+E]+[+E-E-E],E=E[+E]E[-E][E]",
+        "code": "7a80e05e",
+        "name": "mix2",
+        "description": "a mix"
+    },
+    {
+        "type": "mix",
+        "rule": "X=F[+X]E[-''X]+X,E=EE-[-E+E+E]+[+E-E-E]",
+        "code": "fb4ffa31",
+        "name": "mix1",
+        "description": "a mix"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F[+X]F[-''X]+X",
+        "code": "bfdd0934",
+        "name": "rule0",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=E,E=E[+E]E[-E]E",
+        "code": "34768a9f",
+        "name": "rule1",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F-[[X]+X]+F[+FX]-X",
+        "code": "9b18a48c",
+        "name": "rule2",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F[-FX]+''X",
+        "code": "f4de0f65",
+        "name": "rule3",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=E,E=E[+E]E[-E][E]",
+        "code": "f0feba2d",
+        "name": "rule4",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=E,E=EE-[-E+E+E]+[+E-E-E]",
+        "code": "9c48cbc4",
+        "name": "rule5",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=E,E=EE[-E++E][+E--E]++E--E",
+        "code": "d14b1a26",
+        "name": "rule6",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F[+''X]F[-''X]+X",
+        "code": "d2295894",
+        "name": "rule7",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F[+X][-X]FX",
+        "code": "d178dbff",
+        "name": "rule8",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=E,E=EE-[-E+E+E+E]+[+E-E-E]",
+        "code": "b7ec613e",
+        "name": "rule9",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F-[[X]+''X]+F[+FX]-X",
+        "code": "4094622c",
+        "name": "rule11",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F[+X]F[-X]+X",
+        "code": "52deccd4",
+        "name": "rule12",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F[+X]F[-''X]+X",
+        "code": "5b329f3a",
+        "name": "rule13",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=E,E=E[-E][++E]E[--E][+E]",
+        "code": "8aacbade",
+        "name": "rule14",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F[-FX]+''X",
+        "code": "7d621f69",
+        "name": "rule15",
+        "description": "a rule"
+    },
+    {
+        "type": "operator",
+        "rule": "F=FF",
+        "code": "20bfb7",
+        "name": "rule16",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F+[[X]-''X]-F[-FX]+''X",
+        "code": "10807b8a",
+        "name": "rule17",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F+[[X]-''X]",
+        "code": "2ff7743",
+        "name": "rule18",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F-[[X]+X]+F[+FX]-XF+[[X]-X]-F[-FX]+X",
+        "code": "38c4e031",
+        "name": "rule19",
+        "description": "a rule"
+    },
+    {
+        "type": "rule",
+        "rule": "X=F[-X]F[-X]+X",
+        "code": "3b71af12",
+        "name": "rule20",
+        "description": "a rule"
+    }
+]

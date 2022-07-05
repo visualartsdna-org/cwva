@@ -1,0 +1,27 @@
+@prefix schema: <https://schema.org/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix work:  <http://visualartsdna.org/work/> .
+@prefix z0:    <http://visualartsdna.org/system/> .
+@prefix vad:   <http://visualartsdna.org/2021/07/16/model#> .
+@prefix tko:   <http://visualartsdna.org/takeout#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xs:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+[ tko:tko  [ a                            "vad:NotaBene" ;
+             tko:color                    "DEFAULT" ;
+             tko:createdTimestampUsec     "1656256304646000"^^xs:long ;
+             tko:filteredText             "This morning glory volunteered on my patio entangling itself with a potted eggplant.\n" ;
+             tko:isArchived               false ;
+             tko:isPinned                 false ;
+             tko:isTrashed                false ;
+             tko:labels                   [ tko:name  "nature" ] ;
+             tko:labels                   [ tko:name  "publish" ] ;
+             tko:tags                     "nature" , "publish" ;
+             tko:textContent              "This morning glory volunteered on my patio entangling itself with a potted eggplant.\n[identifier=6ad6b907-edbf-4f53-b499-df7c24946649]\n" ;
+             tko:title                    "Morning Glory" ;
+             tko:userEditedTimestampUsec  "1656377568323000"^^xs:long ;
+             schema:identifier            "6ad6b907-edbf-4f53-b499-df7c24946649"
+           ] ] .

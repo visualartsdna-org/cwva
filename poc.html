@@ -1,0 +1,32 @@
+<head>
+<style type="text/css">
+.style1 {
+text-align: center;
+}
+h1 { text-align: right; }
+h2 { text-align: right; }
+h3 { text-align: right; }
+</style>
+</head>
+<body style="color: #000000; background-color: #80B69C">
+<div class="style1">
+<IMG src="images/lsys.jpg"" border="1" name="refresh" width="800" height="800">
+<SCRIPT language="JavaScript" type="text/javascript">
+var t = 0.3 // Interval in Seconds
+image = "images/lsys.jpg" //URL of the Image
+function Start() {
+tmp = new Date();
+tmp = "?"+tmp.getTime()
+document.images["refresh"].src = image+tmp
+setTimeout("Start()", t*1000)
+}
+Start();
+</SCRIPT> </div>
+<hr>
+<h1>Financial Winds</h1>
+<h2><a href="https://en.wikipedia.org/wiki/L-system#Example_7:_Fractal_plant">Wiki Fractal Plant</a></h2>
+<h2><a href="https://en.wikipedia.org/wiki/L-system">Lindenmayer System</a></h2>
+<h2>Motion driven by <a href="https://en.wikipedia.org/wiki/Relative_strength_index">RSI</a> on <a href="https://education.howthemarketworks.com/should-you-trade-the-eurusd/">EURUSD</a></h2>
+<h3><a href="http://rickspates.art">RickSpates.art</a> &copy; 2021</h3>
+</body>
+</html>

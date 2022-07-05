@@ -1,0 +1,134 @@
+
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix voc:	<http://visualartsdna.org/voc#> .
+
+
+
+voc:vocabulary a skos:ConceptScheme ;
+	skos:hasTopConcept voc:computerArtTerm ;
+	skos:prefLabel "vocabulary" ;
+	skos:altLabel "computer art terms" ;
+	skos:note "Terms used to describe computer art." ;
+	skos:notation "5201bf86-249b-4ead-aa92-579b60c8f92e" ;
+.
+
+voc:computerArtTerm
+	a skos:Concept ;
+	skos:prefLabel "computer art term" ;
+	skos:definition "A term of art in computer art." ;
+	skos:notation "8ce6da69-d85e-46c3-98fa-a10051ca5b80" ;
+.
+
+voc:algorithmicism
+	a skos:Concept ;
+	skos:prefLabel "algorithmicism" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition """(T)he digital age has ushered in an era of "algorithmicism"--the increasingly steadfast belief that everything in the world, from business processes to financial markets to interpersonal interactions and more, can be analyzed and broken down into discrete model that are representable and manipulable by mathematical/digital processes.""" ;
+	skos:note <https://books.google.com/books?id=eKwYBwAAQBAJ&pg=PA98&lpg=PA98&dq=Algorithmicism&source=bl&ots=Lx-AIt9kcT&sig=ACfU3U0HEDbnO4eLKCEAH0Z3rFFu_cJqPg&hl=en&sa=X&ved=2ahUKEwiurMvjzbD4AhXymeAKHVZuCl4Q6AF6BAgVEAM#v=onepage&q=Algorithmicism&f=false> ;
+	skos:notation "393c1762-5b0b-41c6-b8c8-755f0cb977de" ;
+.
+
+voc:gracefulnessOfForm
+	a skos:Concept ;
+	skos:prefLabel "gracefulness of form" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "(T)he act of moving in an attractive way that shows control; the fact of having a smooth, attractive form." ;
+	skos:note <https://www.lexico.com/en/definition/gracefulness> ;
+	skos:notation "0a1a4742-362b-45a5-95c0-07f3bd7ac16e" ;
+.
+voc:lsys
+	a skos:Concept ;
+	skos:altLabel "Lindenmayer System" ;
+	skos:prefLabel "lsys" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition """a parallel rewriting system and a type of formal grammar. An L-system consists of an alphabet of symbols that can be used to make strings, a collection of production rules that expand each symbol into some larger string of symbols, an initial "axiom" string from which to begin construction, and a mechanism for translating the generated strings into geometric structures. L-systems were introduced and developed in 1968 by Aristid Lindenmayer, a Hungarian theoretical biologist and botanist at the University of Utrecht..""" ;
+	skos:notation "93c87534-a89d-40a5-ac88-ee455361de6d" ;
+	skos:note <https://en.wikipedia.org/wiki/L-system> ;
+.
+voc:fancy
+	a skos:Concept ;
+	skos:prefLabel "fancy" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "elaborate in structure or decoration." ;
+	skos:notation "53299ae9-3c20-4ded-a0e4-db4d586cc844" ;
+	skos:note <https://www.lexico.com/en/definition/fancy> ;
+.
+voc:plain
+	a skos:Concept ;
+	skos:prefLabel "plain" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "not decorated or elaborate; simple or ordinary in character." ;
+	skos:notation "bc5df430-4166-4755-ab72-b69ec9617164" ;
+	skos:note <https://www.lexico.com/en/definition/plain> ;
+.
+voc:stochasticism
+	a skos:Concept ;
+	skos:prefLabel "stochasticism" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "randomly determined; having a random probability distribution or pattern that may be analyzed statistically but may not be predicted precisely." ;
+	skos:notation "76608310-a155-4891-ba85-7beb97391f06" ;
+	skos:note <http://www.stats.org.uk/stochastic-processes/#:~:text=%22stochastic%20adjective%20randomly%20determined%3B%20having,may%20not%20be%20predicted%20precisely.%22> ;
+.
+voc:digital
+	a skos:Concept ;
+	skos:prefLabel "digital" ;
+	skos:definition "(of signals or data) expressed as series of the digits 0 and 1." ;
+	skos:notation "c808be8d-9e12-4e0c-b466-aa56063428b0" ;
+	skos:note <https://www.lexico.com/definition/digital> ;
+.
+voc:technicalism
+	a skos:Concept ;
+	skos:prefLabel "technicalism" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "Technical method or treatment; (excessive) use of or reliance on technical terms or procedure." ;
+	skos:notation "d9f3a322-7791-479f-9264-2fbda268a99c" ;
+	skos:note <https://www.lexico.com/definition/technicalism> ;
+.
+voc:publish
+	a skos:Concept ;
+	skos:prefLabel "publish" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "Prepare and issue the work of (a particular writer)." ;
+	skos:notation "78c839b1-a991-4222-b9db-5e7faa0fd0c7" ;
+	skos:note <> ;
+.
+voc:ontology
+	a skos:Concept ;
+	skos:prefLabel "ontology" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "A set of concepts and categories in a subject area or domain that shows their properties and the relations between them." ;
+	skos:notation "38651202-65d2-45cc-a644-7667020b2353" ;
+	skos:note <https://www.lexico.com/definition/ontology> ;
+.
+voc:informationalism
+	a skos:Concept ;
+	skos:prefLabel "informationalism" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "Informationalism is a concept of strengthening the capacity of information processing and communication, made possible by technological innovations." ;
+	skos:notation "8f365053-71e6-4dce-a2b7-b82ce1662746" ;
+	skos:note <https://dergipark.org.tr/tr/download/article-file/399706#:~:text=Informationalism%20is%20a%20concept%20of,technologies%20(Castells%2C%202004).> ;
+.
+voc:Wyeth
+	a skos:Concept ;
+	skos:prefLabel "Wyeth" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "A reference to the Wyeth family." ;
+	skos:notation "1dce5aa2-407e-45db-a5c0-c0a8d6a4abdd" ;
+.
+voc:flowers
+	a skos:Concept ;
+	skos:prefLabel "flowers" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "A reference to the representation of flowers." ;
+	skos:notation "715c8700-545e-4d54-ad49-f2b036ba0925" ;
+.
+voc:nature
+	a skos:Concept ;
+	skos:prefLabel "nature" ;
+	skos:broader voc:computerArtTerm ;
+	skos:definition "A reference to the representation of things found in nature." ;
+	skos:notation "31484277-4755-4e9a-8937-d86cde925c32" ;
+.

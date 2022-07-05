@@ -1,0 +1,157 @@
+@prefix schema: <https://schema.org/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix work:  <http://visualartsdna.org/work/> .
+@prefix z0:    <http://visualartsdna.org/system/> .
+@prefix vad:   <http://visualartsdna.org/2021/07/16/model#> .
+@prefix tko:   <http://visualartsdna.org/takeout#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xs:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+[ tko:tko  [ a         "vad:LsysRules" ;
+             tko:data  [ tko:code         "7a80e05e" ;
+                         tko:description  "a mix" ;
+                         tko:name         "mix2" ;
+                         tko:rule         "X=F[+X]E[-''X]+X,E=EE-[-E+E+E]+[+E-E-E],E=E[+E]E[-E][E]" ;
+                         tko:type         "mix"
+                       ] ;
+             tko:data  [ tko:code         "2ff7743" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule18" ;
+                         tko:rule         "X=F+[[X]-''X]" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "d178dbff" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule8" ;
+                         tko:rule         "X=F[+X][-X]FX" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "d2295894" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule7" ;
+                         tko:rule         "X=F[+''X]F[-''X]+X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "3b71af12" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule20" ;
+                         tko:rule         "X=F[-X]F[-X]+X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "f0feba2d" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule4" ;
+                         tko:rule         "X=E,E=E[+E]E[-E][E]" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "f4de0f65" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule3" ;
+                         tko:rule         "X=F[-FX]+''X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:comment      "rule patterns for generating lsys imagery" ;
+                         tko:description  "rules for lsys patterns" ;
+                         tko:from         "various..." ;
+                         tko:type         "meta"
+                       ] ;
+             tko:data  [ tko:code         "d14b1a26" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule6" ;
+                         tko:rule         "X=E,E=EE[-E++E][+E--E]++E--E" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "10807b8a" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule17" ;
+                         tko:rule         "X=F+[[X]-''X]-F[-FX]+''X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "e6dd3c60" ;
+                         tko:description  "a mix" ;
+                         tko:name         "mix0" ;
+                         tko:rule         "X=F[+X]E[-''X]+X,E=E[+E]E[-E][E]" ;
+                         tko:type         "mix"
+                       ] ;
+             tko:data  [ tko:code         "9b18a48c" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule2" ;
+                         tko:rule         "X=F-[[X]+X]+F[+FX]-X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "20bfb7" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule16" ;
+                         tko:rule         "F=FF" ;
+                         tko:type         "operator"
+                       ] ;
+             tko:data  [ tko:code         "fb4ffa31" ;
+                         tko:description  "a mix" ;
+                         tko:name         "mix1" ;
+                         tko:rule         "X=F[+X]E[-''X]+X,E=EE-[-E+E+E]+[+E-E-E]" ;
+                         tko:type         "mix"
+                       ] ;
+             tko:data  [ tko:code         "9c48cbc4" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule5" ;
+                         tko:rule         "X=E,E=EE-[-E+E+E]+[+E-E-E]" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "7d621f69" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule15" ;
+                         tko:rule         "X=F[-FX]+''X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "5b329f3a" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule13" ;
+                         tko:rule         "X=F[+X]F[-''X]+X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "4094622c" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule11" ;
+                         tko:rule         "X=F-[[X]+''X]+F[+FX]-X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "34768a9f" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule1" ;
+                         tko:rule         "X=E,E=E[+E]E[-E]E" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "bfdd0934" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule0" ;
+                         tko:rule         "X=F[+X]F[-''X]+X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "38c4e031" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule19" ;
+                         tko:rule         "X=F-[[X]+X]+F[+FX]-XF+[[X]-X]-F[-FX]+X" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "b7ec613e" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule9" ;
+                         tko:rule         "X=E,E=EE-[-E+E+E+E]+[+E-E-E]" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "8aacbade" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule14" ;
+                         tko:rule         "X=E,E=E[-E][++E]E[--E][+E]" ;
+                         tko:type         "rule"
+                       ] ;
+             tko:data  [ tko:code         "52deccd4" ;
+                         tko:description  "a rule" ;
+                         tko:name         "rule12" ;
+                         tko:rule         "X=F[+X]F[-X]+X" ;
+                         tko:type         "rule"
+                       ]
+           ] ] .
