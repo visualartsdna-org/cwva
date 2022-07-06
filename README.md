@@ -1,9 +1,9 @@
 
-##### Visual Arts DNA (VADNA)
+##### creative works for the visual arts (cwva)
 
 ##### Introduction
 
-These RDF and JSON linked data relate to the visual arts creative-process domain and can be found online at [VisualArtsDNA.org](http://visualartsdna.org) where the data can be browsed, queried and graphed.
+The creative works for the visual arts ([cwva](http://visualartsdna.org)) content relates to the visual arts creative-process domain and can be found online at [VisualArtsDNA.org](http://visualartsdna.org) where the data can be browsed, queried and graphed.
 
 The lfs system is used to store the image files in github.
 
