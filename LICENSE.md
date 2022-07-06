@@ -1,6 +1,7 @@
 LICENSE
 
-Copyright © 2022 VisualArtsDNA.org. All Rights Reserved.
+Copyright © 2022 [VisualArtsDNA.org](http://visualartsdna.org). All Rights Reserved.
+
 
 Creative works for the visual arts (CWVA) content licensed under Creative Commons Attribution 4.0 International. 
 
