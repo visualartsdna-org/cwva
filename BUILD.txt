@@ -1,0 +1,8 @@
+
+To Build:
+
+1. create a bin folder
+2. place the current nals{version}.jar in bin.  E.g., bin/nals-1.0.0.jar
+3. place the current cwvaServer{version}.jar in bin. E.g., bin/cwvaServer-2.0.4.jar
+
+Ensure the cwaServer2.{platform extension} is configured correctly, and run
