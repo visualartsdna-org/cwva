@@ -4,13 +4,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix voc:	<http://visualartsdna.org/voc#> .
 
-voc:painting a skos:ConceptScheme ;																										
-	skos:prefLabel "Painting terms" ;																				
-	skos:definition "Terms used to describe the materials, techniques, tools and related concepts used in painting." ;
-	skos:note "This is a placeholder for expansion of the vocabulary" ;
-	skos:notation "565c1b24-bb97-441a-aefa-c12fd44adcb3" ;																									
-.																										
-																										
 voc:watercolorPainting a skos:ConceptScheme ;																										
 	skos:hasTopConcept voc:watercolorTechnique ;																									
 	skos:hasTopConcept voc:watercolorTerm ;																									
