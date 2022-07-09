@@ -1,0 +1,138 @@
+[
+    {
+        "type": "config",
+        "comment": "data lsys graphics",
+        "xspan": 9000,
+        "yspan": 9000,
+        "scale": 1.0,
+        "rotate": 0,
+        "xbase": -1000,
+        "ybase": 0,
+        "autoPlace": false,
+        "width": 5,
+        "turn": -90,
+        "border": 2000,
+        "bgcolor": {
+            "red": 213,
+            "green": 214,
+            "blue": 200
+        },
+        "color": {
+            "red": 182,
+            "green": 115,
+            "blue": 24
+        },
+        "arrange": "individual"
+    },
+    {
+        "name": "plant1",
+        "id": "http://visualartsdna.org/work/4af9eb49-8494-4abc-bfe6-05c8f1b7a539",
+        "type": "lsys",
+        "active": true,
+        "x": 5600,
+        "y": -5600,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] '",
+            "start": "X",
+            "rules": "X= F+[[X]-''X]-F[-FX]+''X,F=FF",
+            "angle": -25.0,
+            "length": 2,
+            "level": 7
+        }
+    },
+    {
+        "name": "signature",
+        "id": "http://visualartsdna.org/work/4af9eb49-8494-4abc-bfe6-05c8f1b7a539",
+        "active": true,
+        "type": "lsys",
+        "x": 5600,
+        "y": -5500,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Copyright \u00a9 2022, Tra Tsi, tratsi314.wixsite.com, tratsi3.14@gmail.com)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend",
+        "id": "http://visualartsdna.org/work/4af9eb49-8494-4abc-bfe6-05c8f1b7a539",
+        "active": true,
+        "type": "lsys",
+        "x": 5600,
+        "y": -5525,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Namespace: http://mc.movielabs.com/omc)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend2",
+        "id": "http://visualartsdna.org/work/4af9eb49-8494-4abc-bfe6-05c8f1b7a539",
+        "active": true,
+        "type": "lsys",
+        "x": 5600,
+        "y": -5550,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Generated with NALS, the Nodes and Arcs Lindenmayer System)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend3",
+        "id": "http://visualartsdna.org/work/4af9eb49-8494-4abc-bfe6-05c8f1b7a539",
+        "active": true,
+        "type": "lsys",
+        "x": 5600,
+        "y": -5575,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(2022-06-02 13:11:31, http://visualartsdna.org/work/4af9eb49-8494-4abc-bfe6-05c8f1b7a539)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "generated from TTL file",
+        "id": "http://visualartsdna.org/work/4af9eb49-8494-4abc-bfe6-05c8f1b7a539",
+        "active": true,
+        "type": "lsys",
+        "x": 2000,
+        "y": -2000,
+        "color": {
+            "red": 182,
+            "green": 115,
+            "blue": 24
+        },
+        "graph": {
+            "vars": "G X F E",
+            "consts": "+ - [ ] ' \" @ | $ %",
+            "start": "G",
+            "rules": "G=@(http://mc.movielabs.com/omc)[--|(null)f@(owl:Thing)[%$$$$$$$$$$$$|(subClassOf)f@(omc:AssetGroup)x][%%%%%%%%%%%%%|(subClassOf)f@(omc:CameraMetadata)x][%$$$$$$$$$$$|(subClassOf)f@(omc:Depiction)[-|(subClassOf)f@(omc:Portrayal)[-|(subClassOf)f@(omc:PortrayalByPerson)x]x]x][%%%%%%%%%%%%|(subClassOf)f@(omc:Iri)[-|(subClassOf)f@(omc:ResolvableIrl)x]x][%$$$$$$$$$$|(subClassOf)f@(omc:LensMetadata)x][%%%%%%%%%%%|(subClassOf)f@(omc:ParticipantGroup)x][%$$$$$$$$$|(subClassOf)f@(omc:RecorderMetadata)x][%%%%%%%%%%|(subClassOf)f@(omc:Scheduling)x][%$$$$$$$$|(subClassOf)f@(omc:SetOfProperties)x][%%%%%%%%%|(subClassOf)f@(omc:State)x][%$$$$$$$|(subClassOf)f@(omc:TaskGroup)x][%%%%%%%%|(subClassOf)f@(omc:Utility)[-++++|(subClassOf)f@(omc:Address)x][-----|(subClassOf)f@(omc:AnythingWithACountry)[-+|(subClassOf)f@(omc:Keyword)x][--|(subClassOf)f@(omc:Location)[--|(subClassOf)f@(omc:NarrativeLocation)x][-|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x]x][-|(subClassOf)f@(omc:Text)x]x][-+++|(subClassOf)f@(omc:AnythingWithAName)[-+++++++++++++|(subClassOf)f@(omc:Person)x][--------------|(subClassOf)f@(omc:Asset)x][-++++++++++++|(subClassOf)f@(omc:Concept)x][-------------|(subClassOf)f@(omc:ConceptArt)x][-+++++++++++|(subClassOf)f@(omc:MediaCreationContext)[--|(subClassOf)f@(omc:NarrativeContext)x][-|(subClassOf)f@(omc:ProductionContext)x]x][------------|(subClassOf)f@(omc:MediaCreationContextComponent)[-+++|(subClassOf)f@(omc:NarrativeContextComponent)[-++|(subClassOf)f@(omc:NarrativeWardrobe)x][---|(subClassOf)f@(omc:Character)x][-+|(subClassOf)f@(omc:NarrativeLocation)x][--|(subClassOf)f@(omc:NarrativeProp)x][-|(subClassOf)f@(omc:NarrativeScene)x]x][----|(subClassOf)f@(omc:ProductionContextComponent)[------|(subClassOf)f@(omc:Costume)x][-++++|(subClassOf)f@(omc:Portrayer)[-|(subClassOf)f@(omc:PortrayerWhoIsAPerson)x]x][-----|(subClassOf)f@(omc:ProductionSetDressing)x][-+++|(subClassOf)f@(omc:Slate)x][----|(subClassOf)f@(omc:SlateUID)x][-++|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x][---|(subClassOf)f@(omc:ProductionScene)x][-+|(subClassOf)f@(omc:ProductionSet)x][--|(subClassOf)f@(omc:ProductionShot)[--|(subClassOf)f@(omc:AnimationShot)x][-|(subClassOf)f@(omc:VFX_Shot)x]x][-|(subClassOf)f@(omc:ShootingLocation)x]x][-++|(subClassOf)f@(omc:SCD_Component)x][---|(subClassOf)f@(omc:Scene)[--|(subClassOf)f@(omc:NarrativeScene)x][-|(subClassOf)f@(omc:ProductionScene)x]x][-+|(subClassOf)f@(omc:Set)[-|(subClassOf)f@(omc:ProductionSet)x]x][--|(subClassOf)f@(omc:Shot)[-|(subClassOf)f@(omc:ProductionShot)[--|(subClassOf)f@(omc:AnimationShot)x][-|(subClassOf)f@(omc:VFX_Shot)x]x]x][-|(subClassOf)f@(omc:Location)[--|(subClassOf)f@(omc:NarrativeLocation)x][-|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x]x]x][-++++++++++|(subClassOf)f@(omc:Participant)[-|(subClassOf)f@(omc:ProductionCompany)x]x][-----------|(subClassOf)f@(omc:Task)x][-+++++++++|(subClassOf)f@(omc:AssetFunctionalClass)[---------|(subClassOf)f@(omc:AnimatedStoryboardClass)x][-+++++++|(subClassOf)f@(omc:CameraClass)x][--------|(subClassOf)f@(omc:CaptureClass)x][-++++++|(subClassOf)f@(omc:LensClass)x][-------|(subClassOf)f@(omc:MagClass)x][-+++++|(subClassOf)f@(omc:RecorderClass)x][------|(subClassOf)f@(omc:ScriptClass)[--|(subClassOf)f@(omc:NarrativeScriptClass)x][-|(subClassOf)f@(omc:ProductionScriptClass)x]x][-++++|(subClassOf)f@(omc:SequenceChronologyDescriptorClass)x][-----|(subClassOf)f@(omc:SequenceClass)[-++|(subClassOf)f@(omc:AnimationSequenceClass)x][---|(subClassOf)f@(omc:ColorSequenceClass)x][-+|(subClassOf)f@(omc:EditorialSequenceClass)x][--|(subClassOf)f@(omc:ImageSequenceClass)x][-|(subClassOf)f@(omc:VFX_SequenceClass)x]x][-+++|(subClassOf)f@(omc:SetDressingClass)[-|(subClassOf)f@(omc:ProductionSetDressingClass)x]x][----|(subClassOf)f@(omc:ShotClass)x][-++|(subClassOf)f@(omc:StoryboardClass)x][---|(subClassOf)f@(omc:VFX_ImageSequenceClass)x][-+|(subClassOf)f@(omc:CreativeReferenceMaterialClass)x][--|(subClassOf)f@(omc:TechnicalReferenceMaterialClass)x][-|(subClassOf)f@(omc:ProductionPropClass)x]x][----------|(subClassOf)f@(omc:AssetStructuralClass)[-+++|(subClassOf)f@(omc:AudioClass)[-|(subClassOf)f@(omc:DigitalAudioClass)x]x][----|(subClassOf)f@(omc:AudioVisualClass)[--|(subClassOf)f@(omc:AnalogAudioVisualClass)x][-|(subClassOf)f@(omc:DigitalAudioVisualClass)x]x][-++|(subClassOf)f@(omc:DigitalDataClass)x][---|(subClassOf)f@(omc:DocumentClass)[-+|(subClassOf)f@(omc:DigitalDocumentClass)x][--|(subClassOf)f@(omc:PhysicalDocumentClass)x][-|(subClassOf)f@(omc:StructuredDocumentClass)[--|(subClassOf)f@(omc:DigitalStructuredDocumentClass)x][-|(subClassOf)f@(omc:PhysicalStructuredDocumentClass)x]x]x][-+|(subClassOf)f@(omc:ImageClass)[-+|(subClassOf)f@(omc:AnalogImageClass)x][--|(subClassOf)f@(omc:DigitalImageClass)x][-|(subClassOf)f@(omc:PhysicalImageClass)x]x][--|(subClassOf)f@(omc:MovingImageClass)x][-|(subClassOf)f@(omc:PhysicalAssetClass)x]x][-++++++++|(subClassOf)f@(omc:CreativeWork)x][---------|(subClassOf)f@(omc:ParticipantFunctionalClass)x][-+++++++|(subClassOf)f@(omc:ParticipantStructuralClass)[-+|(subClassOf)f@(omc:OrganizationClass)[-|(subClassOf)f@(omc:DepartmentClass)x]x][--|(subClassOf)f@(omc:PersonClass)x][-|(subClassOf)f@(omc:ServiceClass)x]x][--------|(subClassOf)f@(omc:ProductionReferenceMaterial)x][-++++++|(subClassOf)f@(omc:Prop)[--|(subClassOf)f@(omc:NarrativeProp)x][-|(subClassOf)f@(omc:ProductionPropClass)x]x][-------|(subClassOf)f@(omc:Role)x][-+++++|(subClassOf)f@(omc:TaskFunctionalClass)x][------|(subClassOf)f@(omc:TaskStructuralClass)x][-++++|(subClassOf)f@(omc:Character)x][-----|(subClassOf)f@(omc:CreativeReferenceMaterialClass)x][-+++|(subClassOf)f@(omc:TechnicalReferenceMaterialClass)x][----|(subClassOf)f@(omc:Infrastructure)x][-++|(subClassOf)f@(omc:Location)[--|(subClassOf)f@(omc:NarrativeLocation)x][-|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x]x][---|(subClassOf)f@(omc:OrganizationClass)[-|(subClassOf)f@(omc:DepartmentClass)x]x][-+|(subClassOf)f@(omc:PersonClass)x][--|(subClassOf)f@(omc:ServiceClass)x][-|(subClassOf)f@(omc:ProductionSet)x]x][----|(subClassOf)f@(omc:AnythingWithAnID)[-+++++++++++|(subClassOf)f@(omc:Asset)x][------------|(subClassOf)f@(omc:Concept)x][-++++++++++|(subClassOf)f@(omc:ConceptArt)x][-----------|(subClassOf)f@(omc:MediaCreationContext)[--|(subClassOf)f@(omc:NarrativeContext)x][-|(subClassOf)f@(omc:ProductionContext)x]x][-+++++++++|(subClassOf)f@(omc:MediaCreationContextComponent)[-+++|(subClassOf)f@(omc:NarrativeContextComponent)[-++|(subClassOf)f@(omc:NarrativeWardrobe)x][---|(subClassOf)f@(omc:Character)x][-+|(subClassOf)f@(omc:NarrativeLocation)x][--|(subClassOf)f@(omc:NarrativeProp)x][-|(subClassOf)f@(omc:NarrativeScene)x]x][----|(subClassOf)f@(omc:ProductionContextComponent)[------|(subClassOf)f@(omc:Costume)x][-++++|(subClassOf)f@(omc:Portrayer)[-|(subClassOf)f@(omc:PortrayerWhoIsAPerson)x]x][-----|(subClassOf)f@(omc:ProductionSetDressing)x][-+++|(subClassOf)f@(omc:Slate)x][----|(subClassOf)f@(omc:SlateUID)x][-++|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x][---|(subClassOf)f@(omc:ProductionScene)x][-+|(subClassOf)f@(omc:ProductionSet)x][--|(subClassOf)f@(omc:ProductionShot)[--|(subClassOf)f@(omc:AnimationShot)x][-|(subClassOf)f@(omc:VFX_Shot)x]x][-|(subClassOf)f@(omc:ShootingLocation)x]x][-++|(subClassOf)f@(omc:SCD_Component)x][---|(subClassOf)f@(omc:Scene)[--|(subClassOf)f@(omc:NarrativeScene)x][-|(subClassOf)f@(omc:ProductionScene)x]x][-+|(subClassOf)f@(omc:Set)[-|(subClassOf)f@(omc:ProductionSet)x]x][--|(subClassOf)f@(omc:Shot)[-|(subClassOf)f@(omc:ProductionShot)[--|(subClassOf)f@(omc:AnimationShot)x][-|(subClassOf)f@(omc:VFX_Shot)x]x]x][-|(subClassOf)f@(omc:Location)[--|(subClassOf)f@(omc:NarrativeLocation)x][-|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x]x]x][----------|(subClassOf)f@(omc:Participant)[-|(subClassOf)f@(omc:ProductionCompany)x]x][-++++++++|(subClassOf)f@(omc:Task)x][---------|(subClassOf)f@(omc:AssetFunctionalClass)[---------|(subClassOf)f@(omc:AnimatedStoryboardClass)x][-+++++++|(subClassOf)f@(omc:CameraClass)x][--------|(subClassOf)f@(omc:CaptureClass)x][-++++++|(subClassOf)f@(omc:LensClass)x][-------|(subClassOf)f@(omc:MagClass)x][-+++++|(subClassOf)f@(omc:RecorderClass)x][------|(subClassOf)f@(omc:ScriptClass)[--|(subClassOf)f@(omc:NarrativeScriptClass)x][-|(subClassOf)f@(omc:ProductionScriptClass)x]x][-++++|(subClassOf)f@(omc:SequenceChronologyDescriptorClass)x][-----|(subClassOf)f@(omc:SequenceClass)[-++|(subClassOf)f@(omc:AnimationSequenceClass)x][---|(subClassOf)f@(omc:ColorSequenceClass)x][-+|(subClassOf)f@(omc:EditorialSequenceClass)x][--|(subClassOf)f@(omc:ImageSequenceClass)x][-|(subClassOf)f@(omc:VFX_SequenceClass)x]x][-+++|(subClassOf)f@(omc:SetDressingClass)[-|(subClassOf)f@(omc:ProductionSetDressingClass)x]x][----|(subClassOf)f@(omc:ShotClass)x][-++|(subClassOf)f@(omc:StoryboardClass)x][---|(subClassOf)f@(omc:VFX_ImageSequenceClass)x][-+|(subClassOf)f@(omc:CreativeReferenceMaterialClass)x][--|(subClassOf)f@(omc:TechnicalReferenceMaterialClass)x][-|(subClassOf)f@(omc:ProductionPropClass)x]x][-+++++++|(subClassOf)f@(omc:AssetStructuralClass)[-+++|(subClassOf)f@(omc:AudioClass)[-|(subClassOf)f@(omc:DigitalAudioClass)x]x][----|(subClassOf)f@(omc:AudioVisualClass)[--|(subClassOf)f@(omc:AnalogAudioVisualClass)x][-|(subClassOf)f@(omc:DigitalAudioVisualClass)x]x][-++|(subClassOf)f@(omc:DigitalDataClass)x][---|(subClassOf)f@(omc:DocumentClass)[-+|(subClassOf)f@(omc:DigitalDocumentClass)x][--|(subClassOf)f@(omc:PhysicalDocumentClass)x][-|(subClassOf)f@(omc:StructuredDocumentClass)[--|(subClassOf)f@(omc:DigitalStructuredDocumentClass)x][-|(subClassOf)f@(omc:PhysicalStructuredDocumentClass)x]x]x][-+|(subClassOf)f@(omc:ImageClass)[-+|(subClassOf)f@(omc:AnalogImageClass)x][--|(subClassOf)f@(omc:DigitalImageClass)x][-|(subClassOf)f@(omc:PhysicalImageClass)x]x][--|(subClassOf)f@(omc:MovingImageClass)x][-|(subClassOf)f@(omc:PhysicalAssetClass)x]x][--------|(subClassOf)f@(omc:CreativeWork)x][-++++++|(subClassOf)f@(omc:ParticipantFunctionalClass)x][-------|(subClassOf)f@(omc:ParticipantStructuralClass)[-+|(subClassOf)f@(omc:OrganizationClass)[-|(subClassOf)f@(omc:DepartmentClass)x]x][--|(subClassOf)f@(omc:PersonClass)x][-|(subClassOf)f@(omc:ServiceClass)x]x][-+++++|(subClassOf)f@(omc:ProductionReferenceMaterial)x][------|(subClassOf)f@(omc:Prop)[--|(subClassOf)f@(omc:NarrativeProp)x][-|(subClassOf)f@(omc:ProductionPropClass)x]x][-++++|(subClassOf)f@(omc:Role)x][-----|(subClassOf)f@(omc:TaskFunctionalClass)x][-+++|(subClassOf)f@(omc:TaskStructuralClass)x][----|(subClassOf)f@(omc:Character)x][-++|(subClassOf)f@(omc:CreativeReferenceMaterialClass)x][---|(subClassOf)f@(omc:TechnicalReferenceMaterialClass)x][-+|(subClassOf)f@(omc:Group)[--|(subClassOf)f@(omc:AdHoc)x][-|(subClassOf)f@(omc:Brand)x]x][--|(subClassOf)f@(omc:Location)[--|(subClassOf)f@(omc:NarrativeLocation)x][-|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x]x][-|(subClassOf)f@(omc:ProductionSet)x]x][-++|(subClassOf)f@(omc:Attributable)[-+++|(subClassOf)f@(omc:AttributedProperty)x][----|(subClassOf)f@(omc:Identifier)x][-++|(subClassOf)f@(omc:Group)[--|(subClassOf)f@(omc:AdHoc)x][-|(subClassOf)f@(omc:Brand)x]x][---|(subClassOf)f@(omc:Keyword)x][-+|(subClassOf)f@(omc:Location)[--|(subClassOf)f@(omc:NarrativeLocation)x][-|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x]x][--|(subClassOf)f@(omc:PersonName)[-+++|(subClassOf)f@(omc:AKA_PersonName)x][----|(subClassOf)f@(omc:BilledName)x][-++|(subClassOf)f@(omc:ContractualName)x][---|(subClassOf)f@(omc:CreditedName)x][-+|(subClassOf)f@(omc:PreferredName)x][--|(subClassOf)f@(omc:RealName)x][-|(subClassOf)f@(omc:TranslatedName)x]x][-|(subClassOf)f@(omc:Text)x]x][---|(subClassOf)f@(omc:Country)x][-+|(subClassOf)f@(omc:DateAndTime)x][--|(subClassOf)f@(omc:Gender)x][-|(subClassOf)f@(omc:LatLon)x]x][%$$$$$$|(subClassOf)f@(omc:VocabularyTerm)[----|(subClassOf)f@(omc:AssetClassVocabTerm)x][-++|(subClassOf)f@(omc:GenderVocabTerm)x][---|(subClassOf)f@(omc:OrganizationDepartmenVocabTerm)x][-+|(subClassOf)f@(omc:ParticipantTitleVocabTerm)x][--|(subClassOf)f@(omc:StateDescriptor)x][-|(subClassOf)f@(omc:Gender)x]x][%%%%%%%|(subClassOf)f@(omc:Asset)x][%$$$$$|(subClassOf)f@(omc:Concept)x][%%%%%%|(subClassOf)f@(omc:ConceptArt)x][%$$$$|(subClassOf)f@(omc:MediaCreationContext)[--|(subClassOf)f@(omc:NarrativeContext)x][-|(subClassOf)f@(omc:ProductionContext)x]x][%%%%%|(subClassOf)f@(omc:MediaCreationContextComponent)[-+++|(subClassOf)f@(omc:NarrativeContextComponent)[-++|(subClassOf)f@(omc:NarrativeWardrobe)x][---|(subClassOf)f@(omc:Character)x][-+|(subClassOf)f@(omc:NarrativeLocation)x][--|(subClassOf)f@(omc:NarrativeProp)x][-|(subClassOf)f@(omc:NarrativeScene)x]x][----|(subClassOf)f@(omc:ProductionContextComponent)[------|(subClassOf)f@(omc:Costume)x][-++++|(subClassOf)f@(omc:Portrayer)[-|(subClassOf)f@(omc:PortrayerWhoIsAPerson)x]x][-----|(subClassOf)f@(omc:ProductionSetDressing)x][-+++|(subClassOf)f@(omc:Slate)x][----|(subClassOf)f@(omc:SlateUID)x][-++|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x][---|(subClassOf)f@(omc:ProductionScene)x][-+|(subClassOf)f@(omc:ProductionSet)x][--|(subClassOf)f@(omc:ProductionShot)[--|(subClassOf)f@(omc:AnimationShot)x][-|(subClassOf)f@(omc:VFX_Shot)x]x][-|(subClassOf)f@(omc:ShootingLocation)x]x][-++|(subClassOf)f@(omc:SCD_Component)x][---|(subClassOf)f@(omc:Scene)[--|(subClassOf)f@(omc:NarrativeScene)x][-|(subClassOf)f@(omc:ProductionScene)x]x][-+|(subClassOf)f@(omc:Set)[-|(subClassOf)f@(omc:ProductionSet)x]x][--|(subClassOf)f@(omc:Shot)[-|(subClassOf)f@(omc:ProductionShot)[--|(subClassOf)f@(omc:AnimationShot)x][-|(subClassOf)f@(omc:VFX_Shot)x]x]x][-|(subClassOf)f@(omc:Location)[--|(subClassOf)f@(omc:NarrativeLocation)x][-|(subClassOf)f@(omc:ProductionLocation)[-|(subClassOf)f@(omc:ShootingLocation)x]x]x]x][%$$$|(subClassOf)f@(omc:Participant)[-|(subClassOf)f@(omc:ProductionCompany)x]x][%%%%|(subClassOf)f@(omc:Task)x][%$$|(subClassOf)f@(omc:Character)x][%%%|(subClassOf)f@(omc:Gender)x][%$|(subClassOf)f@(omc:Infrastructure)x][%%|(subClassOf)f@(omc:LatLon)x][%|(subClassOf)f@(omc:PersonName)[-+++|(subClassOf)f@(omc:AKA_PersonName)x][----|(subClassOf)f@(omc:BilledName)x][-++|(subClassOf)f@(omc:ContractualName)x][---|(subClassOf)f@(omc:CreditedName)x][-+|(subClassOf)f@(omc:PreferredName)x][--|(subClassOf)f@(omc:RealName)x][-|(subClassOf)f@(omc:TranslatedName)x]x]x][-|(null)f@(skos:Collection)x],f = ff,X=F[+X][-X]FX",
+            "angle": 12.0,
+            "length": 30,
+            "level": 6,
+            "width": 10,
+            "redDelta": 1,
+            "greenDelta": 1,
+            "blueDelta": 1
+        }
+    }
+]

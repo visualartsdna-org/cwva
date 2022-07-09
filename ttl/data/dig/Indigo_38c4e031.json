@@ -1,0 +1,138 @@
+[
+    {
+        "type": "config",
+        "comment": "data lsys graphics",
+        "xspan": 10000,
+        "yspan": 10000,
+        "scale": 1.0,
+        "rotate": 0,
+        "xbase": 2000,
+        "ybase": -4000,
+        "autoPlace": false,
+        "width": 5,
+        "turn": -90,
+        "border": 2000,
+        "bgcolor": {
+            "red": 213,
+            "green": 214,
+            "blue": 200
+        },
+        "color": {
+            "red": 0,
+            "green": 21,
+            "blue": 55
+        },
+        "arrange": "individual"
+    },
+    {
+        "name": "plant1",
+        "id": "http://visualartsdna.org/work/4a5ef421-39fd-42d3-81f5-1ac26088e207",
+        "type": "lsys",
+        "active": true,
+        "x": 3500,
+       "y": -2100,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] '",
+            "start": "X",
+            "rules": "X= F+[[X]-''X]-F[-FX]+''X,F=FF",
+            "angle": -25.0,
+            "length": 2,
+            "level": 7
+        }
+    },
+    {
+        "name": "signature",
+        "id": "http://visualartsdna.org/work/4a5ef421-39fd-42d3-81f5-1ac26088e207",
+        "active": true,
+        "type": "lsys",
+        "x": 3500,
+       "y": -2000,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Copyright \u00a9 2022, Tra Tsi, tratsi314.wixsite.com, tratsi3.14@gmail.com)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend",
+        "id": "http://visualartsdna.org/work/4a5ef421-39fd-42d3-81f5-1ac26088e207",
+        "active": true,
+        "type": "lsys",
+        "x": 3500,
+       "y": -2025,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Namespace: http://purl.org/dc/terms)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend2",
+        "id": "http://visualartsdna.org/work/4a5ef421-39fd-42d3-81f5-1ac26088e207",
+        "active": true,
+        "type": "lsys",
+        "x": 3500,
+       "y": -2050,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Generated with NALS, the Nodes and Arcs Lindenmayer System)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend3",
+        "id": "http://visualartsdna.org/work/4a5ef421-39fd-42d3-81f5-1ac26088e207",
+        "active": true,
+        "type": "lsys",
+        "x": 3500,
+       "y": -2075,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(2022-06-01 03:50:23, http://visualartsdna.org/work/4a5ef421-39fd-42d3-81f5-1ac26088e207)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "generated from TTL file",
+        "id": "http://visualartsdna.org/work/4a5ef421-39fd-42d3-81f5-1ac26088e207",
+        "active": true,
+        "type": "lsys",
+        "x": 2500,
+        "y": -2000,
+        "color": {
+            "red": 0,
+            "green": 21,
+            "blue": 55
+        },
+        "graph": {
+            "vars": "G X F E",
+            "consts": "+ - [ ] ' \" @ | $ %",
+            "start": "G",
+            "rules": "G=@(http://purl.org/dc/terms)[---|(null)f@(rdfs:Class)[%|(subClassOf)f@(dcterms:AgentClass)x]x][-+|(null)f@(dcterms:LocationPeriodOrJurisdiction)[%$|(subClassOf)f@(dcterms:Jurisdiction)x][%%|(subClassOf)f@(dcterms:Location)x][%|(subClassOf)f@(dcterms:PeriodOfTime)x]x][--|(null)f@(dcterms:RightsStatement)[%|(subClassOf)f@(dcterms:LicenseDocument)x]x][-|(null)f@(dcterms:MediaTypeOrExtent)[%%|(subClassOf)f@(dcterms:MediaType)[--|(subClassOf)f@(dcterms:FileFormat)x][-|(subClassOf)f@(dcterms:PhysicalMedium)x]x][%|(subClassOf)f@(dcterms:SizeOrDuration)x]x],f = ff,X=F-[[X]+X]+F[+FX]-XF+[[X]-X]-F[-FX]+X",
+            "angle": 12.0,
+            "length": 30,
+            "level": 6,
+            "width": 10,
+            "redDelta": 1,
+            "greenDelta": 1,
+            "blueDelta": 1
+        }
+    }
+]

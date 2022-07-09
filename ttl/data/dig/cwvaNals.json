@@ -1,0 +1,138 @@
+[
+    {
+        "type": "config",
+        "comment": "data lsys graphics",
+        "xspan": 7000,
+        "yspan": 7000,
+        "scale": 1.0,
+        "rotate": 0,
+        "xbase": -1000,
+        "ybase": 0,
+        "autoPlace": false,
+        "width": 5,
+        "turn": -90,
+        "border": 2000,
+        "bgcolor": {
+            "red": 213,
+            "green": 214,
+            "blue": 200
+        },
+        "color": {
+            "red": 100,
+            "green": 100,
+            "blue": 100
+        },
+        "arrange": "individual"
+    },
+    {
+        "name": "plant1",
+        "id": "http://visualartsdna.org/work/1e897a06-4969-46d0-b658-96fb73a57c32",
+        "type": "lsys",
+        "active": true,
+        "x": 4600,
+        "y": -4600,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] '",
+            "start": "X",
+            "rules": "X= F+[[X]-''X]-F[-FX]+''X,F=FF",
+            "angle": -25.0,
+            "length": 2,
+            "level": 7
+        }
+    },
+    {
+        "name": "signature",
+        "id": "http://visualartsdna.org/work/1e897a06-4969-46d0-b658-96fb73a57c32",
+        "active": true,
+        "type": "lsys",
+        "x": 4600,
+        "y": -4500,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Copyright \u00a9 2022, Tra Tsi, tratsi314.wixsite.com, tratsi3.14@gmail.com)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend",
+        "id": "http://visualartsdna.org/work/1e897a06-4969-46d0-b658-96fb73a57c32",
+        "active": true,
+        "type": "lsys",
+        "x": 4600,
+        "y": -4525,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Namespace: http://visualartsdna.org/model)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend2",
+        "id": "http://visualartsdna.org/work/1e897a06-4969-46d0-b658-96fb73a57c32",
+        "active": true,
+        "type": "lsys",
+        "x": 4600,
+        "y": -4550,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(Generated with NALS, the Nodes and Arcs Lindenmayer System)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "legend3",
+        "id": "http://visualartsdna.org/work/1e897a06-4969-46d0-b658-96fb73a57c32",
+        "active": true,
+        "type": "lsys",
+        "x": 4600,
+        "y": -4575,
+        "graph": {
+            "vars": "X F",
+            "consts": "+ - [ ] ' \" @",
+            "start": "X",
+            "rules": "x=@(2022-06-04 11:24:45, http://visualartsdna.org/work/1e897a06-4969-46d0-b658-96fb73a57c32)",
+            "angle": 15.0,
+            "length": 7,
+            "level": 6
+        }
+    },
+    {
+        "name": "generated from TTL file",
+        "id": "http://visualartsdna.org/work/1e897a06-4969-46d0-b658-96fb73a57c32",
+        "active": true,
+        "type": "lsys",
+        "x": 2500,
+        "y": -2000,
+        "color": {
+            "red": 100,
+            "green": 100,
+            "blue": 100
+        },
+        "graph": {
+            "vars": "G X F E",
+            "consts": "+ - [ ] ' \" @ | $ %",
+            "start": "G",
+            "rules": "G=@(http://visualartsdna.org/model)[-----|(null)f@(owl:Thing)[-|(subClassOf)f@(cwva:Art)[--|(subClassOf)f@(cwva:ArtHistory)[-+++|(subClassOf)f@(cwva:Aesthetic)][----|(subClassOf)f@(cwva:ArtCriticism)][-++|(subClassOf)f@(cwva:ArtExperts)[-+|(subClassOf)f@(cwva:ArtCritic)][--|(subClassOf)f@(cwva:ArtCurator)][-|(subClassOf)f@(cwva:ArtHistorian)]][---|(subClassOf)f@(cwva:ArtMovement)[--|(subClassOf)f@(cwva:School)][-|(subClassOf)f@(cwva:Trend)]][-+|(subClassOf)f@(cwva:ArtTypes)[-+|(subClassOf)f@(cwva:Abstract)][--|(subClassOf)f@(cwva:NonObjective)][-|(subClassOf)f@(cwva:Representational)]][--|(subClassOf)f@(cwva:ArtworkCollection)[----|(subClassOf)f@(cwva:ArtCollection)][-++|(subClassOf)f@(cwva:ArtExhibition)[-|(subClassOf)f@(cwva:RetrospectiveExhibit)]][---|(subClassOf)f@(cwva:Catalog)][-+|(subClassOf)f@(cwva:Edition)][--|(subClassOf)f@(cwva:Portfolio)][-|(subClassOf)f@(cwva:Series)]][-|(subClassOf)f@(cwva:VisualArtist)[-+|(subClassOf)f@(cwva:Painter)][--|(subClassOf)f@(cwva:PrinterMaker)][-|(subClassOf)f@(cwva:Sculptor)]]][-|(subClassOf)f@(cwva:VisualArt)[-+|(subClassOf)f@(cwva:Artwork)][--|(subClassOf)f@(cwva:VisualArtForms)[-+++|(subClassOf)f@(cwva:Installation)][----|(subClassOf)f@(cwva:MixedMedia)][-++|(subClassOf)f@(cwva:NewMedia)][---|(subClassOf)f@(cwva:PaintingForm)][-+|(subClassOf)f@(cwva:Photographic)][--|(subClassOf)f@(cwva:PrintingForm)][-|(subClassOf)f@(cwva:SculpturalForms)[-+|(subClassOf)f@(cwva:NewSculptureForms)[-+|(subClassOf)f@(cwva:Holograms)][--|(subClassOf)f@(cwva:MobileSculpture)][-|(subClassOf)f@(cwva:VirtualReality)]][--|(subClassOf)f@(cwva:SculptureInTheRound)][-|(subClassOf)f@(cwva:SculptureRelief)]]][-|(subClassOf)f@(cwva:VisualImagery)[---|(subClassOf)f@(cwva:GeneraArt)][-+|(subClassOf)f@(cwva:Landscape)][--|(subClassOf)f@(cwva:Portrait)][-|(subClassOf)f@(cwva:StillLife)]]]]][-+++|(null)f@(skos:Concept)[-|(subClassOf)f@(cwva:ArtVocabulary)[--|(subClassOf)f@(cwva:ArtElements)[-----|(subClassOf)f@(cwva:Color)][-+++|(subClassOf)f@(cwva:Form)][----|(subClassOf)f@(cwva:Line)][-++|(subClassOf)f@(cwva:PatternElement)][---|(subClassOf)f@(cwva:Shape)][-+|(subClassOf)f@(cwva:Space)][--|(subClassOf)f@(cwva:Texture)][-|(subClassOf)f@(cwva:Value)]][-|(subClassOf)f@(cwva:ArtPrinciples)[-+++|(subClassOf)f@(cwva:Balance)][----|(subClassOf)f@(cwva:Contrast)][-++|(subClassOf)f@(cwva:Emphasis)][---|(subClassOf)f@(cwva:Movement)][-+|(subClassOf)f@(cwva:Pattern)][--|(subClassOf)f@(cwva:Rhythm)][-|(subClassOf)f@(cwva:Unity-Variety)]]]][----|(null)f@(cwva:Rendition)[-|(subClassOf)f@(cwva:ComputerRendition)]][-++|(null)f@(cwva:Material)[-++|(subClassOf)f@(cwva:DrawingMaterial)][---|(subClassOf)f@(cwva:Medium)[---|(subClassOf)f@(cwva:Drawing)[-++|(subClassOf)f@(cwva:Chalk)][---|(subClassOf)f@(cwva:Crayon)][-+|(subClassOf)f@(cwva:Ink)][--|(subClassOf)f@(cwva:Pastel)][-|(subClassOf)f@(cwva:Pencil)]][-+|(subClassOf)f@(cwva:Painting)[-++|(subClassOf)f@(cwva:Acrylic)][---|(subClassOf)f@(cwva:EggTempera)][-+|(subClassOf)f@(cwva:Fresco)][--|(subClassOf)f@(cwva:Oil)][-|(subClassOf)f@(cwva:Watercolor)]][--|(subClassOf)f@(cwva:PrintMaking)[---|(subClassOf)f@(cwva:Intaglio)][-+|(subClassOf)f@(cwva:Lithograph)][--|(subClassOf)f@(cwva:Relief)][-|(subClassOf)f@(cwva:Serigraphy)]][-|(subClassOf)f@(cwva:Sculpture)[---|(subClassOf)f@(cwva:Assembled)][-+|(subClassOf)f@(cwva:Carved)][--|(subClassOf)f@(cwva:Cast)][-|(subClassOf)f@(cwva:Molded)]]][-+|(subClassOf)f@(cwva:PaintingMaterial)[--|(subClassOf)f@(cwva:Binder)[-|(subClassOf)f@(cwva:DryingOil)]][-|(subClassOf)f@(cwva:Pigment)]][--|(subClassOf)f@(cwva:PrintingMaterial)][-|(subClassOf)f@(cwva:SculptureMaterial)]][---|(null)f@(cwva:Surface)[--|(subClassOf)f@(cwva:GessoPanel)][-|(subClassOf)f@(cwva:PrimedCanvas)]][-+|(null)f@(cwva:Image)[-|(subClassOf)f@(cwva:Photograph)[-|(subClassOf)f@(cwva:JPG)]]][--|(null)f@(cwva:Process)[-|(subClassOf)f@(cwva:Rendering)]][-|(null)f@(skos:Collection)],f = ff,X=X",
+            "angle": 12.0,
+            "length": 30,
+            "level": 6,
+            "width": 10,
+            "redDelta": 1,
+            "greenDelta": 1,
+            "blueDelta": 1
+        }
+    }
+]
