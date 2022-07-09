@@ -1,0 +1,44 @@
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix voc:	<http://visualartsdna.org/voc#> .
+
+voc:paintingTerms a skos:ConceptScheme ;																										
+	skos:prefLabel "Painting terms" ;																				
+	skos:hasTopConcept voc:paintingTerm ;																									
+	skos:definition "Terms used to describe the materials, techniques, tools and related concepts used in painting." ;
+	skos:notation "19d90774-6220-4b4d-85a3-269cd54297c3" ;																									
+.																										
+voc:paintingTerm																										
+	a skos:Concept ;																									
+	skos:prefLabel "watercolor technique" ;																									
+	skos:definition "A technique used in watercolor painting." ;			
+	skos:notation "9b6071f2-74fe-4b52-b609-9596c3b79e21" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:Wyeth
+	a skos:Concept ;
+	skos:prefLabel "Wyeth" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "A reference to the Wyeth family." ;
+	skos:notation "1dce5aa2-407e-45db-a5c0-c0a8d6a4abdd" ;
+	skos:inScheme voc:paintingTerms ;																				
+.
+voc:flowers
+	a skos:Concept ;
+	skos:prefLabel "flowers" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "A reference to the representation of flowers." ;
+	skos:notation "715c8700-545e-4d54-ad49-f2b036ba0925" ;
+	skos:inScheme voc:paintingTerms ;																				
+.
+voc:nature
+	a skos:Concept ;
+	skos:prefLabel "nature" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "A reference to the representation of things found in nature." ;
+	skos:notation "31484277-4755-4e9a-8937-d86cde925c32" ;
+	skos:inScheme voc:paintingTerms ;																				
+.
