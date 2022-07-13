@@ -12,9 +12,37 @@ voc:paintingTerms a skos:ConceptScheme ;
 .																										
 voc:paintingTerm																										
 	a skos:Concept ;																									
-	skos:prefLabel "watercolor technique" ;																									
-	skos:definition "A technique used in watercolor painting." ;			
+	skos:prefLabel "painting term" ;																									
+	skos:definition "A term of art in painting." ;			
+	skos:broader voc:visualArtTerm ;
 	skos:notation "9b6071f2-74fe-4b52-b609-9596c3b79e21" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:paintingTechnique																										
+	a skos:Concept ;																									
+	skos:prefLabel "painting term" ;																									
+	skos:broader voc:paintingTerm ;
+	skos:definition "A technique used in painting." ;			
+	skos:notation "9b6071f2-74fe-4b52-b609-9596c3b79e21" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:paintingTool																										
+	a skos:Concept ;																									
+	skos:prefLabel "painting tool" ;																									
+	skos:broader voc:paintingTerm ;
+	skos:definition "A tool used in painting." ;																									
+	skos:notation "24eb6db8-cef8-4ff8-9d68-8529aec6cf00" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:paintingMaterial																										
+	a skos:Concept ;																									
+	skos:prefLabel "painting material" ;																									
+	skos:broader voc:paintingTerm ;
+	skos:definition "A material used in painting." ;																									
+	skos:notation "33538219-495a-4450-a173-430304bf219d" ;
 	skos:inScheme voc:paintingTerms ;																				
 	.
 
@@ -42,3 +70,339 @@ voc:nature
 	skos:notation "31484277-4755-4e9a-8937-d86cde925c32" ;
 	skos:inScheme voc:paintingTerms ;																				
 .
+voc:landscapePainting
+	a skos:Concept ;
+	skos:prefLabel "landscape painting" ;
+	skos:altLabel "landscape art" ;
+	skos:broader voc:nature ;
+	skos:definition "The depiction of natural scenery such as mountains, valleys, trees, rivers, and forests, especially where the main subject is a wide view—with its elements arranged into a coherent composition." ;
+	skos:notation "853c19f5-2ebe-48d9-9087-d47fcb7342cb" ;
+	skos:inScheme voc:paintingTerms ;																				
+.
+voc:aerialPerspective
+	a skos:Concept ;
+	skos:prefLabel "aerial perspective" ;
+	skos:altLabel "atmospheric perspective" ;
+	skos:altLabel "atmospheric disturbance" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Refers to the effect the atmosphere has on the appearance of an object as viewed from a distance. As the distance between an object and a viewer increases, the contrast between the object and its background decreases, and the contrast of any markings or details within the object also decreases. The colours of the object also become less saturated and shift toward the background colour, which is usually bluish, but may be some other colour under certain conditions (for instance, reddish around sunrise or sunset)." ;
+	skos:notation "27a8012d-68af-42e2-9f71-ee5829746169" ;
+	rdfs:seeAlso <https://en.wikipedia.org/wiki/Aerial_perspective> ;
+	skos:inScheme voc:paintingTerms ;																				
+.
+voc:impasto
+	a skos:Concept ;
+	skos:prefLabel "impasto" ;
+	skos:broader voc:paintingTechnique ;
+	skos:definition "Paint that is applied to a canvas or panel in quantities that make it stand out from the surface." ;
+	skos:notation "3408ef21-a909-48e2-8864-7b8fb1e2a3b3" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+voc:abstract
+	a skos:Concept ;
+	skos:prefLabel "abstract" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "The term “Abstract” is used to describe a painting that is non-representational. i.e the subject matter of the painting is not about the depiction of reality." ;
+	skos:notation "69a7a58a-8ca2-4b85-86de-0c69523ba45c" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+
+voc:analogousColors
+	a skos:Concept ;
+	skos:prefLabel "analogous Colors" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Analogous colors are colors that are adjacent on the Color Wheel. e.g. blue, blue/green, green." ;
+	skos:notation "8e8d4200-3bb8-4e3b-aa1a-139f6a440d1c" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+
+voc:value
+	a skos:Concept ;
+	skos:prefLabel "value" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "A color’s relative lightness or darkness" ;
+	skos:notation "c05c9200-07fd-442c-884a-c32c3bb49118" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:underdrawing
+	a skos:Concept ;
+	skos:prefLabel "underdrawing" ;
+	skos:broader voc:paintingTechnique ;
+	skos:definition "Sketching out the intended composition on your substrate prior to applying paint.Pencil lines can be lightly erased after the composition has been blocked-in with paint, or pencil lines can be left as they are.  " ;
+	skos:notation "b8932191-275f-4192-a74b-fb48bc4c1f09" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+voc:transparent
+	a skos:Concept ;
+	skos:prefLabel "transparent" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Paint characteristic; the tendency for certain paint colours to allow light to pass through the paint film enabling layers beneath to be distinctly seen; the opposite of ﻿opaque." ;
+	skos:notation "3af047f8-d1d4-4cb2-aa83-898e4bce7644" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+
+voc:thumbnail
+	a skos:Concept ;
+	skos:prefLabel "thumbnail" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "A small sketch or painting produced in preparation for the creation of a larger work." ;
+	skos:notation "9817a1a3-07d6-4bd8-8d56-6104c5a53a9f" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:temperatureColor
+	a skos:Concept ;
+	skos:prefLabel "temperature color" ;
+	skos:altLabel "temperature" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Colors are divided into cool and warm. Colors that lean towards Red/Yellow are considered to be warm colors and colors that lean towards Blue/Green are classified as cool." ;
+	skos:notation "a2ce14e6-bd59-44ed-ae5d-708532371bfa" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:syntheticBrushes
+	a skos:Concept ;
+	skos:prefLabel "synthetic brushes" ;
+	skos:broader voc:paintingTool ;
+	skos:definition "Synthetic brushes can be made from Nylon, Polyester or Taklon. They tend to be stiffer and springier than natural haired brushes." ;
+	skos:notation "a5dd74ea-f3df-4fe3-b882-ad8985423cf7" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:stipple
+	a skos:Concept ;
+	skos:prefLabel "stipple" ;
+	skos:broader voc:brushingPaint ;
+	skos:definition "Creating imagery through a series of dots made with the point of a paint brush; dimension is achieved by slowly building areas of light and shadow with dots in various hues, enabling the colours to mix in the viewer's eye (known as optical mixing); a traditionally ideal method of working on miniature scale paintings." ;
+	skos:notation "d554579e-2f8a-473e-ab15-c5f73ec08ddc" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:brushingPaint
+	a skos:Concept ;
+	skos:prefLabel "brushing paint" ;
+	skos:broader voc:paintingTechnique ;
+	skos:definition "The application of paint with a brush." ;
+	skos:notation "35998c2e-2228-4314-bd7e-b7d7e7366dec" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:dryBrushTechnique
+	a skos:Concept ;
+	skos:prefLabel "dry brush technique" ;
+	skos:altLabel "Dry Brushing" ;
+	skos:altLabel "drybrush technique" ;
+	skos:broader voc:brushingPaint ;
+	skos:definition "Using a paint brush that is relatively dry, but still delivers paint to your substrate.  The resulting brush strokes will have a coarse, scratchy appearance, contrasting the smooth, uniform look of washes or blended paint." ;
+	skos:notation "d68e8f3f-6706-4d13-8e6d-eb49c25771c2" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:splitPrimariesPalette
+	a skos:Concept ;
+	skos:prefLabel "split primaries palette" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "The primary colors are red , yellow and blue. A split primaries palette, is a palette of 6 colors consisting of three warm and three cool primaries. For example Cadmium Red, New Gamboge and Ultramarine, and Alizarin Crimson, Lemon Yellow and Cerulean Blue. The purpose of the split primaries palette is to enable a watercolor painter the greatest range of warm and cool color mixing options with the fewest colors." ;
+	skos:notation "50fb2c6d-4ccd-4548-ac68-4554b4d1b0a7" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:sizing
+	a skos:Concept ;
+	skos:prefLabel "sizing" ;
+	skos:broader voc:paintingTerm ;
+	skos:editorialNote "Some references to sizing consider it a process/tool" ;
+	skos:definition "Sizing is a gelatin based substance used in the making of watercolor paper, canvas stretching and panel preparation. Sizing slows the absorbtion of the paint so that most of the pigment remains on the surface of the paper.  Can maintain the structural integrity of the paper, the paper can be soaked with water without falling apart; reduces paper buckling and warping once dry; encourages paper to shrink back to it's original shape." ;
+	skos:notation "33877264-ae13-41e2-a011-0ec5d3e1b306" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:sandpaper
+	a skos:Concept ;
+	skos:prefLabel "sandpaper" ;
+	skos:broader voc:paintingMaterial, voc:paintingTool ;
+	skos:related voc:sandingDryPaper ;
+	skos:editorialNote "This is both a tool and material" ;
+	skos:definition "produced in a range of grit sizes and is used to remove material from surfaces, either to make them smoother or to remove a layer of material" ;
+	skos:notation "d21c2e98-edad-4859-be73-555a3447639f" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+
+voc:primaryColor
+	a skos:Concept ;
+	skos:prefLabel "primary color" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Red, Blue and Yellow are called the Primary Colors because they cannot mixed from other colors but all colors can be mixed from them." ;
+	skos:notation "3212391c-fdc5-4c58-bfce-b6ca04055d11" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:pleinAir
+	a skos:Concept ;
+	skos:prefLabel "plein air" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Plein Air, or En Plein Air means painting outdoors." ;
+	skos:notation "9a15dc12-69a6-41cf-8237-2ae53a072846" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:pigment
+	a skos:Concept ;
+	skos:prefLabel "pigment" ;
+	skos:broader voc:paintingMaterial ;
+	skos:definition "Pigments is the substance that gives paint its color. Pigments can be natural or synthetic; usually an insoluble powder.  For example, pigment is mixed with water and gum Arabic to create watercolor paint" ;
+	skos:notation "09041a6f-362d-43a6-8afd-d00ad9b12bc0" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:palette
+	a skos:Concept ;
+	skos:prefLabel "palette" ;
+	skos:broader voc:paintingTool ;
+	skos:definition "A palette is a surface for mixing paint on. Watercolor palettes often contain a number of wells or depressions so that the paint doesn’t run.  Palettes are often made of white plastic but the best palettes for watercolor are pure white and porcelain. Palette can also refer to a color scheme or selection of colors." ;
+	skos:notation "17597b2f-7d12-46fc-9900-1924aaab5275" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:paletteKnife
+	a skos:Concept ;
+	skos:prefLabel "palette knife" ;
+	skos:broader voc:paintingTool ;
+	skos:related voc:impasto ;
+	skos:definition "small spatula-style knife used to apply or remove paint, or to add texture" ;
+	skos:notation "daed6fc7-60e7-4dfb-87c8-8d0a25a4bd61" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:opaque
+	a skos:Concept ;
+	skos:prefLabel "opaque" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Paint characteristic; the ability of certain paints and/or certain colours to cover completely, not allowing you to see through to lower layers; the opposite of transparent & translucent; ideal for over-painting." ;
+	skos:notation "b0179fb8-3870-45f7-9607-a4a7b0c26a2f" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:neutralColor
+	a skos:Concept ;
+	skos:prefLabel "neutral color" ;
+	skos:altLabel "neutral (colour)" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Dull muted grays and browns. Neutrals can be mixed in a number of ways. e.g mixing 3 evenly spaced color wheel colors, mixing complementaries." ;
+	skos:notation "134c194c-ac3a-4b51-a823-7e0d919e7c92" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:maskingTape
+	a skos:Concept ;
+	skos:prefLabel "masking tape" ;
+	skos:broader voc:paintingMaterial ;
+	skos:definition "This is a sticky paper tape that can be used to mask off a white border around your painting or to mask off an area of your painting that needs to be preserved." ;
+	skos:notation "59f6d59b-e7d1-42f6-a86d-3304e8c84436" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:intensity
+	a skos:Concept ;
+	skos:prefLabel "intensity" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "This refers to the brightness or dullness of a particular color.  A color’s saturation, brightness or strength" ;
+	skos:notation "f33767e7-fb46-4ec8-82f0-e1dbba9a9edb" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:hue
+	a skos:Concept ;
+	skos:prefLabel "hue" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Quite simply, a hue is a color. This is independent of it’s intensity or brightness. A color’s common name (for example, cadmium red)" ;
+	skos:notation "782a0868-0f54-4f3c-814e-75ed78cc56ae" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:frameMat
+	a skos:Concept ;
+	skos:prefLabel "frame mat" ;
+	skos:broader voc:paintingMaterial ;
+	skos:definition "A Mat is a “Window” of card that sits inside a picture frame between the glass and the painting. It has the aesthetic function of creating a clean border around your painting and the practical function of separating the surface of the painting from the glass." ;
+	skos:notation "d3feb0ed-c18c-4fba-a410-312597f892a2" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:easel
+	a skos:Concept ;
+	skos:prefLabel "easel" ;
+	skos:broader voc:paintingTool ;
+	skos:definition "A stable stand, supporting an artist’s painting ." ;
+	skos:notation "ecc81790-3c79-4ed0-b090-783f2cb4c11d" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:complementaryColors
+	a skos:Concept ;
+	skos:prefLabel "complementary colors" ;
+	skos:altLabel "complementary colors" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "Complementary colors are directly opposite each other on the color wheel. In other words, they are the colors that are furthest apart from each other in terms of hue and color temperature. e.g Red and Green, or Orange and Blue. Complementary colors contrast with each other when placed side by side. When mixed together they tend to cancel each other out, forming a “Muddy” neutral color." ;
+	skos:notation "4b0a902a-0c6e-4063-b40b-20c85aeba861" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:colorWheel
+	a skos:Concept ;
+	skos:prefLabel "color wheel" ;
+	skos:broader voc:paintingTool ;
+	skos:definition "The color wheel is a visual representation of the colors of the visible spectrum in order of Temperature laid out in the form of a circle. Color wheels can be useful to artists as they show the relationship of colors to each other. Color wheels can be used to develop color schemes." ;
+	skos:notation "7c88ee2b-1ae1-4dca-ab64-50942d2d108e" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:chroma
+	a skos:Concept ;
+	skos:prefLabel "chroma" ;
+	skos:broader voc:paintingTerm ;
+	skos:definition "The brightness or hue of a color. Paint straight from the tube is at maximum chroma." ;
+	skos:notation "3aacbf55-70bc-4629-84cb-8eb50b638052" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:canvas
+	a skos:Concept ;
+	skos:prefLabel "canvas" ;
+	skos:broader voc:paintingMaterial ;
+	skos:definition "Popularly used by artists as a painting surface, typically stretched across a wooden frame." ;
+	skos:notation "2cb7d4b5-2187-4ec5-b6b8-0ac595a6d433" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+voc:binder
+	a skos:Concept ;
+	skos:prefLabel "binder" ;
+	skos:broader voc:paintingMaterial ;
+	skos:definition "Binder is a substance that holds pigment in suspension. For watercolor, the substance used is generally Gum Arabic or synthetic Glycol." ;
+	skos:notation "72ebc54c-a920-43a9-8167-fdef3ec766eb" ;
+	skos:inScheme voc:paintingTerms ;																				
+	.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,19 +5,53 @@
 @prefix voc:	<http://visualartsdna.org/voc#> .
 
 voc:watercolorPainting a skos:ConceptScheme ;																										
+	skos:prefLabel "watercolor painting" ;																									
+	skos:definition "Concepts in watercolor painting." ;																									
+	skos:notation "67b6b185-d85b-4726-bfb5-288a4076a631" ;																									
+	skos:inScheme voc:painting ;																				
 	skos:hasTopConcept voc:watercolorTechnique ;																									
 	skos:hasTopConcept voc:watercolorTerm ;																									
 	skos:hasTopConcept voc:watercolorTool ;																									
 	skos:hasTopConcept voc:watercolorMaterial ;																									
-	skos:prefLabel "Watercolor painting terms" ;																									
-	skos:definition "Terms used to describe the materials, techniques, tools and related concepts used in watercolor painting." ;																									
-	skos:notation "e8739296-10e6-4fb5-b431-92d6dd748228" ;																									
-	skos:inScheme voc:painting ;																				
 .																										
-																										
+			
+#voc:watercolorTechniques a skos:ConceptScheme ;																										
+#	skos:hasTopConcept voc:watercolorTechnique ;																									
+#	skos:prefLabel "watercolor painting techniques" ;																									
+#	skos:definition "Techniques uses in watercolor painting." ;																									
+#	skos:notation "5bd09167-7882-43fc-94b8-116a4681fe57" ;																									
+#	skos:inScheme voc:watercolorPainting ;																				
+#.																										
+#			
+#voc:watercolorTerms a skos:ConceptScheme ;																										
+#	skos:hasTopConcept voc:watercolorTerm ;																									
+#	skos:prefLabel "watercolor painting terms" ;																									
+#	skos:definition "Terms used to describe the art of watercolor painting." ;																									
+#	skos:notation "f655ef38-987c-4486-b693-1a8199952c50" ;																									
+#	skos:inScheme voc:watercolorPainting ;																				
+#.																										
+#			
+#voc:watercolorTools a skos:ConceptScheme ;																										
+#	skos:hasTopConcept voc:watercolorTool ;																									
+#	skos:prefLabel "watercolor painting tools" ;																									
+#	skos:definition "Tools used in watercolor painting." ;																									
+#	skos:notation "266557ff-2fe5-4324-92e0-693ad761ad6c" ;																									
+#	skos:inScheme voc:watercolorPainting ;																				
+#.																										
+#			
+#voc:watercolorMaterials a skos:ConceptScheme ;																										
+#	skos:hasTopConcept voc:watercolorMaterial ;																									
+#	skos:prefLabel "watercolor materials" ;																									
+#	skos:definition "Materials used in watercolor painting." ;																									
+#	skos:notation "ee38b38c-62af-42ab-92a0-7a2c1ec3b21d" ;																									
+#	skos:inScheme voc:watercolorPainting ;																				
+#.																										
+			
+# top concepts																							
 voc:watercolorTechnique																										
 	a skos:Concept ;																									
 	skos:prefLabel "watercolor technique" ;																									
+	skos:broader voc:paintingTechnique ;
 	skos:definition "A technique used in watercolor painting." ;			
 	skos:notation "08477a20-cbf0-4937-a1fe-bf40e7442b83" ;
 	skos:inScheme voc:watercolorPainting ;																				
@@ -25,6 +59,7 @@ voc:watercolorTechnique
 voc:watercolorTerm																										
 	a skos:Concept ;																									
 	skos:prefLabel "watercolor term" ;																									
+	skos:broader voc:paintingTerm ;
 	skos:definition "A term of art in watercolor painting." ;																									
 	skos:notation "4d7f39c2-544b-47a8-b04f-f656a58c608d" ;
 	skos:inScheme voc:watercolorPainting ;																				
@@ -32,6 +67,7 @@ voc:watercolorTerm
 voc:watercolorMaterial																										
 	a skos:Concept ;																									
 	skos:prefLabel "watercolor material" ;																									
+	skos:broader voc:paintingMaterial ;
 	skos:definition "A material used in watercolor painting." ;																									
 	skos:notation "24eb6db8-cef8-4ff8-9d68-8529aec6cf00" ;
 	skos:inScheme voc:watercolorPainting ;																				
@@ -40,87 +76,79 @@ voc:watercolorTool
 	a skos:Concept ;																									
 	skos:prefLabel "watercolor tool" ;																									
 	skos:definition "A tool used in watercolor painting." ;																									
+	skos:broader voc:paintingTool ;
 	skos:notation "24eb6db8-cef8-4ff8-9d68-8529aec6cf00" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
-
-
-voc:abstract
+# hierarchical terms
+voc:diffusingPaint
 	a skos:Concept ;
-	skos:prefLabel "Abstract" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "The term “Abstract” is used to describe a painting that is non-representational. i.e the subject matter of the painting is not about the depiction of reality." ;
-	skos:notation "69a7a58a-8ca2-4b85-86de-0c69523ba45c" ;
+	skos:prefLabel "paint diffusion" ;
+	skos:broader voc:watercolorTechnique ;
+	skos:definition "To spread over an area with paint in an aerosol form." ;
+	skos:notation "1ffac74d-9b0c-4811-b28d-f39a6b780a14" ;
+	skos:inScheme voc:watercolorPainting ;																				
+	.
+
+voc:removingPaint
+	a skos:Concept ;
+	skos:prefLabel "removing paint" ;
+	skos:broader voc:watercolorTechnique ;
+	skos:definition "The removal of paint with a tool." ;
+	skos:notation "8952c9fd-3458-4ce0-a3c1-542cc50e2879" ;
+	skos:inScheme voc:watercolorPainting ;																				
+	.
+
+voc:inkWash
+	a skos:Concept ;
+	skos:prefLabel "ink wash" ;
+	skos:broader voc:wetIntoWetWash ;
+	skos:definition "A watercolor wash of ink." ;
+	skos:notation "ab877d65-1983-40df-9587-f4ebea7c8751" ;
+	skos:inScheme voc:watercolorPainting ;																				
+	.
+
+voc:assistedWash
+	a skos:Concept ;
+	skos:prefLabel "assisted wash" ;
+	skos:broader voc:wetIntoWetWash ;
+	skos:definition "A watercolor wash in the presence of another material intended to affect the behavior of the wash." ;
+	skos:notation "4428e7ab-1b5e-4e34-a10f-0ca72bfca245" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-voc:analogousColors
-	a skos:Concept ;
-	skos:prefLabel "Analogous Colors" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Analogous colors are colors that are adjacent on the Color Wheel. e.g. blue, blue/green, green." ;
-	skos:notation "8e8d4200-3bb8-4e3b-aa1a-139f6a440d1c" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:analogousColors
-#	a skos:Concept ;
-#	skos:prefLabel "analogous colors" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "colors that are closely related on the color wheel" ;
-#	skos:notation "e9b06b06-4624-493a-bed4-c9e1f095853f" ;
-#	.
-
-
-voc:atmosphericDisturbance
-	a skos:Concept ;
-	skos:prefLabel "Atmospheric Disturbance" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Visual effect; the tendency for objects that are far in the distance to appear out-of-focus and muted in colour due to the natural occurrence of particulates in the atmosphere that mess with the way light refracts into your eye; a fancy way of saying that stuff far away is blurry." ;
-	skos:notation "f61ef755-2a6f-408d-a39a-204d6114beca" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
+# collected terms
 
 
 voc:atomiserSprayer
 	a skos:Concept ;
-	skos:prefLabel "Atomiser sprayer" ;
+	skos:prefLabel "atomiser sprayer" ;
+	skos:related voc:atomiser ;
 	skos:broader voc:watercolorTool ;
-	skos:definition "Painting tool; manual (mouth operated) paint spraying tool that creates a fine mist and similar painting effect to an airbrush or aerosol spray can; sometimes referred to as a diffuser." ;
+	skos:definition "Manual (mouth operated) paint spraying tool that creates a fine mist and similar painting effect to an airbrush or aerosol spray can; sometimes referred to as a diffuser." ;
 	skos:notation "4840175c-0801-4b1d-b70d-796a9dfe71c8" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 voc:atomiser
 	a skos:Concept ;
-	skos:prefLabel "Atomiser" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "atomiser" ;
+	skos:broader voc:diffusingPaint ;
 	skos:definition "The process of spraying a fine mist, similar painting effect to an airbrush or aerosol spray can; sometimes referred to as a diffuser." ;
 	skos:notation "ff3bbde9-61c3-4c15-92cc-82b3c3de1354" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-voc:backRun
-	a skos:Concept ;
-	skos:prefLabel "Back Run" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:backrun ;
-	skos:definition "A back run occurs when painting into a wet area of watercolor with a mix of paint that is more dilute than is currently there. This causes the paint to spread out (Bloom) and often leaves a cauliflower shaped pattern when dry. This is often considered to be undesirable but can also be done intentionally to create a textural effect." ;
-	skos:notation "5cce7d6c-25c1-4620-9b05-2dd0df709a18" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
 voc:backrun
 	a skos:Concept ;
-	skos:prefLabel "Backrun" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:backRun ;
-	skos:definition "Painting technique; the mixing of colours in a semi-controlled way by adding new colour to a wash that hasn't dried; backruns can be an unwelcome accident, but are also deliberately created by some artists to represent abstracted clouds, foliage or flowers, or just to create a specific mood and for visual interest." ;
+	skos:prefLabel "backrun" ;
+	skos:altLabel "Back Run" ;
+	skos:broader voc:wetIntoWetWash ;
+	skos:editorialNote "The mixing of colours in a semi-controlled way by adding new colour to a wash that hasn't dried; backruns can be an unwelcome accident, but are also deliberately created by some artists to represent abstracted clouds, foliage or flowers, or just to create a specific mood and for visual interest." ;
+	skos:definition "A back run occurs when painting into a wet area of watercolor with a mix of paint that is more dilute than is currently there. This causes the paint to spread out (Bloom) and often leaves a cauliflower shaped pattern when dry. This is often considered to be undesirable but can also be done intentionally to create a textural effect." ;
 	skos:notation "08ca18e5-e300-4a0b-b2cb-9d8f35865db0" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
@@ -128,7 +156,7 @@ voc:backrun
 
 voc:bambooBrush
 	a skos:Concept ;
-	skos:prefLabel "Bamboo Brush" ;
+	skos:prefLabel "bamboo brush" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "An inexpensive natural haired chinese style brush (Often squirrel hair) that has a bamboo handle and is mainly used to create loose painterly strokes.I love using this brush for natural looking foliage and skiesI love using this brush for natural looking foliage and skies" ;
 	skos:notation "97bbc4a6-b170-4bd5-a44a-1a9e71bcd0a3" ;
@@ -138,8 +166,8 @@ voc:bambooBrush
 
 voc:bead
 	a skos:Concept ;
-	skos:prefLabel "Bead" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "bead" ;
+	skos:broader voc:wash ;
 	skos:definition "A bead is the line of water that pools at the base of a Wash. Maintaining the bead becomes important when attempting to paint a consistent wash as streaks will occur in the if it dries out too quickly." ;
 	skos:notation "fc4fb13c-8ec0-4baf-9643-cf839f6aa0d4" ;
 	skos:inScheme voc:watercolorPainting ;																				
@@ -148,7 +176,7 @@ voc:bead
 
 voc:binder
 	a skos:Concept ;
-	skos:prefLabel "Binder" ;
+	skos:prefLabel "binder" ;
 	skos:broader voc:watercolorMaterial ;
 	skos:definition "Binder is a substance that holds watercolor pigment in suspension. The substance used is generally Gum Arabic or synthetic Glycol." ;
 	skos:notation "72ebc54c-a920-43a9-8167-fdef3ec766eb" ;
@@ -158,7 +186,7 @@ voc:binder
 
 voc:block
 	a skos:Concept ;
-	skos:prefLabel "Block" ;
+	skos:prefLabel "block" ;
 	skos:broader voc:watercolorMaterial ;
 	skos:definition "Watercolor paper is often sold in a “Block”, which is a number of sheets of paper that are glued around the edges as opposed to loose. This minimizes Cockling and eliminates the need for stretching paper." ;
 	skos:notation "dfbfbed8-5f4b-42e8-b4fe-d6a71882ff9e" ;
@@ -168,7 +196,7 @@ voc:block
 
 voc:bloom
 	a skos:Concept ;
-	skos:prefLabel "Bloom" ;
+	skos:prefLabel "bloom" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "See Backrun" ;
 	skos:notation "243e9a3e-e5db-4de4-8ada-104e21b65d28" ;
@@ -176,11 +204,11 @@ voc:bloom
 	.
 
 
-voc:blotting
+voc:blottingPapper
 	a skos:Concept ;
-	skos:prefLabel "Blotting" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Paper type; Blotter paper; a highly absorbent type of paper used to absorb an excess of liquid (such as ink or paint) from the substrate.ainting technique; Blotting-off; the act of manually soaking up excess paint before it dries using a small sponge, piece of absorbent tissue or a towel" ;
+	skos:prefLabel "blotting paper" ;
+	skos:broader voc:watercolorMaterial ;
+	skos:definition "Paper type; Blotter paper; a highly absorbent type of paper used to absorb an excess of liquid (such as ink or paint) from the substrate." ;
 	skos:notation "3f563b12-2a7e-44f2-86bc-2ecb751c08f9" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
@@ -188,7 +216,7 @@ voc:blotting
 
 voc:bodyColour
 	a skos:Concept ;
-	skos:prefLabel "Body Colour" ;
+	skos:prefLabel "body colour" ;
 	skos:broader voc:watercolorMaterial ;
 	skos:definition "Paint type; a slightly confusing term that simply means opaque water-based paint (such as Gouache or Tempera). Opaque colours can be used to add punches of solid colour to transparent watercolours, and opaque white is used to bring highlights back out of muddy or over-saturated areas." ;
 	skos:notation "06816e3d-ccaa-453e-954b-d2bc1e840cf8" ;
@@ -198,7 +226,7 @@ voc:bodyColour
 
 voc:buckle
 	a skos:Concept ;
-	skos:prefLabel "Buckle" ;
+	skos:prefLabel "buckle" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "wavy, uneven surface once water has been applied; can and should be avoided by stretching the paper prior to painting. (see; stretching)Although some aspects of painting once thought to be negative (such as backruns) can be used to ones advantage, buckling paper is never desired and never considered a happy accident." ;
 	skos:notation "7d7a7228-2199-46af-b6c2-c39747b0e6c9" ;
@@ -206,10 +234,10 @@ voc:buckle
 	.
 
 
-voc:canvas
+voc:watercolorCanvas
 	a skos:Concept ;
-	skos:prefLabel "Canvas" ;
-	skos:broader voc:watercolorMaterial ;
+	skos:prefLabel "canvas" ;
+	skos:broader voc:canvas ;
 	skos:definition "Watercolor canvas is similar to oil painting canvas. Watercolor canvas has been treated with Gesso to enable it to take water based paints." ;
 	skos:notation "ea6b1e7e-672b-4063-ba59-89d7cd3c0a09" ;
 	skos:inScheme voc:watercolorPainting ;																				
@@ -218,27 +246,19 @@ voc:canvas
 
 voc:casein
 	a skos:Concept ;
-	skos:prefLabel "Casein" ;
+	skos:prefLabel "casein" ;
 	skos:broader voc:watercolorMaterial ;
-	skos:definition "Casein is a water based painting medium derived from milk. It’s properties resemble Gouache." ;
-	skos:definition "a fast-drying, water-soluble paint derived from milk protein, or casein" ;
+	skos:definition "Casein is a water based painting medium derived from milk. It’s properties resemble Gouache. A fast-drying, water-soluble paint derived from milk protein, or casein" ;
 	skos:notation "e9758c98-3e7b-44d1-8bc5-12da4e8d6a72" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:casein
-#	a skos:Concept ;
-#	skos:prefLabel "casein" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "a fast-drying, water-soluble paint derived from milk protein, or casein" ;
-#	skos:notation "5d855dd0-3777-4cb8-80a8-869368b5d855" ;
-#	.
 
 
 voc:catsTongue
 	a skos:Concept ;
-	skos:prefLabel "Cat's Tongue" ;
+	skos:prefLabel "cat's tongue" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "Brush type; similar in shape to a Filbert brush, but with a pointed tip. The ideal tool for creating single-stroke flower petals and leaves.To help clarify the definitions of specialty brushes in this glossary, use this visual guide to basic brush shapes as a reference." ;
 	skos:notation "b084ec7a-bef0-4fc0-a9a8-b37e419aadbd" ;
@@ -248,7 +268,7 @@ voc:catsTongue
 
 voc:cauliflower
 	a skos:Concept ;
-	skos:prefLabel "Cauliflower" ;
+	skos:prefLabel "cauliflower" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "(See Backrun)" ;
 	skos:notation "698a5086-a2ac-4817-bf23-0eb5372efff5" ;
@@ -258,37 +278,16 @@ voc:cauliflower
 
 voc:charging
 	a skos:Concept ;
-	skos:prefLabel "Charging" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Is a technique that involves dropping a new wet color into an existing wash allowing them to blend ad create interesting variations of color or tonal value." ;
-	skos:definition "technique that involves mixing two or more colors directly on the paper instead of premixing on a palette" ;
-	skos:notation "2aa59820-ad46-40f3-a929-bfd694017a7d" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:charging
-#	a skos:Concept ;
-#	skos:prefLabel "charging" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "technique that involves mixing two or more colors directly on the paper instead of premixing on a palette" ;
-#	skos:notation "fad9399b-2307-4848-922b-3f05c6642042" ;
-#	.
-
-
-voc:chroma
-	a skos:Concept ;
-	skos:prefLabel "Chroma" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "The brightness or hue of a color. Paint straight from the tube is at maximum chroma." ;
-	skos:notation "3aacbf55-70bc-4629-84cb-8eb50b638052" ;
+	skos:prefLabel "charging" ;
+	skos:broader voc:wetIntoWetWash ;
+	skos:definition "Is a technique that involves dropping a new wet color into an existing wash allowing them to blend ad create interesting variations of color or tonal value. Mixing two or more colors directly on the paper instead of premixing on a palette" ;	skos:notation "2aa59820-ad46-40f3-a929-bfd694017a7d" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:cockling
 	a skos:Concept ;
-	skos:prefLabel "Cockling" ;
+	skos:prefLabel "cockling" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "Cockling, or buckling, occurs when a sheet of watercolor paper is wet. This creates a series of uneven undulations or ridges which can cause problems when trying to paint. Cockling can be minimized by Stretching, using heavier Weight paper such as 140lb/300gsm or above, or by using a watercolor Block." ;
 	skos:notation "1c58fc88-760f-463c-8502-9b75a7dfe897" ;
@@ -298,66 +297,17 @@ voc:cockling
 
 voc:coldPressedPaper
 	a skos:Concept ;
-	skos:prefLabel "Cold-Pressed Paper" ;
+	skos:prefLabel "cold-pressed paper" ;
+	skos:altLabel "Cold Pressed" ;
 	skos:broader voc:watercolorMaterial ;
-	skos:definition "This is the most commonly used watercolor paper. It is a medium textured paper." ;
-	skos:definition "lightly textured paper that absorbs paint and water" ;
-	skos:definition "Paper type; the most commonly used type of watercolour paper; a heavy weight; absorbent paper featuring a pronounced toothy finish and sized to accept watermedia (see; sizing).Highest quality cold pressed papers may be hand-made and will contain 100% cotton fibres; they're loved for their irregular rough texture and reliable performance and absorbency.Cold pressed papers can also be labeled R (indicating a particularly rough finish) or they can be labeled NOT (meaning that it is NOT hot pressed, just a regular cold pressed paper ...confusing, I know).(see: hot pressed)DaggerBrush type; similar in shape to an angle brush, but elongated to the extreme. The ideal tool for creating long curvilinear shapes with a varied line weight (such blades of grass).  Daggers will hold a lot of water/paint enabling you to draw out very long lines without having to reload the brush.Drop-in ColourPainting technique; the act of dropping colour into a still-damp wash; also the basis of wet-on-wet technique (see; wet-on-wet).Ideal for creating soft-edged cloud-like effects, or mimicking atmospheric disturbance in landscapes. (see; atmospheric disturbance)" ;
-	skos:notation "1da470ac-6388-4c5a-917a-7d45bd4bd621" ;
+	skos:definition "The most commonly used type of watercolour paper; a heavy weight; absorbent paper featuring a pronounced toothy finish and sized to accept watermedia (see; sizing).Highest quality cold pressed papers may be hand-made and will contain 100% cotton fibres; they're loved for their irregular rough texture and reliable performance and absorbency" ;	skos:notation "1da470ac-6388-4c5a-917a-7d45bd4bd621" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
-
-
-#voc:coldPressedPaper
-#	a skos:Concept ;
-#	skos:prefLabel "cold-pressed paper" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "lightly textured paper that absorbs paint and water" ;
-#	skos:notation "a7d9917a-9cdc-4996-9022-28cb6b560e26" ;
-#	.
-#
-#
-#voc:coldPressed
-#	a skos:Concept ;
-#	skos:prefLabel "Cold Pressed" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "Paper type; the most commonly used type of watercolour paper; a heavy weight; absorbent paper featuring a pronounced toothy finish and sized to accept watermedia (see; sizing).Highest quality cold pressed papers may be hand-made and will contain 100% cotton fibres; they're loved for their irregular rough texture and reliable performance and absorbency.Cold pressed papers can also be labeled R (indicating a particularly rough finish) or they can be labeled NOT (meaning that it is NOT hot pressed, just a regular cold pressed paper ...confusing, I know).(see: hot pressed)DaggerBrush type; similar in shape to an angle brush, but elongated to the extreme. The ideal tool for creating long curvilinear shapes with a varied line weight (such blades of grass).  Daggers will hold a lot of water/paint enabling you to draw out very long lines without having to reload the brush.Drop-in ColourPainting technique; the act of dropping colour into a still-damp wash; also the basis of wet-on-wet technique (see; wet-on-wet).Ideal for creating soft-edged cloud-like effects, or mimicking atmospheric disturbance in landscapes. (see; atmospheric disturbance)" ;
-#	skos:notation "b30d2cd1-169f-4ade-b89d-d322e0b1b84b" ;
-#	.
-
-
-voc:colorWheel
-	a skos:Concept ;
-	skos:prefLabel "Color Wheel" ;
-	skos:broader voc:watercolorTool ;
-	skos:definition "The color wheel is a visual representation of the colors of the visible spectrum in order of Temperature laid out in the form of a circle. Color wheels can be useful to artists as they show the relationship of colors to each other. Color wheels can be used to develop color schemes." ;
-	skos:notation "7c88ee2b-1ae1-4dca-ab64-50942d2d108e" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:complementaryColors
-	a skos:Concept ;
-	skos:prefLabel "Complementary (Colors)" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Complementary colors are directly opposite each other on the color wheel. In other words, they are the colors that are furthest apart from each other in terms of hue and color temperature. e.g Red and Green, or Orange and Blue. Complementary colors contrast with each other when placed side by side. When mixed together they tend to cancel each other out, forming a “Muddy” neutral color." ;
-	skos:notation "4b0a902a-0c6e-4063-b40b-20c85aeba861" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:complementaryColors
-#	a skos:Concept ;
-#	skos:prefLabel "complementary colors" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "colors directly across from each other on the color wheel" ;
-#	skos:notation "83e221ca-1746-4d7e-840e-85788e626b0d" ;
-#	.
 
 
 voc:daggerBrush
 	a skos:Concept ;
-	skos:prefLabel "Dagger (Brush)" ;
+	skos:prefLabel "dagger brush" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "A dagger brush has a straight edge and a sloping edge reminiscent of a knife blade. This brush is ideal for painting thin or tapering lines." ;
 	skos:notation "ec05534b-fa30-4f4e-8b49-b89800a76de2" ;
@@ -367,7 +317,7 @@ voc:daggerBrush
 
 voc:deckledEdges
 	a skos:Concept ;
-	skos:prefLabel "Deckled (Edges)" ;
+	skos:prefLabel "deckled edges" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "This refers to the rough untrimmed edges of certain brands of watercolor paper." ;
 	skos:notation "fe497cf9-3d45-4f28-a7ca-31f4881ba1af" ;
@@ -375,39 +325,10 @@ voc:deckledEdges
 	.
 
 
-voc:dryBrushTechnique
+voc:watercolorEasel
 	a skos:Concept ;
-	skos:prefLabel "Dry Brush Technique" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "When watercolor paint is applied to dry paper in a relatively undiluted form it creates a sparse textured effect known as dry brushing." ;
-	skos:definition "Painting technique; the act of using a paint brush that is relatively dry, but still delivers paint to your substrate.  The resulting brush strokes will have a coarse, scratchy appearance, contrasting the smooth, uniform look of washes or blended paint." ;
-	skos:notation "d68e8f3f-6706-4d13-8e6d-eb49c25771c2" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:dryBrushing
-#	a skos:Concept ;
-#	skos:prefLabel "Dry Brushing" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "Painting technique; the act of using a paint brush that is relatively dry, but still delivers paint to your substrate.  The resulting brush strokes will have a coarse, scratchy appearance, contrasting the smooth, uniform look of washes or blended paint." ;
-#	skos:notation "ceb9f0f3-6646-4e98-8e31-d33ea9bad2b5" ;
-#	.
-
-
-#voc:drybrushTechnique
-#	a skos:Concept ;
-#	skos:prefLabel "drybrush technique" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "brushwork done on the dry surface of the paper" ;
-#	skos:notation "06745810-79b1-48db-8ee1-97bd0d189fe3" ;
-#	.
-
-
-voc:easel
-	a skos:Concept ;
-	skos:prefLabel "Easel" ;
-	skos:broader voc:watercolorTool ;
+	skos:prefLabel "easel" ;
+	skos:broader voc:easel ;
 	skos:definition "A stable stand, with an angled board that supports an artist’s painting ." ;
 	skos:notation "606c5824-1ddc-405d-ad14-3c669e2c4ed5" ;
 	skos:inScheme voc:watercolorPainting ;																				
@@ -416,27 +337,18 @@ voc:easel
 
 voc:fanBrush
 	a skos:Concept ;
-	skos:prefLabel "Fan (Brush)" ;
+	skos:prefLabel "fan brush" ;
+	skos:altLabel "Fan" ;
 	skos:broader voc:watercolorTool ;
-	skos:definition "A fan brush is often used in watercolor painting for painting grass and foliage. It is a short haired brush with the hairs spread out out in a fan shape." ;
+	skos:definition "A fan brush is often used in watercolor painting for painting grass and foliage. It is a short haired brush with the hairs spread out out in a fan shape.  Ideal for blending edges, or mimicking the texture of many things such as fur, feathers, ripples on water, grasses, tree boughs." ;
 	skos:notation "9cd8b9a5-274a-405f-93f1-f907596330ac" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:fan
-	a skos:Concept ;
-	skos:prefLabel "Fan" ;
-	skos:broader voc:watercolorTool ;
-	skos:definition "Brush type; uniquely shaped, resembling a handheld fan.  Ideal for blending edges, or mimicking the texture of many things such as fur, feathers, ripples on water, grasses, tree boughs... the list goes on and on." ;
-	skos:notation "f9870170-0d7b-4077-92d1-8083c20d692b" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:flatBrush
 	a skos:Concept ;
-	skos:prefLabel "Flat (Brush)" ;
+	skos:prefLabel "flat brush" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "A flat brush is a short haired brush with a straight edge. Flat brushes are generally useful for laying down washes of all kinds and are particularly useful for painting hard edged shapes such as mountains tree trunks etc.Great for crisp hard edges, washes, buildings and figuresGreat for crisp hard edges, washes, buildings and figures" ;
 	skos:notation "498e3dcb-872c-4590-a250-a8927b625a2a" ;
@@ -447,80 +359,41 @@ voc:flatBrush
 voc:flatWash
 	a skos:Concept ;
 	skos:prefLabel "flat wash" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:broader voc:wetOnDry ;
 	skos:definition "brushing successive strokes of color on a wet or dry surface, with each stroke placed next to the other, to create an even layer of color" ;
 	skos:notation "6a6a55eb-0043-4f92-a4d6-0a70b220639d" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-voc:frameMat
-	a skos:Concept ;
-	skos:prefLabel "(Frame) Mat" ;
-	skos:broader voc:watercolorMaterial ;
-	skos:definition "A Mat is a “Window” of card that sits inside a picture frame between the glass and the painting. It has the aesthetic function of creating a clean border around your painting and the practical function of separating the surface of the painting from the glass." ;
-	skos:notation "d3feb0ed-c18c-4fba-a410-312597f892a2" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
 voc:frisket
 	a skos:Concept ;
-	skos:prefLabel "Frisket" ;
+	skos:prefLabel "frisket" ;
 	skos:broader voc:watercolorTool ;
 	skos:editorialNote "This could be considered a material, as well" ;
-	skos:definition "Painting tool; a fluid composition of liquid latex and ammonia, or an adhesive film; used to cover (mask-off) areas of of your painting where paint is not wanted; excellent at preserving white space. (see; masking, white space)Liquid frisket dries very quickly and can be easily peeled off waterclour paper (or rubbed off with an eraser) when no longer needed. Frisket adhesive film must be cut to shape and then applied to the paper; the low tack of the adhesive film allows it to be easily removed when no longer needed." ;
+	skos:definition "A fluid composition of liquid latex and ammonia, or an adhesive film; used to cover (mask-off) areas of of your painting where paint is not wanted; excellent at preserving white space. (see; masking, white space)Liquid frisket dries very quickly and can be easily peeled off waterclour paper (or rubbed off with an eraser) when no longer needed. Frisket adhesive film must be cut to shape and then applied to the paper; the low tack of the adhesive film allows it to be easily removed when no longer needed." ;
 	skos:notation "d6ecf650-7942-4c82-aa6a-0ffc3e4f6b77" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-voc:glazing
+voc:watercolorGlazing
 	a skos:Concept ;
-	skos:prefLabel "Glazing" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "glazing" ;
+	skos:altLabel "layering" ;
+	skos:broader voc:wetOnDry ;
 	skos:definition "Glazing, or layering, is the technique of laying a thin wash of color over the top of another color which has dried. Due to the transparency of watercolor, this can have he effect of creating a third color or can simply be used to darken an existing color." ;
-	skos:definition "Painting technique; a technique common to all paint media; painting a thinned-out/watered-down layer of transparent colour over an already painted area." ;
 	skos:notation "9e23366d-aba2-4e26-9802-7cf15a9539f2" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:glazing
-#	a skos:Concept ;
-#	skos:prefLabel "Glazing" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "Painting technique; a technique common to all paint media; painting a thinned-out/watered-down layer of transparent colour over an already painted area." ;
-#	skos:notation "f2880bb5-fcda-4def-9066-f8c64778e4dd" ;
-#	.
-#
-#
-#voc:glazing
-#	a skos:Concept ;
-#	skos:prefLabel "glazing" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "applying thin, transparent washes of one color over another color" ;
-#	skos:notation "95c202ee-bb1e-4074-bfdf-80fa165d1355" ;
-#	.
-
-
-voc:gouacheOrBodyColor
-	a skos:Concept ;
-	skos:prefLabel "gouache (or body color)" ;
-	skos:broader voc:watercolorMaterial ;
-	skos:closeMatch voc:gouache ;
-	skos:definition "an opaque watercolor that can be applied thick or thin" ;
-	skos:notation "c182c944-6fca-4e68-9603-43fba9a7e74c" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:gouache
 	a skos:Concept ;
-	skos:prefLabel "Gouache" ;
+	skos:prefLabel "gouache" ;
+	skos:altLabel "gouache (or body color)" ;
 	skos:broader voc:watercolorMaterial ;
-	skos:closeMatch voc:gouacheOrBodyColor ;
-	skos:definition "Gouache is similar to watercolor but is much more opaque" ;
+	skos:definition "Gouache is similar to watercolor but is much more opaque.  An opaque watercolor that can be applied thick or thin" ;
 	skos:notation "94e719bd-d7c1-4b00-8dfa-a4583495db47" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
@@ -529,58 +402,27 @@ voc:gouache
 voc:gradatedWash
 	a skos:Concept ;
 	skos:prefLabel "gradated wash" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "a wash in which the value  gradually changes from dark to light" ;
-	skos:definition "A graduated wash is painted like a flat wash except that more water is added incrementally to lighten the colour as the wash progresses. This technique can be useful for painting skies and seas etc." ;
+	skos:broader voc:wetIntoWetWash ;
+	skos:definition "A wash in which the value  gradually changes from dark to light.  A graduated wash is painted like a flat wash except that more water is added incrementally to lighten the colour as the wash progresses. This technique can be useful for painting skies and seas etc." ;
 	skos:notation "3f74ecee-8045-40f3-a1a7-4911cf72fbc2" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:graduatedWash
-#	a skos:Concept ;
-#	skos:prefLabel "Graduated Wash" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "A graduated wash is painted like a flat wash except that more water is added incrementally to lighten the colour as the wash progresses. This technique can be useful for painting skies and seas etc." ;
-#	skos:notation "c502799b-a116-44f5-ac04-c47c98d60a6c" ;
-#	.
-
-
-voc:granulating
-	a skos:Concept ;
-	skos:prefLabel "Granulating" ;
-	skos:broader voc:watercolorTerm ;
-	skos:closeMatch voc:granulation ;
-	skos:definition "Paint characteristic; the tendency for some colour pigments to precipitate (or settle out) when water is added, resulting in a granular, speckled effect; also commonly referred to as Sedimentary colours; it's a natural effect, not indicative of poor quality paint, or technical misuse. Only some colours will granulate." ;
-	skos:notation "c42eddec-8d9d-4fe9-88a6-a3c6770a44ea" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:granulation
 	a skos:Concept ;
-	skos:prefLabel "Granulation" ;
+	skos:prefLabel "granulation" ;
+	skos:altLabel "Granulating" ;
 	skos:broader voc:watercolorTerm ;
-	skos:closeMatch voc:granulating ;
-	skos:definition "As watercolor paint dries the pigment has a tendency to form small clusters, or speckles. This creates the effect known a granulation. This can be a desirable textural effect or an undesirable one depending upon context. Some watercolor paints and brands have a stronger tendency to granulate than others." ;
-	skos:definition "speckled effect when coarse pigment settles into the paper indentations as the paint dries" ;
+	skos:definition "The tendency for some colour pigments to precipitate (or settle out) when water is added, resulting in a granular, speckled effect; also commonly referred to as sedimentary colours; it's a natural effect, not indicative of poor quality paint, or technical misuse. Only some colours will granulate." ;
 	skos:notation "3e28fb76-7641-4853-8c4f-9d7eb54ea84e" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:granulation
-#	a skos:Concept ;
-#	skos:prefLabel "granulation" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "speckled effect when coarse pigment settles into the paper indentations as the paint dries" ;
-#	skos:notation "95a555c4-77ca-4fde-8b03-ace683eaab7b" ;
-#	.
-
-
-voc:ground
+voc:watercolorGround
 	a skos:Concept ;
-	skos:prefLabel "Ground" ;
+	skos:prefLabel "ground" ;
 	skos:broader voc:watercolorMaterial ;
 	skos:definition "Watercolor ground is an acrylic based primer that allows a degree of absorbency. This enables a watercolor artist to paint on surfaces which would not usually be suitable for watercolor paint such as printer paper, thin card or even materials such as wood or stone." ;
 	skos:notation "b7818ea2-e446-422b-9ab2-68f512be6c20" ;
@@ -590,27 +432,17 @@ voc:ground
 
 voc:gumArabic
 	a skos:Concept ;
-	skos:prefLabel "Gum Arabic" ;
+	skos:prefLabel "gum arabic" ;
 	skos:broader voc:watercolorMaterial ;
-	skos:definition "Is the powdered resin of Acacia senegal and Acacia seyal trees grown in sub-Saharan Africa it is used as pigment binder in watercolor paint" ;
-	skos:definition "Paint medium; a natural non-toxic gum made from the sap of various species of the acacia tree used as a binder in watercolours; gum arabic fluid can be added to colours to thicken inks and watercolours, increasing the viscosity of the paint film and also intensifying colours. Gum arabic can also be diluted with water and applied directly to watercolour paper as a sealant, making it less absorbent, or over top of a finished watercolour painting (much like a varnish)." ;
+	skos:definition "A natural non-toxic gum made from the sap of various species of the acacia tree used as a binder in watercolours; gum arabic fluid can be added to colours to thicken inks and watercolours, increasing the viscosity of the paint film and also intensifying colours. Gum arabic can also be diluted with water and applied directly to watercolour paper as a sealant, making it less absorbent, or over top of a finished watercolour painting (much like a varnish)." ;
 	skos:notation "f9674a0f-f8f4-41ea-ba02-33c68af68357" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:gumArabic
-#	a skos:Concept ;
-#	skos:prefLabel "Gum Arabic" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "Paint medium; a natural non-toxic gum made from the sap of various species of the acacia tree used as a binder in watercolours; gum arabic fluid can be added to colours to thicken inks and watercolours, increasing the viscosity of the paint film and also intensifying colours. Gum arabic can also be diluted with water and applied directly to watercolour paper as a sealant, making it less absorbent, or over top of a finished watercolour painting (much like a varnish)." ;
-#	skos:notation "40b082db-7124-4cc0-a26b-1cf2efabc37a" ;
-#	.
-
-
 voc:hakeBrush
 	a skos:Concept ;
-	skos:prefLabel "Hake (Brush)" ;
+	skos:prefLabel "hake brush" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "The Hake is a traditional wide short-haired, long-handled Japanese brush into which goat’s hair is stitched. The Hake brush is useful for painting natural looking foliage and skies. It was popularized by artist/author Ron Ranson." ;
 	skos:notation "fd5ed5b4-d6a0-4569-b558-e9d9afb0732d" ;
@@ -620,7 +452,7 @@ voc:hakeBrush
 
 voc:happyAccident
 	a skos:Concept ;
-	skos:prefLabel "Happy Accident" ;
+	skos:prefLabel "happy accident" ;
 	skos:broader voc:watercolorTerm ;
 	skos:editorialNote "This better belongs under paintingTerm when that is available" ;
 	skos:definition "An unintended and unforeseen event that occurred during the course of a painting which nevertheless resulted in a desirable effect." ;
@@ -631,89 +463,31 @@ voc:happyAccident
 
 voc:hardEdge
 	a skos:Concept ;
-	skos:prefLabel "Hard Edge" ;
+	skos:prefLabel "hard edge" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "The edge of a shape that is sharply defined, as opposed to Soft Edge." ;
-	skos:definition "the outer perimeter of a shape or series of shapes, sharply defined" ;
 	skos:notation "aac9dd1b-e104-42b4-ba07-f5f7c101cf98" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:hardEdge
-#	a skos:Concept ;
-#	skos:prefLabel "hard edge" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "the outer perimeter of a shape or series of shapes, sharply defined" ;
-#	skos:notation "241cdb3b-9756-400d-a3b0-22b8ad631316" ;
-#	.
-
-
 voc:hotPressedPaper
 	a skos:Concept ;
-	skos:prefLabel "Hot Pressed Paper" ;
+	skos:prefLabel "hot pressed paper" ;
+	skos:altLabel "Hot Pressed" ;
 	skos:broader voc:watercolorMaterial ;
-	skos:closeMatch voc:hotPressed ;
-	skos:definition "A type of smooth un-textured watercolor paper, often used in medical or botanical illustrations. Hot pressed paper tends to be less absorbent than cold-pressed paper." ;
-	skos:definition "smooth, slick paper that doesn’t easily absorb paint and water" ;
+	skos:definition "Paper type; a heavy-weight, slow-to-absorb paper featuring a very smooth finish; manufactured using steam, heat and/or pressure to to help the fibres (wood pulp and/or cotton) nestle very close together, making the paper very slow to absorb; sized for water media." ;
 	skos:notation "f5de000a-e1d7-4513-a493-2ccfd0e1ac90" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:hotPressedPaper
-#	a skos:Concept ;
-#	skos:prefLabel "hot-pressed paper" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "smooth, slick paper that doesn’t easily absorb paint and water" ;
-#	skos:notation "c1107bf8-bed1-492e-a29c-13241d5ee2f4" ;
-#	.
-
-
-voc:hotPressed
-	a skos:Concept ;
-	skos:prefLabel "Hot Pressed" ;
-	skos:broader voc:watercolorMaterial ;
-	skos:closeMatch voc:hotPressedPaper ;
-	skos:definition "Paper type; a heavy-weight, slow-to-absorb paper featuring a very smooth finish; manufactured using steam, heat and/or pressure to to help the fibres (wood pulp and/or cotton) nestle very close together, making the paper very slow to absorb; sized for water media. (see; sizing)" ;
-	skos:notation "b56db031-6440-472d-be40-ffba714b2f4e" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:hue
-	a skos:Concept ;
-	skos:prefLabel "Hue" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Quite simply, a hue is a color. This is independent of it’s intensity or brightness." ;
-	skos:definition "a color’s common name (for example, cadmium red)" ;
-	skos:notation "782a0868-0f54-4f3c-814e-75ed78cc56ae" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:hue
-#	a skos:Concept ;
-#	skos:prefLabel "hue" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "a color’s common name (for example, cadmium red)" ;
-#	skos:notation "1d1b8343-35e3-48d6-8da0-34e87f74365d" ;
-#	.
-
-voc:impasto
-	a skos:Concept ;
-	skos:prefLabel "Impasto" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Painting technique; paint that is applied to a canvas or panel in quantities that make it stand out from the surface." ;
-	skos:notation "3408ef21-a909-48e2-8864-7b8fb1e2a3b3" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
 
 voc:impressing
 	a skos:Concept ;
-	skos:prefLabel "Impressing" ;
+	skos:prefLabel "impressing" ;
 	skos:broader voc:watercolorTechnique ;
-	skos:definition "Painting technique; the act of pressing plastic wrap or fabric into a still wet application of paint; capable of creating a vast array textured effects." ;
+	skos:definition "Pressing plastic wrap or fabric into a still wet application of paint; capable of creating a vast array textured effects." ;
 	skos:notation "3408ef21-a909-48e2-8864-7b8fb1e2a3b3" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
@@ -721,37 +495,17 @@ voc:impressing
 
 voc:indenting
 	a skos:Concept ;
-	skos:prefLabel "Indenting" ;
+	skos:prefLabel "indenting" ;
 	skos:broader voc:watercolorTechnique ;
-	skos:definition "Painting technique; the act of scoring the paper (using a stylus or the end of a paintbrush) directly after an application of fresh paint; the scored marks are recessed into the paper so pigments will naturally settle in the lines, showing off the scored details." ;
+	skos:definition "Scoring the paper (using a stylus or the end of a paintbrush) directly after an application of fresh paint; the scored marks are recessed into the paper so pigments will naturally settle in the lines, showing off the scored details." ;
 	skos:notation "a09a992c-c6b9-456e-8989-503e5c4f1036" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-voc:intensity
-	a skos:Concept ;
-	skos:prefLabel "Intensity" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "This refers to the brightness or dullness of a particular color" ;
-	skos:definition "a color’s saturation, brightness or strength" ;
-	skos:notation "f33767e7-fb46-4ec8-82f0-e1dbba9a9edb" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:intensity
-#	a skos:Concept ;
-#	skos:prefLabel "intensity" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "a color’s saturation, brightness or strength" ;
-#	skos:notation "b15b0cf8-bd13-4217-8344-3fed17080bb7" ;
-#	.
-
-
 voc:kolinskySable
 	a skos:Concept ;
-	skos:prefLabel "Kolinsky (Sable)" ;
+	skos:prefLabel "Kolinsky (sable)" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "Is a species of weasel found in Siberia. The most highly prized and expensive watercolor brushes are made from the tail hairs of the male of the species." ;
 	skos:notation "b0b551d4-475f-49a0-9db1-04537b0c4c9f" ;
@@ -759,63 +513,22 @@ voc:kolinskySable
 	.
 
 
-#voc:layering
-#	a skos:Concept ;
-#	skos:prefLabel "Layering" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "See Glazing" ;
-#	skos:notation "d8f85a68-d537-454c-aeab-dabab6572af2" ;
-#	.
-
-
-voc:layering
-	a skos:Concept ;
-	skos:prefLabel "layering" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "applying premixed colors over another wash to change its value or intensity" ;
-	skos:definition "See Glazing" ;
-	skos:notation "6f6f3169-7b4c-4f9a-b3b6-91ce25a2d593" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:liftingOut
-	a skos:Concept ;
-	skos:prefLabel "Lifting Out" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:liftingPaint, voc:lifting ;
-	skos:definition "Lifting out is the technique of lightening or removing an area of paint from the paper with a damp paintbrush." ;
-	skos:notation "347235a3-f035-4f10-bbc6-7994ed7db582" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
 voc:liftingPaint
 	a skos:Concept ;
 	skos:prefLabel "lifting paint" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:liftingOut, voc:lifting ;
-	skos:definition "a technique for removing paint from a surface with a brush, paper towel or tissue in order to correct mistakes, develop textures, create highlights or change values" ;
+	skos:altLabel "Lifting" ;
+	skos:altLabel "Lifting Out" ;
+	skos:broader voc:removingPaint ;
+	skos:definition "Removing paint from a surface with a brush, paper towel or tissue. Removing colour from an area of wet paint, or re-wetting an area of dried paint and removing colour; a painting technique in it's own right, not just a correction method; the basis of subtractive painting.Lifting creates soft edges and can diffuse or modify colours, reducing their intensity and leaving only the undertones. Strategic or detailed lifts can be done using a slightly damp paintbrush to wick up the colour." ;
 	skos:notation "8eb58275-7d2a-4111-b087-5bbb31aad7cf" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:lifting
-	a skos:Concept ;
-	skos:prefLabel "Lifting" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:liftingPaint, voc:liftingOut ;
-	skos:definition "Painting technique; the act of removing colour from an area of wet paint, or re-wetting an area of dried paint and removing colour; a painting technique in it's own right, not just a correction method; the basis of subtractive painting.Lifting creates soft edges and can diffuse or modify colours, reducing their intensity and leaving only the undertones. Strategic or detailed lifts can be done using a slightly damp paintbrush to wick up the colour." ;
-	skos:notation "a2b2fed4-f14f-4fc9-867c-0c01d56aa82e" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:lineWash
 	a skos:Concept ;
-	skos:prefLabel "Line & Wash" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "line & wash" ;
+	skos:broader voc:inkWash ;
 	skos:definition "Line and wash is the technique of combining ink pen drawings with with watercolors. Traditionally this was done with dip pens but can also be done with markers, biros and Rapidograph style engineering drawing pens." ;
 	skos:notation "36bdab9b-7f8c-40a9-8338-c8c39b02e1b3" ;
 	skos:inScheme voc:watercolorPainting ;																				
@@ -824,7 +537,7 @@ voc:lineWash
 
 voc:linerRigger
 	a skos:Concept ;
-	skos:prefLabel "Liner (Rigger)" ;
+	skos:prefLabel "liner rigger" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "Brush type; similar in shape to round brushes but with hairs that are twice the usual length; ideal for drawing out long, thin continuous lines; available in small sizes only (#3 is generally the largest size).It's debatable whether there's any difference between Liners and Riggers. Brush manufacturers don't seem to differentiate; one will call it a rigger, while the other calls it a liner, yet the brush is identical for all intents and purposes.x" ;
 	skos:notation "42ae1e44-6749-44d6-a5cf-3241cae0b967" ;
@@ -834,77 +547,50 @@ voc:linerRigger
 
 voc:loosePaintingStyle
 	a skos:Concept ;
-	skos:prefLabel "Loose (Painting style)" ;
+	skos:prefLabel "loose painting style" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "The loose painting style is characterized by a quick and impressionistic approach to painting. Many watercolor artists love to work in this style because of it’s spontaneous and lively appearance." ;
+	skos:example <https://www.youtube.com/watch?v=AWtjbE84XGI> ;
+	skos:editorialNote "This video seems the epitome of loose painting style" ;
 	skos:notation "1713297c-7c97-4506-a4ec-07b681c93c88" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:lostFoundEdges
-#	a skos:Concept ;
-#	skos:prefLabel "Lost & Found Edges" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "When the tonal value of the edge of a foreground object begins to matches the tonal value of it’s background the edges of the object start to become indiscernible against the background. This creates the appearance the optical illusion of a disappearing edge but the brain still interprets the edge as being present. This is often used to create a deliberate effect. A found edge is the reversal of this." ;
-#	skos:notation "2e56269e-4659-4344-a161-3ce54535fb87" ;
-#	.
-
-
 voc:lostAndFoundEdges
 	a skos:Concept ;
 	skos:prefLabel "lost and found edges" ;
+	skos:altLabel "Lost & Found Edges" ;
 	skos:broader voc:watercolorTechnique ;
-	skos:definition "also called broken or inferred edges; used to create and suggest movement" ;
-	skos:definition "When the tonal value of the edge of a foreground object begins to matches the tonal value of it’s background the edges of the object start to become indiscernible against the background. This creates the appearance the optical illusion of a disappearing edge but the brain still interprets the edge as being present. This is often used to create a deliberate effect. A found edge is the reversal of this." ;
+	skos:definition "When the tonal value of the edge of a foreground object begins to matches the tonal value of it’s background the edges of the object start to become indiscernible against the background. This creates the appearance the optical illusion of a disappearing edge but the brain still interprets the edge as being present. This is often used to create a deliberate effect, used to create and suggest movement. A found edge is the reversal of this." ;
 	skos:notation "228946c0-dd45-45ce-9a92-b665abc19581" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
-# TODO: should the technique be maskingFluid?
 voc:masking
 	a skos:Concept ;
-	skos:prefLabel "Masking" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "masking" ;
+	skos:broader voc:assistedWash ;
 	skos:editorialNote "Chose to use 'masking' for the technique and 'maskingFluid' for the material; however, 'masking' does not necessarily imply the use of masking fluid" ;
 	skos:definition "In watercolor painting, white areas are usually depicted by preserving the white of the paper. Masking fluid is a rubbery fluid which can be painted on to the watercolor paper and once dry, can be painted over preventing water from seeping through on to the paper. Masking fluid can be removed with gentle rubbing and peeling once the paint is dry." ;
-	skos:definition "As well as protecting white areas, masking fluid can be used to create interesting effects in layered washes. Try painting lattice with a light, mid and dark toned wash layered between strips of masking fluid." ;
 	skos:notation "bea51728-f85f-4861-b0bf-c1374b2ef92d" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 voc:maskingFluid
 	a skos:Concept ;
-	skos:prefLabel "Masking Fluid" ;
+	skos:prefLabel "masking Fluid" ;
 	skos:broader voc:watercolorMaterial ;
+	skos:related voc:masking ;
 	skos:definition "Liquid latex used to preserve the white of the paper and to create textures" ;
 	skos:notation "d51e34e0-881c-4802-89ba-a694491ead7c" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:maskingFluid
-#	a skos:Concept ;
-#	skos:prefLabel "masking fluid" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "liquid latex used to preserve the white of the paper and to create textures" ;
-#	skos:notation "5f82a0b2-a47e-40b8-a352-2e1b72e2ab1d" ;
-#	.
-
-
-voc:maskingTape
-	a skos:Concept ;
-	skos:prefLabel "Masking (Tape)" ;
-	skos:broader voc:watercolorMaterial ;
-	skos:definition "This is a sticky paper tape that can be used to mask off a white border around your painting or to mask off an area of your painting that needs to be preserved." ;
-	skos:notation "59f6d59b-e7d1-42f6-a86d-3304e8c84436" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
 voc:watercolorMedium
 	a skos:Concept ;
-	skos:prefLabel "Watercolor medium" ;
+	skos:prefLabel "watercolor medium" ;
 	skos:broader voc:watercolorMaterial ;
 	skos:definition "Watercolor medium is a substance which can be added to watercolor paint to create effects that couldn’t be obtained purely with water, such as texture, gloss or glitter." ;
 	skos:notation "a2d90dab-799f-4a1d-9506-08b03750395d" ;
@@ -914,29 +600,18 @@ voc:watercolorMedium
 
 voc:mopBrush
 	a skos:Concept ;
-	skos:prefLabel "Mop (Brush)" ;
+	skos:prefLabel "mop brush" ;
+	skos:altLabel "Mop" ;
 	skos:broader voc:watercolorTool ;
-	skos:closeMatch voc:mop ;
 	skos:definition "A mop brush is a type of Round Brush that has a thick hair at it’s base tapering into a very thin tip. The mop brush is very versatile and can create many different kinds of strokes." ;
 	skos:notation "05d5169b-db58-4180-bca2-7e36edab84a8" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-voc:mop
-	a skos:Concept ;
-	skos:prefLabel "Mop" ;
-	skos:broader voc:watercolorTool ;
-	skos:closeMatch voc:mopBrush ;
-	skos:definition "Brush type; similar in shape to a cosmetics blush brush; made of soft and exceptionally absorbent goat or camel hair; the ideal tool for applying washes of colour covering a large area" ;
-	skos:notation "af740628-9d9e-417b-92a2-085cb171ec6e" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
 voc:mud
 	a skos:Concept ;
-	skos:prefLabel "Mud" ;
+	skos:prefLabel "mud" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "Mud refers to the dull earthy neutral colors that result from mixing colors that contain too much of their complementary hue. e.g mixing a red with a green." ;
 	skos:notation "22949d4e-a4bd-4df1-9ad2-5e3d7ac2cae0" ;
@@ -946,7 +621,7 @@ voc:mud
 
 voc:notPaper
 	a skos:Concept ;
-	skos:prefLabel "NOT (Paper)" ;
+	skos:prefLabel "not paper" ;
 	skos:broader voc:watercolorMaterial ;
 	skos:definition "Is the British convention for referring to Cold Pressed watercolor paper, it simply means “Not hot pressed”" ;
 	skos:notation "65518f69-0a14-4b57-a329-f7d76d2acb3e" ;
@@ -956,7 +631,7 @@ voc:notPaper
 
 voc:naturalHairBrushes
 	a skos:Concept ;
-	skos:prefLabel "Natural Hair (Brushes)" ;
+	skos:prefLabel "natural hair brushes" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "Brushes that contain animal hair such as squirrel, sable or goat" ;
 	skos:notation "31cf91de-5a5a-4152-80d9-483ea3345bd7" ;
@@ -964,31 +639,12 @@ voc:naturalHairBrushes
 	.
 
 
-voc:neutralColour
-	a skos:Concept ;
-	skos:prefLabel "Neutral (Colour)" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Dull muted grays and browns. Neutrals can be mixed in a number of ways. e.g mixing 3 evenly spaced color wheel colors, mixing complementaries." ;
-	skos:notation "134c194c-ac3a-4b51-a823-7e0d919e7c92" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:opaque
-	a skos:Concept ;
-	skos:prefLabel "Opaque" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Paint characteristic; the ability of certain paints and/or certain colours to cover completely, not allowing you to see through to lower layers; the opposite of transparent & translucent; ideal for over-painting." ;
-	skos:notation "b0179fb8-3870-45f7-9607-a4a7b0c26a2f" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
 
 voc:overPainting
 	a skos:Concept ;
-	skos:prefLabel "Over-painting" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Painting technique; the act of 'cleaning up' muddy or over-saturated areas, restoring white space (see; white space), creating highlights, or making blurry edges crisp again; generally speaking, over-painting is done with an opaque white water-based paint (such as Titanium White Gouache, or Chinese White Watercolour).Some traditionalist folks consider over-painting to be cheating, however it's a widely practiced technique and can be artfully done.  Over-painting is often a much better solution than chucking out an otherwise successful painting.... Besides, who cares what some folks think! Art is not meant to be perfection." ;
+	skos:prefLabel "over-painting" ;
+	skos:broader voc:brushingPaint ;
+	skos:definition "Cleaning up muddy or over-saturated areas, restoring white space (see; white space), creating highlights, or making blurry edges crisp again; generally speaking, over-painting is done with an opaque white water-based paint (such as Titanium White Gouache, or Chinese White Watercolour).Some traditionalist folks consider over-painting to be cheating, however it's a widely practiced technique and can be artfully done.  Over-painting is often a much better solution than chucking out an otherwise successful painting.... Besides, who cares what some folks think! Art is not meant to be perfection." ;
 	skos:notation "b532d2eb-1a7c-463c-b670-d61a34013c85" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
@@ -996,7 +652,7 @@ voc:overPainting
 
 voc:overworking
 	a skos:Concept ;
-	skos:prefLabel "Overworking" ;
+	skos:prefLabel "overworking" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "This occurs when you carry on adding more and more to a painting when it would have been stopping at an earlier stage would have resulted in a livelier fresher looking piece of work. This is rather subjective and can be difficult to judge. Try and evaluate what you’re trying to achieve with every single brushstroke before making it rather than just mindlessly piling on more." ;
 	skos:notation "043a3cf1-c5aa-4e4c-b410-685b8173cee0" ;
@@ -1006,52 +662,12 @@ voc:overworking
 
 voc:oxGall
 	a skos:Concept ;
-	skos:prefLabel "Ox Gall" ;
+	skos:prefLabel "ox gall" ;
 	skos:broader voc:watercolorMaterial ;
-	skos:definition "Painting tool; yellowish fluid from gall bladders (usually obtained from cows) mixed with alcohol and used as the wetting agent in paper marbling and watercolor painting.If a watercolour wash is not covering the paper evenly, is beading up, or failing to absorb into the deep texture of the paper leaving tiny white specks, add a drop of ox gall to improve flow and even out the absorbancy." ;
+	skos:definition "Yellowish fluid from gall bladders (usually obtained from cows) mixed with alcohol and used as the wetting agent in paper marbling and watercolor painting.If a watercolour wash is not covering the paper evenly, is beading up, or failing to absorb into the deep texture of the paper leaving tiny white specks, add a drop of ox gall to improve flow and even out the absorbancy." ;
 	skos:notation "46ca71f1-9c15-4c35-ac6b-07851853ede2" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
-
-voc:paletteKnife
-	a skos:Concept ;
-	skos:prefLabel "Palette Knife" ;
-	skos:broader voc:watercolorTool ;
-	skos:definition "A palette knife is an implement that consists of a short handle and a diamond shaped “Blade”. Palette knives are more commonly used in oil and acrylic painting fro applying and mixing paint. In watercolor painting palette knives can be used to scrape out lines and create random looking textures." ;
-	skos:definition "small spatula-style knife used to apply or remove paint, or to add texture" ;
-	skos:notation "daed6fc7-60e7-4dfb-87c8-8d0a25a4bd61" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:paletteKnife
-#	a skos:Concept ;
-#	skos:prefLabel "palette knife" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "small spatula-style knife used to apply or remove paint, or to add texture" ;
-#	skos:notation "ed6b011b-7b31-45b9-bfab-13e0331498d1" ;
-#	.
-
-
-voc:palette
-	a skos:Concept ;
-	skos:prefLabel "Palette" ;
-	skos:broader voc:watercolorTool ;
-	skos:definition "A palette is a surface for mixing paint on. Watercolor palettes often contain a number of wells or depressions so that the paint doesn’t run. palettes are often made of white plastic but the best palettes for watercolor are pure white and porcelain. Palette can also refer to a color scheme or selection of colors." ;
-	skos:definition "surface on which watercolors are mixed and/or stored" ;
-	skos:notation "17597b2f-7d12-46fc-9900-1924aaab5275" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:palette
-#	a skos:Concept ;
-#	skos:prefLabel "palette" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "surface on which watercolors are mixed and/or stored" ;
-#	skos:notation "6c950b3c-4b98-4cf3-92a4-47d4891426af" ;
-#	.
-
 
 voc:panPaint
 	a skos:Concept ;
@@ -1065,7 +681,7 @@ voc:panPaint
 
 voc:pan
 	a skos:Concept ;
-	skos:prefLabel "Pan" ;
+	skos:prefLabel "pan" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "Pans are small thumbnail sized paint containers that slot into portable trays. Pans are most often used for painting in small sketchbooks and outdoors" ;
 	skos:notation "b63c1c11-8d41-499a-aad3-b3a2ce83b52a" ;
@@ -1073,60 +689,11 @@ voc:pan
 	.
 
 
-voc:pigment
-	a skos:Concept ;
-	skos:prefLabel "Pigment" ;
-	skos:broader voc:watercolorMaterial ;
-	skos:definition "Pigments is the substance that gives paint its color. Pigments can be natural or synthetic" ;
-	skos:definition "dry coloring matter, usually an insoluble powder, that’s mixed with water and gum Arabic to create paint" ;
-	skos:notation "09041a6f-362d-43a6-8afd-d00ad9b12bc0" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:pigment
-#	a skos:Concept ;
-#	skos:prefLabel "pigment" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "dry coloring matter, usually an insoluble powder, that’s mixed with water and gum Arabic to create paint" ;
-#	skos:notation "5d1590a7-1181-40d9-9738-6b07747648f4" ;
-#	.
-
-
-voc:pleinAir
-	a skos:Concept ;
-	skos:prefLabel "Plein Air" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Plein Air, or En Plein Air means the act of painting outdoors." ;
-	skos:notation "9a15dc12-69a6-41cf-8237-2ae53a072846" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:primaryColor
-	a skos:Concept ;
-	skos:prefLabel "Primary (Color)" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Red, Blue and Yellow are called the Primary Colors because they cannot mixed from other colors but all colors can be mixed from them." ;
-	skos:notation "3212391c-fdc5-4c58-bfce-b6ca04055d11" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:primaryColours
-#	a skos:Concept ;
-#	skos:prefLabel "primary colours" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "Rigger (Brush)A rigger is a watercolour brush with long thin hairs. It is useful for painting thin lines such as the rigging on ships, hence the name." ;
-#	skos:notation "539fc24d-6638-4e1e-990d-01a7416cad8e" ;
-#	.
-
-
 voc:resist
 	a skos:Concept ;
-	skos:prefLabel "Resist" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Painting tool; any substance that can be applied to watercolour paper that will repel water and therefore paint pigment as well; wax crayons and oil pastels are commonly used resists: resists are generally a permanent addition to your painting (unlike frisket which is removed)." ;
+	skos:prefLabel "resist" ;
+	skos:broader voc:assistedWash ;
+	skos:definition "Any substance that can be applied to watercolour paper that will repel water and therefore paint pigment as well; wax crayons and oil pastels are commonly used resists: resists are generally a permanent addition to your painting (unlike frisket which is removed)." ;
 	skos:notation "9ca85d90-be59-4150-8d1d-88bf707e8103" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
@@ -1134,10 +701,9 @@ voc:resist
 
 voc:rigger
 	a skos:Concept ;
-	skos:prefLabel "Rigger" ;
+	skos:prefLabel "rigger" ;
 	skos:broader voc:watercolorTool ;
-	skos:definition "Brush type; see liner" ;
-	skos:definition "Rigger (Brush)A rigger is a watercolour brush with long thin hairs. It is useful for painting thin lines such as the rigging on ships, hence the name." ;
+	skos:definition "A rigger is a watercolour brush with long thin hairs. It is useful for painting thin lines such as the rigging on ships, hence the name." ;
 	skos:notation "c2cd5b73-f103-466a-9cb0-23ad54508f83" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
@@ -1145,7 +711,7 @@ voc:rigger
 
 voc:roughPaper
 	a skos:Concept ;
-	skos:prefLabel "Rough Paper" ;
+	skos:prefLabel "rough paper" ;
 	skos:broader voc:watercolorMaterial ;
 	skos:definition "Heavily textured watercolor paper" ;
 	skos:notation "4994d844-b6f8-41a6-afdf-d2979179b582" ;
@@ -1153,18 +719,9 @@ voc:roughPaper
 	.
 
 
-#voc:roughPaper
-#	a skos:Concept ;
-#	skos:prefLabel "rough paper" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "heavily textured paper" ;
-#	skos:notation "618273ee-8d88-4255-8ac6-f4e7865a46a7" ;
-#	.
-
-
 voc:roundBrush
 	a skos:Concept ;
-	skos:prefLabel "Round (Brush)" ;
+	skos:prefLabel "round brush" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "A very commonly used watercolor brush with hairs that taper to a fine point. The round brush is a versatile brush that can be used to paint a variety of brush strokes.A very versatile brush. It can be used for painting washes, fine details and broad strokes" ;
 	skos:notation "ccf11591-7c8d-4bc5-b986-b5b2b7428482" ;
@@ -1174,46 +731,27 @@ voc:roundBrush
 
 voc:sandingDryPaper
 	a skos:Concept ;
-	skos:prefLabel "Sanding Dry Paper" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "sanding dry paper" ;
+	skos:broader voc:removingPaint ;
 	skos:definition "Unusual textures can be made by lightly sanding the surface of a very dry painting with fine sandpaper. The surface takes on a slightly weathered appearance. The sanded area can be adjusted by the application of further washes." ;
 	skos:notation "103dd0d3-2804-408e-b22f-448f1cae569f" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-voc:sandpaper
-	a skos:Concept ;
-	skos:prefLabel "Sandpaper" ;
-	skos:broader voc:watercolorMaterial, voc:watercolorTool ;
-	skos:editorialNote "This is both a tool and material" ;
-	skos:definition "produced in a range of grit sizes and is used to remove material from surfaces, either to make them smoother or to remove a layer of material" ;
-	skos:notation "d21c2e98-edad-4859-be73-555a3447639f" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:scrubbing
 	a skos:Concept ;
-	skos:prefLabel "Scrubbing" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "scrubbing" ;
+	skos:broader voc:removingPaint ;
 	skos:definition "A dry brush technique used to lift paint from or add color to an area of the surface" ;
 	skos:notation "1a96f4f6-64bf-4a64-bd7e-b0ff531579fe" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:scrubbing
-#	a skos:Concept ;
-#	skos:prefLabel "scrubbing" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "a dry-brush technique used to lift paint from or add color to an area of the surface" ;
-#	skos:notation "c9306001-0d47-4535-ad86-491cfbb2390a" ;
-#	.
-
-
 voc:sedimentary
 	a skos:Concept ;
-	skos:prefLabel "Sedimentary" ;
+	skos:prefLabel "sedimentary" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "Paint characteristic; see granulation" ;
 	skos:notation "b376c03a-09f0-4252-8bd6-b8126d8a7f20" ;
@@ -1221,20 +759,9 @@ voc:sedimentary
 	.
 
 
-voc:sgraffito
-	a skos:Concept ;
-	skos:prefLabel "Sgraffito" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:scrapingDryPaint ;
-	skos:definition "Painting technique; a fancy Italian word for the act of gently scraping paint off of the substrate (paper, in this case); scraping usually takes place after the paint has dried (or at least partially dried); results in subtle details and irregular textures and can help in restoring white space (see; white space)Literally anything scratchy will work; a razor blade or craft knife, sandpaper, a piece of cardboard or a cut up credit card... anything scratchy." ;
-	skos:notation "9079de5d-ad51-451f-99f6-7cb8d12f3f46" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
 voc:shader
 	a skos:Concept ;
-	skos:prefLabel "Shader" ;
+	skos:prefLabel "shader" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "Brush type; a flat, wide brush with shorter hairs, exactly the same shape as a Bright brush; ideal for creating hard edges and square fields of colour; great for street-scapes and other architectural subject matter." ;
 	skos:notation "0f1c6842-17ba-4108-b843-0df01ba88a53" ;
@@ -1242,180 +769,56 @@ voc:shader
 	.
 
 
-voc:sizing
-	a skos:Concept ;
-	skos:prefLabel "Sizing" ;
-	skos:broader voc:watercolorMaterial ;
-	skos:editorialNote "Some references to sizing consider it a painting tool" ;
-	skos:definition "Sizing is a gelatin based substance used in the manufacture of watercolor paper. Sizing slows the absorbtion of the paint so that most of the pigment remains on the surface of the paper." ;
-	skos:definition "Used to reduce the absorbency of the paper (helping paint sit on the outer surface of the paper, as opposed to soaking into the interior of the sheet); to maintain the structural integrity of the paper (so the paper can be soaked with water without falling apart); to reduce paper buckling and warping once dry (encourages paper to shrink back to it's original shape; flat)" ;
-	skos:notation "33877264-ae13-41e2-a011-0ec5d3e1b306" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
 
 voc:softEdge
 	a skos:Concept ;
-	skos:prefLabel "Soft Edge" ;
+	skos:prefLabel "soft edge" ;
 	skos:broader voc:watercolorTechnique ;
-	skos:definition "Soft edges are edges that are indistinct and blurry. In watercolor painting this can be achieved by painting Wet On Wet." ;
-	skos:definition "fading or disappearing edge" ;
+	skos:definition "Soft edges are edges that are indistinct and blurry, a fading or disappearing edge. In watercolor painting this can be achieved by painting Wet On Wet." ;
 	skos:notation "7b00fce5-bbec-4a47-9021-3744bcaa25f5" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:softEdge
-#	a skos:Concept ;
-#	skos:prefLabel "soft edge" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "fading or disappearing edge" ;
-#	skos:notation "5da8073a-6f38-4e4f-9c00-a8272d403a6f" ;
-#	.
-
-
 voc:spattering
 	a skos:Concept ;
-	skos:prefLabel "Spattering" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Painting technique; the act of dipping a very coarse bristled brush (such as a toothbrush or stencil brush) in paint then running your finger or a stick across the bristles, thereby distributing minute particles of paint all over the place; resulting in a coarse airbrush/spray paint effect.As the description indicates, controlling the spatter is challenging.  The first time you try it, you'll likely paint your own face by accident." ;
+	skos:prefLabel "spattering" ;
+	skos:broader voc:diffusingPaint ;
+	skos:definition "Dipping a very coarse bristled brush (such as a toothbrush or stencil brush) in paint then running your finger or a stick across the bristles, thereby distributing minute particles of paint all over the place; resulting in a coarse airbrush/spray paint effect.As the description indicates, controlling the spatter is challenging.  The first time you try it, you'll likely paint your own face by accident." ;
 	skos:notation "e2c7ea13-12f4-46bc-ae12-791bc6264f3c" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:splitPrimariesPalette
-	a skos:Concept ;
-	skos:prefLabel "Split Primaries Palette" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "The primary colors are red , yellow and blue. A split primaries palette, is a palette of 6 colors consisting of three warm and three cool primaries. For example Cadmium Red, New Gamboge and Ultramarine, and Alizarin Crimson, Lemon Yellow and Cerulean Blue. The purpose of the split primaries palette is to enable a watercolor painter the greatest range of warm and cool color mixing options with the fewest colors." ;
-	skos:notation "50fb2c6d-4ccd-4548-ac68-4554b4d1b0a7" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:stainingColors
 	a skos:Concept ;
-	skos:prefLabel "Staining Colors" ;
+	skos:prefLabel "staining colors" ;
+	skos:altfLabel "Staining" ;
 	skos:broader voc:watercolorTerm ;
-	skos:closeMatch voc:staining ;
-	skos:definition "Some watercolor pigments have smaller particles which means that they flow very smoothly and have intense color saturation whereas others are more sedimentary producing more of a granular effect. The “Pthalo” colors are particularly strong staining colors and therefore should be used with a bit more restraint." ;
-	skos:definition "colors that absorb into the paper before the water has had a chance to evaporate; they’re difficult to lift and will leave a stain on the paper" ;
+	skos:definition "Some watercolor pigments have smaller particles which means that they flow very smoothly and have intense color saturation, for example, the “Pthalo” colors, where others are more sedimentary producing more of a granular effect, for example viridian. Colors that absorb into the paper before the water has had a chance to evaporate; they’re difficult to lift and will leave a stain on the paper.  Not an indicator of paint quality as some pigments are inherently staining, and some are non-staining." ;
 	skos:notation "3c573467-d82e-4957-8dc6-7d332c7038b4" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:stainingColors
-#	a skos:Concept ;
-#	skos:prefLabel "staining colors" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "colors that absorb into the paper before the water has had a chance to evaporate; they’re difficult to lift and will leave a stain on the paper" ;
-#	skos:notation "a1f3d93f-6c2a-44eb-aa0f-89a509a2e77c" ;
-#	.
-
-
-voc:staining
-	a skos:Concept ;
-	skos:prefLabel "Staining" ;
-	skos:broader voc:watercolorTerm ;
-	skos:closeMatch voc:stainingColors ;
-	skos:definition "Paint characteristic: the tendency for certain colours to sink into and chemically bond with the fibers of the paper making it difficult to lift or remove colour; not an indicator of paint quality as some pigments are inherently staining, and some are non-staining." ;
-	skos:notation "00c3af75-d7e6-4436-a881-22cf5b4d9c39" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:stipple
-	a skos:Concept ;
-	skos:prefLabel "Stipple" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Painting technique; the act of creating imagery through a series of dots made with the point of a paint brush; dimension is achieved by slowly building areas of light and shadow with dots in various hues, enabling the colours to mix in the viewer's eye (known as optical mixing); a traditionally ideal method of working on miniature scale paintings." ;
-	skos:notation "d554579e-2f8a-473e-ab15-c5f73ec08ddc" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:stretching
 	a skos:Concept ;
-	skos:prefLabel "Stretching" ;
+	skos:prefLabel "stretching" ;
 	skos:broader voc:watercolorTerm ;
-	skos:definition "Painting technique; the act of laying a sheet of watercolour paper on a rigid support and taping all sides down to the support in order to avoid buckling and warping; paper stays relatively flat while you paint (avoiding unwanted and uneven pooling) and the finished painting dries perfectly flat.Any paper of less than a 300lb weight will warp if not stretched; the amount of warp is dependent on the amount of water absorbed in the painting process.Here is an article describing four different ways to stretch paper.Stretching is not necessary if you're using synthetic papers (which are not prone to warping) or if you're using a watercolor block (as long as the painting is left on the block to dry)." ;
-	skos:definition "The process of stretching paper is done in order to prevent Cockling. The process is as follows. A sheet of watercolor paper is wetted on both sides and then taped or stapled down to stiff board and allowed to dry." ;
+	skos:definition "Laying a sheet of watercolour paper on a rigid support and taping all sides down to the support in order to avoid buckling and warping; paper stays relatively flat while you paint (avoiding unwanted and uneven pooling) and the finished painting dries perfectly flat.Any paper of less than a 300lb weight will warp if not stretched; the amount of warp is dependent on the amount of water absorbed in the painting process.  Stretching is not necessary if you're using synthetic papers (which are not prone to warping) or if you're using a watercolor block as long as the painting is left on the block to dry." ;
 	skos:notation "634bdf46-cea5-4093-98c5-64d062669fd6" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:stretching
-#	a skos:Concept ;
-#	skos:prefLabel "Stretching" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "The process of stretching paper is done in order to prevent Cockling. The process is as follows. A sheet of watercolor paper is wetted on both sides and then taped or stapled down to stiff board and allowed to dry." ;
-#	skos:notation "51632f70-7960-497f-a6b1-d7081591356d" ;
-#	.
-
-
-voc:syntheticBrushes
-	a skos:Concept ;
-	skos:prefLabel "Synthetic (Brushes)" ;
-	skos:broader voc:watercolorTool ;
-	skos:definition "Synthetic brushes can be made from Nylon, Polyester or Taklon. They tend to be stiffer and springier than natural haired brushes." ;
-	skos:notation "a5dd74ea-f3df-4fe3-b882-ad8985423cf7" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:temperatureColor
-	a skos:Concept ;
-	skos:prefLabel "Temperature (Color)" ;
-	skos:broader voc:watercolorTerm ;
-	skos:closeMatch voc:temperature ;
-	skos:definition "Colors are divided into cool and warm. Colors that lean towards Red/Yellow are considered to be warm colors and colors that lean towards Blue/Green are classified as cool." ;
-	skos:notation "a2ce14e6-bd59-44ed-ae5d-708532371bfa" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:temperature
-	a skos:Concept ;
-	skos:prefLabel "temperature" ;
-	skos:broader voc:watercolorTerm ;
-	skos:closeMatch voc:temperatureColor ;
-	skos:definition "the warmness or coolness of a color, depending on where the color is situated on the color wheel" ;
-	skos:notation "cca6f7bc-7d9f-474f-93d0-fd030b12c310" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:thumbnail
-	a skos:Concept ;
-	skos:prefLabel "Thumbnail" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "A small sketch or painting produced in preparation for the creation of a larger work." ;
-	skos:notation "9817a1a3-07d6-4bd8-8d56-6104c5a53a9f" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:tint
 	a skos:Concept ;
-	skos:prefLabel "Tint" ;
+	skos:prefLabel "tint" ;
 	skos:broader voc:watercolorTechnique ;
-	skos:definition "Color tints are generally created by adding white to a base color. In watercolor it is done by adding water." ;
 	skos:definition "created by adding water to the original color; the more water that’s added, the weaker the intensity" ;
 	skos:notation "c564e476-cd43-43bb-89cd-cad427f7f954" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
-
-
-#voc:tint
-#	a skos:Concept ;
-#	skos:prefLabel "tint" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "created by adding water to the original color; the more water that’s added, the weaker the intensity" ;
-#	skos:notation "f7675976-83ef-4f53-823c-4eb443a1a0f1" ;
-#	.
 
 
 voc:transparentPaint
@@ -1428,19 +831,9 @@ voc:transparentPaint
 	.
 
 
-voc:transparent
-	a skos:Concept ;
-	skos:prefLabel "Transparent" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Paint characteristic; the tendency for certain paint colours to allow light to pass through the paint film enabling layers beneath to be distinctly seen; the opposite of ﻿opaque." ;
-	skos:notation "3af047f8-d1d4-4cb2-aa83-898e4bce7644" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
 voc:tubeColor
 	a skos:Concept ;
-	skos:prefLabel "Tube Color" ;
+	skos:prefLabel "tube color" ;
 	skos:broader voc:watercolorMaterial ;
 	skos:definition "Watercolor is available in tubes or pans, In tube form the paint is squeezed on to a Palette like toothpaste in pans the paint is in solid form and needs to be reactivated with water." ;
 	skos:notation "ce8cec56-94d0-405d-8ef5-5eb5ab4a8f7b" ;
@@ -1448,40 +841,10 @@ voc:tubeColor
 	.
 
 
-voc:underdrawing
-	a skos:Concept ;
-	skos:prefLabel "Underdrawing" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Paint technique; the act of sketching out the intended composition on your substrate prior to applying paint.Pencil lines can be lightly erased after the composition has been blocked-in with paint, or pencil lines can be left as they are.  Some people (like myself) feel that visible underdrawings add a lovely sense of whimsy and visual interest to a painting." ;
-	skos:notation "b8932191-275f-4192-a74b-fb48bc4c1f09" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:value
-	a skos:Concept ;
-	skos:prefLabel "Value" ;
-	skos:broader voc:watercolorTerm ;
-	skos:definition "Value refers to the darkness or lightness of a color." ;
-	skos:definition "a color’s relative lightness or darkness" ;
-	skos:notation "c05c9200-07fd-442c-884a-c32c3bb49118" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-#voc:value
-#	a skos:Concept ;
-#	skos:prefLabel "value" ;
-#	skos:broader voc:watercolorTerm ;
-#	skos:definition "a color’s relative lightness or darkness" ;
-#	skos:notation "f8343307-9bfc-489f-b24c-b1f3cc1e0968" ;
-#	.
-
-
 voc:variegatedWash
 	a skos:Concept ;
 	skos:prefLabel "variegated wash" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:broader voc:wetIntoWetWash ;
 	skos:definition "type of wet-into-wet wash that involves placing colors side by side and then mixing and blending them along their edges" ;
 	skos:notation "bcccd3cf-2a61-49c6-a0af-75995443e2c6" ;
 	skos:inScheme voc:watercolorPainting ;																				
@@ -1490,7 +853,7 @@ voc:variegatedWash
 
 voc:veganBrushes
 	a skos:Concept ;
-	skos:prefLabel "Vegan Brushes" ;
+	skos:prefLabel "vegan brushes" ;
 	skos:broader voc:watercolorTool ;
 	skos:definition "Vegan watercolor brushes are brushes made from synthetic fibers but have similar properties to natural hair brushes." ;
 	skos:notation "a97ca567-a7c3-435c-9574-9d471757080e" ;
@@ -1500,7 +863,7 @@ voc:veganBrushes
 
 voc:washFlat
 	a skos:Concept ;
-	skos:prefLabel "Wash (Flat)" ;
+	skos:prefLabel "wash flat" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "Is the technique of laying down a large area of even, consistent color." ;
 	skos:notation "14d6e4e7-0c1f-4a71-8703-414f398edeb2" ;
@@ -1510,7 +873,7 @@ voc:washFlat
 
 voc:washVariegated
 	a skos:Concept ;
-	skos:prefLabel "Wash (Variegated)" ;
+	skos:prefLabel "wash variegated" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "A variegated wash is a wash painted with different colors in a wet into wet blend. Variegated washes are a signature technique of watercolor painting. They are often used to convey the natural scattering and bouncing of light and color that occurs in real life. Variegated washes can also be used to create abstract patterns and effects." ;
 	skos:notation "e39a4d8e-ad06-484a-bcb9-7fc18277e226" ;
@@ -1520,27 +883,17 @@ voc:washVariegated
 
 voc:wash
 	a skos:Concept ;
-	skos:prefLabel "Wash" ;
+	skos:prefLabel "wash" ;
 	skos:broader voc:watercolorTechnique ;
-	skos:definition "A wash is a large solid area of colour. Washes are often used to depict skies, or seas etc." ;
-	skos:definition "Paint technique; the act of applying a dilute solution of paint and water over a large area; creating a smooth field of colour without visible brush strokes.Washes can be just one colour, or they can gradate from a light to a dark shade of a single colour, or they can graduate from one colour to another; in any case, the goal is to have seamless blending devoid of brushstrokes." ;
+	skos:definition "; A wash is a large solid area of colour, a smooth field of colour without visible brush strokes. Washes can be just one colour, or they can gradate from a light to a dark shade of a single colour, or they can graduate from one colour to another." ;
 	skos:notation "e19bbd3a-1801-4941-9857-9b92046977e2" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
-#voc:wash
-#	a skos:Concept ;
-#	skos:prefLabel "Wash" ;
-#	skos:broader voc:watercolorTechnique ;
-#	skos:definition "Paint technique; the act of applying a dilute solution of paint and water over a large area; creating a smooth field of colour without visible brush strokes.Washes can be just one colour, or they can gradate from a light to a dark shade of a single colour, or they can graduate from one colour to another; in any case, the goal is to have seamless blending devoid of brushstrokes." ;
-#	skos:notation "1a96e2cf-0e1b-4ffb-bbb0-e16e98c0c2ea" ;
-#	.
-
-
 voc:weight
 	a skos:Concept ;
-	skos:prefLabel "Weight" ;
+	skos:prefLabel "weight" ;
 	skos:broader voc:watercolorTerm ;
 	skos:definition "The thickness of watercolor paper is referred to as it’s weight. When measured in pounds (lbs) this refers to the weight of 500 sheets. Or it can be measured in gsm. i.e. Grams per square metre. Heavier weight paper is more expensive but is more resistant to cockling." ;
 	skos:notation "fbee8c7f-8434-49cd-9ba3-9682ec6a45f8" ;
@@ -1561,28 +914,18 @@ voc:wetIntoDryWash
 voc:wetIntoWetWash
 	a skos:Concept ;
 	skos:prefLabel "wet-into-wet wash" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:wetIntoWet ;
-	skos:definition "painting on a wet surface and letting colors blend as they may; looks strong and vibrant while wet but loses intensity when the colors dry" ;
+	skos:altLabel "Wet-Into-Wet" ;
+	skos:altLabel "wet-on-wet" ;
+	skos:broader voc:wash ;
+	skos:definition "Applying a new colour to the painting without waiting for earlier applications to dry first; colours blend together without leaving of any hard edges or sharp transitions; a technique that is only partially controllable." ;
 	skos:notation "6ab2e75e-b80d-440a-b874-5f4c9e39d8f2" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
-
-voc:wetIntoWet
-	a skos:Concept ;
-	skos:prefLabel "Wet-Into-Wet" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:wetIntoWetWash ;
-	skos:definition "This is the technique of painting wet paint on wet paper. This creates the signature blended appearance of watercolour." ;
-	skos:notation "1b39d54a-552a-4bf9-92fa-9906db9a6546" ;
 	skos:inScheme voc:watercolorPainting ;																				
 	.
 
 
 voc:wetOnDry
 	a skos:Concept ;
-	skos:prefLabel "Wet on Dry" ;
+	skos:prefLabel "wet on Dry" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "This is the technique of painting wet paint on to dry paper. This creates crisp hard edged shapes." ;
 	skos:notation "3961a217-955b-46e5-a9ad-f1afb3d8a8e7" ;
@@ -1590,19 +933,10 @@ voc:wetOnDry
 	.
 
 
-voc:wetOnWet
-	a skos:Concept ;
-	skos:prefLabel "Wet-on-Wet" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Paint technique; the act of applying a new colour to the painting without waiting for earlier applications to dry first; colours blend together without leaving of any hard edges or sharp transitions; a technique that is only partially controllable." ;
-	skos:notation "dbc032fd-40a0-4b34-97d1-a80c170362a9" ;
-	skos:inScheme voc:watercolorPainting ;																				
-	.
-
 voc:WatercolorGlossaryOfTerms
 	a skos:Collection ;
 	skos:prefLabel "Watercolor Glossary of Terms" ;
-	skos:note <https://www.artistsnetwork.com/art-techniques/watercolor-glossary-of-terms/> ;
+	rdfs:seeAlso <https://www.artistsnetwork.com/art-techniques/watercolor-glossary-of-terms/> ;
 	skos:member voc:analogousColors	 ,
 voc:casein              ,
 voc:charging            ,
@@ -1610,10 +944,10 @@ voc:coldPressedPaper    ,
 voc:complementaryColors ,
 voc:drybrushTechnique   ,
 voc:flatWash            ,
-voc:glazing             ,
+voc:watercolorGlazing             ,
 voc:gradatedWash        ,
 voc:granulation         ,
-voc:gouacheOrBodyColor  ,
+voc:gouache  ,
 voc:hardEdge            ,
 voc:hotPressedPaper     ,
 voc:hue                 ,
@@ -1630,7 +964,7 @@ voc:roughPaper          ,
 voc:softEdge            ,
 voc:scrubbing           ,
 voc:stainingColors      ,
-voc:temperature         ,
+voc:temperatureColor         ,
 voc:tint                ,
 voc:transparentPaint    ,
 voc:value               ,
@@ -1642,9 +976,9 @@ voc:wetIntoWetWash ;
 voc:WatercolourTerminology
 	a skos:Collection ;
 	skos:prefLabel "Watercolour Terminology" ;
-	skos:note <https://cowans.org/blogs/cowans-art-knowledge-know-how/talk-like-an-artist-watercolour-terminology> ;
+	rdfs:seeAlso <https://cowans.org/blogs/cowans-art-knowledge-know-how/talk-like-an-artist-watercolour-terminology> ;
 	skos:member voc:atomiser				,
-voc:atmosphericDisturbance ,
+voc:atmosphericPerspective ,
 voc:backrun                ,
 voc:blotting               ,
 voc:bodyColour             ,
@@ -1654,27 +988,27 @@ voc:coldPressed            ,
 voc:dryBrushing            ,
 voc:fan                    ,
 voc:frisket                ,
-voc:glazing                ,
-voc:granulating            ,
+voc:watercolorGlazing                ,
+voc:granulation            ,
 voc:gumArabic              ,
-voc:hotPressed             ,
+voc:hotPressedPaper             ,
 voc:impressing             ,
 voc:indenting              ,
-voc:lifting                ,
+voc:liftingPaint                ,
 voc:linerRigger            ,
-voc:mop                    ,
+voc:mopBrush               ,
 voc:opaque                 ,
 voc:overPainting           ,
 voc:oxGall                 ,
 voc:resist                 ,
 voc:rigger                 ,
 voc:sedimentary            ,
-voc:sgraffito              ,
+voc:scrapingDryPaint              ,
 voc:shader                 ,
 voc:spattering             ,
 voc:sizing                 ,
 voc:paintingTool           ,
-voc:staining               ,
+voc:stainingColors               ,
 voc:stipple                ,
 voc:stretching             ,
 voc:transparent            ,
@@ -1686,17 +1020,17 @@ voc:wetOnWet ;
 voc:AZGlossaryOfWatercolorTerms
 	a skos:Collection ;
 	skos:prefLabel "A – Z Glossary Of Watercolor Terms (With Pics)" ;
-	skos:note <https://www.solvingwatercolour.com/a-z-glossary-of-watercolor-terms-with-pics/> ;
+	rdfs:seeAlso <https://www.solvingwatercolour.com/a-z-glossary-of-watercolor-terms-with-pics/> ;
 	skos:member voc:abstract				,
 voc:relatedBlogPosts        ,
 voc:analogousColors         ,
-voc:backRun                 ,
+voc:backrun                 ,
 voc:bambooBrush             ,
 voc:bead                    ,
 voc:binder                  ,
 voc:block                   ,
 voc:bloom                   ,
-voc:canvas                  ,
+voc:watercolorCanvas                  ,
 voc:casein                  ,
 voc:cauliflower             ,
 voc:charging                ,
@@ -1708,14 +1042,14 @@ voc:complementaryColors     ,
 voc:daggerBrush             ,
 voc:deckledEdges            ,
 voc:dryBrushTechnique       ,
-voc:easel                   ,
+voc:watercolorEasel                   ,
 voc:fanBrush                ,
 voc:flatBrush               ,
-voc:glazing                 ,
+voc:watercolorGlazing                 ,
 voc:gouache                 ,
 voc:graduatedWash           ,
 voc:granulation             ,
-voc:ground                  ,
+voc:watercolorGround                  ,
 voc:gumArabic               ,
 voc:hakeBrush               ,
 voc:happyAccident           ,
@@ -1725,7 +1059,7 @@ voc:hue                     ,
 voc:intensity               ,
 voc:kolinskySable           ,
 voc:layering                ,
-voc:liftingOut              ,
+voc:liftingPaint              ,
 voc:lineWash              ,
 voc:loosePaintingStyle      ,
 voc:lostFoundEdges        ,
@@ -1766,14 +1100,14 @@ voc:washFlat                ,
 voc:washVariegated          ,
 voc:weight                  ,
 voc:wetOnDry                ,
-voc:wetIntoWet              ;
+voc:wetIntoWetWash              ;
 .
 
 voc:AdvancedWatercolorTechniques
 	a skos:Collection ;
 	skos:prefLabel "Advanced Watercolor Techniques" ;
-	skos:comment "Once you have mastered the basic skills of color mixing, applying washes, softening edges, dropping in color etc. there are a number of more advanced watercolor techniques you can incorporate into your work." ;
-	skos:note <https://www.johnlovett.com/watercolor-techniques> ;
+	skos:definition "Once you have mastered the basic skills of color mixing, applying washes, softening edges, dropping in color etc. there are a number of more advanced watercolor techniques you can incorporate into your work." ;
+	rdfs:seeAlso <https://www.johnlovett.com/watercolor-techniques> ;
 	skos:member voc:masking	,
 voc:candleWaxResist				,
 voc:clingWrapWash               ,
@@ -1793,101 +1127,114 @@ voc:washedInkwithGouacheMask    ;
 
 voc:washedInk
 	a skos:Concept ;
-	skos:prefLabel "Washed Ink" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "washed ink" ;
+	skos:broader voc:inkWash ;
 	skos:definition "Waterproof ink is applied, allowed to almost dry, then scrubbed off. This will produce interesting textures and shapes. The results are unpredictable and permanent, so this technique is best used before watercolor washes are added. Best results are obtained using a spray bottle of water and rough bristle brush to scrub the ink back." ;
 	skos:notation "c16d623d-f9ca-4c2d-8e61-60ab94fcfb17" ;
 	.
 voc:washedInkwithGouacheMask
 	a skos:Concept ;
-	skos:prefLabel "Washed Ink with Gouache Mask​" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "washed ink with gouache mask" ;
+	skos:broader voc:inkWash ;
 	skos:definition "For this technique, thick white gouache is painted on to preserve any areas of white paper. The gouache is allowed to thoroughly dry before being completely covered with pigment ink. When the ink is dry the surface is washed back with a water spray and bristle brush, dissolving the gouache and revealing the white paper underneath." ;
 	skos:notation "e8543f32-fd38-4fa6-93f1-a7acecaf62d2" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:sprayedInk
 	a skos:Concept ;
-	skos:prefLabel "Sprayed Ink" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "sprayed ink" ;
+	skos:broader voc:diffusingPaint ;
 	skos:definition "The rich colors and linear quality of permanent artists ink can be used to unify a painting. Experiment using a fine water spray just after the ink is applied. The soft spidery textures add an ancient weathered patina to your painting." ;
 	skos:notation "1fdb2218-887b-4e9c-ad04-008077469ad3" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:candleWaxResist
 	a skos:Concept ;
-	skos:prefLabel "Candle Wax Resist" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "candle wax resist" ;
+	skos:broader voc:assistedWash ;
 	skos:definition "Wherever candle wax is applied to the painting surface, no paint will adhere. White areas can be preserved in this way before the painting is started. Unlike white preserved with masking fluid, the area can never be painted over. Washes of underlying color can be preserved in this way too. The various colored marks in the example below were preserved by drawing wax onto a dry wash then applying another wash, waiting until it drys then drawing on more wax marks." ;
 	skos:notation "b2c1e858-ef89-4a38-9a67-cf19b4808af4" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:scrapingDryPaint
 	a skos:Concept ;
-	skos:prefLabel "Scraping Dry Paint​" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:closeMatch voc:sgraffito ;
-	skos:definition "For this painting technique, a razor blade or sharp knife is used to scratch fine marks into dark areas of dry paint.​ Make sure the paint is thoroughly dry before attempting this. Similar marks can be made with white gouache, but the slight difference in quality adds variety and interest to your painting." ;
+	skos:prefLabel "scraping dry paint" ;
+	skos:altLabel "Sgraffito" ;
+	skos:broader voc:removingPaint ;
+	skos:definition "Gently scraping paint off of the substrate (paper, in this case); scraping usually takes place after the paint has dried (or at least partially dried); results in subtle details and irregular textures and can help in restoring white space.  A razor blade or craft knife, sandpaper, a piece of cardboard or a cut up credit card can be used; anything scratchy." ;
 	skos:notation "1ba2dbda-8bec-4fd7-b420-391aed45d52a" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:paperMasking
 	a skos:Concept ;
-	skos:prefLabel "Paper Masking" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "paper masking" ;
+	skos:broader voc:assistedWash ;
 	skos:definition "Cartridge paper can be torn to a suitable shape, placed on the painting then the area left exposed can be wiped over with a damp brush or sponge to remove pigment. This process works best with sedimentary and non staining colors. The technique can also be used with straight edged paper to change the tone in a formal, geometric manner." ;
 	skos:notation "81993099-3dc0-40fc-b5cc-43ead65e291d" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
-voc:pressingintowetpaper
+voc:pressingIntoWetPaper
 	a skos:Concept ;
-	skos:prefLabel "Pressing into wet paper" ;
+	skos:prefLabel "pressing into wet paper" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "This is a simple watercolor technique where a variety of objects (brush handles, empty ball point pens, blunt knives) can be used to compress the paper while a wash is still wet. The compressed paper will absorb more pigment than the surrounding paper leaving interesting dark marks in your painting.​" ;
 	skos:notation "d9d7de01-01ad-45bd-985b-57bca6d9c06d" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:japaneseRicePaper
 	a skos:Concept ;
-	skos:prefLabel "Japanese Rice Paper​​" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "Japanese rice paper" ;
+	skos:broader voc:assistedWash ;
 	skos:definition "Torn Japanese Rice Paper is glued to the surface with dilute PVA glue, Matt acrylic varnish  or a similar neutral pH glue.​ The results are interesting and unpredictable, depending on the type of rice paper." ;
 	skos:notation "43b906f0-9585-45b0-9d2f-2606c927816b" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:paperBlotting
 	a skos:Concept ;
-	skos:prefLabel "Paper Blotting​" ;
-	skos:broader voc:watercolorTechnique ;
-	skos:definition "Crumpled paper towel will lift pigment from a wet was in a soft, predictable way. Keep rotating and re crumpling the paper so you dont get a repeating pattern in the blot marks. This is a good watercolor technique for lifting clouds out of a wet sky." ;
+	skos:prefLabel "paper blotting" ;
+	skos:broader voc:liftingPaint ;
+	skos:definition "Crumpled paper towel will lift pigment from a wet was in a soft, predictable way. Keep rotating and re crumpling the paper so you dont get a repeating pattern in the blot marks. This is a good watercolor technique for lifting clouds out of a wet sky.  Manually soaking up excess paint before it dries using a small sponge, piece of absorbent tissue or a towel" ;
 	skos:notation "a4f31341-cee3-4542-b3aa-43bc6c9cefe7" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:opaqueGouacheContrast
 	a skos:Concept ;
-	skos:prefLabel "Opaque Gouache​ Contrast" ;
+	skos:prefLabel "opaque gouache contrast" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "The contrast between transparent watercolor and flat, opaque gouache can add interest and vibrancy to a painting. Be sure to keep distinct areas of watercolor and gouache or the opaque/transparent contrast will be lost. See the article on Gouache for more information." ;
 	skos:notation "5d8342fe-be68-4636-af4c-850692bdf493" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:gessoUnderpainting
 	a skos:Concept ;
-	skos:prefLabel "Gesso Underpainting​" ;
+	skos:prefLabel "gesso underpainting​" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "With this watercolor technique, rough gesso brushstrokes add interest to the predictable texture of watercolor paper. Watercolor gesso or absorbent ground works best. The important thing to remember is to allow the gesso to dry thoroughly before painting on it. Watercolor, particularly sedimentary colors will settle into the fine crevasses in the gesso brush strokes making an interesting texture. " ;
 	skos:notation "1ae248d0-9da9-4bd2-a241-088f0181d428" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:clingWrapWash
 	a skos:Concept ;
-	skos:prefLabel "Cling Wrap Wash​" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "cling wrap wash" ;
+	skos:broader voc:assistedWash ;
 	skos:definition "A simple technique where cling wrap is arranged over a wet wash and left until the wash is thoroughly dry. The results are fairly predictable, but this technique makes interesting rock like textures" ;
 	skos:notation "f22b0010-46a7-4ec0-b412-e3e55820cd6d" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:pastelScrape
 	a skos:Concept ;
-	skos:prefLabel "Pastel Scrape" ;
+	skos:prefLabel "pastel scrape" ;
 	skos:broader voc:watercolorTechnique ;
 	skos:definition "Into a wet wash scrape the dust off a suitably colored pastel with a sharp blade. Test the pastel color against a patch of the dry wash first. This technique works well with sedimentary pigments using a similar colored pastel." ;
 	skos:notation "f97dbfbb-8365-4b89-8776-b2d59ca81b72" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 voc:draggingPaint
 	a skos:Concept ;
-	skos:prefLabel "Dragging Paint" ;
-	skos:broader voc:watercolorTechnique ;
+	skos:prefLabel "dragging paint" ;
+	skos:broader voc:brushingPaint ;
 	skos:definition "Dipping a paint brush handle into fresh paint and dragging it through a wet wash makes an interesting, unpredictable line ranging from soft feathered edges to solid dabs of paint" ;
 	skos:notation "d3313d82-a7ee-4b29-9ec6-6e9acb13583c" ;
+	skos:inScheme voc:watercolorPainting ;																				
 	.
 

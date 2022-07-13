@@ -1,0 +1,24 @@
+
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix voc:	<http://visualartsdna.org/voc#> .
+
+
+voc:visualArtTerms a skos:ConceptScheme ;
+	skos:hasTopConcept voc:digitalArtTerm ;
+	skos:prefLabel "vocabulary" ;
+	skos:altLabel "computer art terms" ;
+	skos:definition "Terms used to describe visual arts creative works." ;
+	skos:notation "05957181-8573-4804-9592-cf2820153652" ;
+.
+
+voc:visualArtTerm
+	a skos:Concept ;
+	skos:prefLabel "visual art term" ;
+	skos:definition "A term of art in the visual arts." ;
+	skos:notation "cf03af3f-30ce-4a1e-8221-878a1f1bb21a" ;
+	skos:inScheme voc:visualArtTerms ;																				
+.
+

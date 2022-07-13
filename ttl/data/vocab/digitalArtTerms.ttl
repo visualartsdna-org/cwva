@@ -9,7 +9,7 @@
 
 voc:digitalArtTerms a skos:ConceptScheme ;
 	skos:hasTopConcept voc:digitalArtTerm ;
-	skos:prefLabel "vocabulary" ;
+	skos:prefLabel "digital art terms" ;
 	skos:altLabel "computer art terms" ;
 	skos:definition "Terms used to describe computer art." ;
 	skos:notation "e00e685c-2aec-46e4-8e7c-75e72e356a32" ;
@@ -19,13 +19,14 @@ voc:digitalArtTerm
 	a skos:Concept ;
 	skos:prefLabel "digital art term" ;
 	skos:definition "A term of art in digital art." ;
+	skos:broader voc:visualArtTerm ;
 	skos:notation "b3977fb7-56a1-4087-bf85-be39e15fa33b" ;
 	skos:inScheme voc:digitalArtTerms ;																				
 .
 
 voc:computerArtTerms a skos:ConceptScheme ;
 	skos:hasTopConcept voc:computerArtTerm ;
-	skos:prefLabel "vocabulary" ;
+	skos:prefLabel "computer art terms" ;
 	skos:altLabel "computer art terms" ;
 	skos:definition "Terms used to describe computer art." ;
 	skos:notation "5201bf86-249b-4ead-aa92-579b60c8f92e" ;
@@ -54,16 +55,25 @@ voc:algorithmicism
 voc:gracefulnessOfForm
 	a skos:Concept ;
 	skos:prefLabel "gracefulness of form" ;
-	skos:broader voc:computerArtTerm ;
+	skos:broader voc:visualArtTerm ;
 	skos:definition "(T)he act of moving in an attractive way that shows control; the fact of having a smooth, attractive form." ;
 	skos:note <https://www.lexico.com/en/definition/gracefulness> ;
 	skos:notation "0a1a4742-362b-45a5-95c0-07f3bd7ac16e" ;
-	skos:inScheme voc:computerArtTerms ;																				
+	skos:inScheme voc:visualArtTerms ;																				
 .
-voc:lsys
+voc:naturalPatterns
+	a skos:Concept ;
+	skos:prefLabel "natural patterns" ;
+	skos:broader voc:visualArtTerm ;
+	skos:definition "A pattern is a design in which lines, shapes, forms or colours are repeated. The part that is repeated is called a motif. Natural patterns echo forms and patterns found in nature." ;
+	skos:note <https://www.lexico.com/en/definition/gracefulness> ;
+	skos:notation "e19df431-718e-4633-b9e2-ded52c5be2a4" ;
+	skos:inScheme voc:visualArtTerms ;																				
+.
+voc:l-system
 	a skos:Concept ;
 	skos:altLabel "Lindenmayer System" ;
-	skos:prefLabel "lsys" ;
+	skos:prefLabel "l-system" ;
 	skos:broader voc:computerArtTerm ;
 	skos:definition """a parallel rewriting system and a type of formal grammar. An L-system consists of an alphabet of symbols that can be used to make strings, a collection of production rules that expand each symbol into some larger string of symbols, an initial "axiom" string from which to begin construction, and a mechanism for translating the generated strings into geometric structures. L-systems were introduced and developed in 1968 by Aristid Lindenmayer, a Hungarian theoretical biologist and botanist at the University of Utrecht..""" ;
 	skos:notation "93c87534-a89d-40a5-ac88-ee455361de6d" ;
@@ -73,20 +83,20 @@ voc:lsys
 voc:fancy
 	a skos:Concept ;
 	skos:prefLabel "fancy" ;
-	skos:broader voc:computerArtTerm ;
+	skos:broader voc:visualArtTerm ;
 	skos:definition "elaborate in structure or decoration." ;
 	skos:notation "53299ae9-3c20-4ded-a0e4-db4d586cc844" ;
 	skos:note <https://www.lexico.com/en/definition/fancy> ;
-	skos:inScheme voc:computerArtTerms ;																				
+	skos:inScheme voc:visualArtTerms ;																				
 .
 voc:plain
 	a skos:Concept ;
 	skos:prefLabel "plain" ;
-	skos:broader voc:computerArtTerm ;
+	skos:broader voc:visualArtTerm ;
 	skos:definition "not decorated or elaborate; simple or ordinary in character." ;
 	skos:notation "bc5df430-4166-4755-ab72-b69ec9617164" ;
 	skos:note <https://www.lexico.com/en/definition/plain> ;
-	skos:inScheme voc:computerArtTerms ;																				
+	skos:inScheme voc:visualArtTerms ;																				
 .
 voc:stochasticism
 	a skos:Concept ;
@@ -101,6 +111,7 @@ voc:digital
 	a skos:Concept ;
 	skos:prefLabel "digital" ;
 	skos:definition "(of signals or data) expressed as series of the digits 0 and 1." ;
+	skos:broader voc:digitalArtTerm ;
 	skos:notation "c808be8d-9e12-4e0c-b466-aa56063428b0" ;
 	skos:note <https://www.lexico.com/definition/digital> ;
 	skos:inScheme voc:computerArtTerms ;																				
@@ -117,7 +128,7 @@ voc:technicalism
 voc:publish
 	a skos:Concept ;
 	skos:prefLabel "publish" ;
-	skos:broader voc:computerArtTerm ;
+	skos:broader voc:visualArtTerm ;
 	skos:definition "Prepare and issue the work of (a particular writer)." ;
 	skos:notation "78c839b1-a991-4222-b9db-5e7faa0fd0c7" ;
 	skos:note "A tag used in Google Keep/Takeout to distinguish Keep notes intended for publication"  ;
