@@ -17,10 +17,10 @@
              tko:isArchived               false ;
              tko:isPinned                 true ;
              tko:isTrashed                false ;
-             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "l-system" ] ;
              tko:labels                   [ tko:name  "publish" ] ;
              tko:labels                   [ tko:name  "ontology" ] ;
-             tko:tags                     "ontology" , "lsys" , "publish" ;
+             tko:tags                     "ontology" , "l-system" , "publish" ;
              tko:textContent              "[identifier=83dc0156-5261-4314-9af1-4fc015ff0dd9]\n[color=Cerulean]\n[pattern=f0feba2d]\n\nThis topic is of interest because of Dean.\nIn my opinion, the complete FIBO ontology is well thought out and a model of organization.   That hasn't been my experience with all of the other ontologies I've derived graphics from.\n\nMy graphic only represents the BE portion." ;
              tko:title                    "FIBO" ;
              tko:userEditedTimestampUsec  "1655856344526000"^^xs:long ;

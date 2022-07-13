@@ -16,10 +16,10 @@
              tko:isArchived               false ;
              tko:isPinned                 true ;
              tko:isTrashed                false ;
-             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "l-system" ] ;
              tko:labels                   [ tko:name  "ontology" ] ;
              tko:labels                   [ tko:name  "publish" ] ;
-             tko:tags                     "ontology" , "publish" , "lsys" ;
+             tko:tags                     "ontology" , "publish" , "l-system" ;
              tko:textContent              "[identifier=4af9eb49-8494-4abc-bfe6-05c8f1b7a539]\n[color=Yellow Ochre]\n[pattern=d178dbff]\n" ;
              tko:title                    "CWM" ;
              tko:userEditedTimestampUsec  "1655860032050000"^^xs:long ;

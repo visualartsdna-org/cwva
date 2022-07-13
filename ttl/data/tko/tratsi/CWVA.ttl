@@ -19,8 +19,8 @@
              tko:isTrashed                false ;
              tko:labels                   [ tko:name  "publish" ] ;
              tko:labels                   [ tko:name  "ontology" ] ;
-             tko:labels                   [ tko:name  "lsys" ] ;
-             tko:tags                     "publish" , "lsys" , "ontology" ;
+             tko:labels                   [ tko:name  "l-system" ] ;
+             tko:tags                     "publish" , "l-system" , "ontology" ;
              tko:textContent              "[identifier=99304a7f-1191-4a5a-87a1-4f1c76d1af26]\n[color=Burnt Sienna]\n[pattern=52deccd4]\n\n" ;
              tko:title                    "CWVA" ;
              tko:userEditedTimestampUsec  "1655860010588000"^^xs:long ;

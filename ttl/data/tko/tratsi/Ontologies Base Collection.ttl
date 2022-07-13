@@ -24,10 +24,10 @@
              tko:labels                   [ tko:name  "digital" ] ;
              tko:labels                   [ tko:name  "gracefulness of form" ] ;
              tko:labels                   [ tko:name  "ontology" ] ;
-             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "l-system" ] ;
              tko:labels                   [ tko:name  "algorithmicism" ] ;
              tko:labels                   [ tko:name  "technicalism" ] ;
-             tko:tags                     "digital" , "publish" , "plain" , "stochasticism" , "lsys" , "informationalism" , "technicalism" , "ontology" , "algorithmicism" , "gracefulness of form" ;
+             tko:tags                     "digital" , "publish" , "plain" , "stochasticism" , "l-system" , "informationalism" , "technicalism" , "ontology" , "algorithmicism" , "gracefulness of form" ;
              tko:textContent              "NALS graphics of ontologies\n[identifier=e498f6a8-4567-4afb-9561-3776df12d937]\n" ;
              tko:title                    "Ontologies Base Collection" ;
              tko:userEditedTimestampUsec  "1655409421825000"^^xs:long ;

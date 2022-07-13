@@ -18,8 +18,8 @@
              tko:isTrashed                false ;
              tko:labels                   [ tko:name  "ontology" ] ;
              tko:labels                   [ tko:name  "publish" ] ;
-             tko:labels                   [ tko:name  "lsys" ] ;
-             tko:tags                     "publish" , "ontology" , "lsys" ;
+             tko:labels                   [ tko:name  "l-system" ] ;
+             tko:tags                     "publish" , "ontology" , "l-system" ;
              tko:textContent              "[identifier=4a780fec-cd9d-4dad-bcf0-a600e4682431]\n[color=Raw Sienna]\n[pattern=b7ec613e]\n" ;
              tko:title                    "GSSO" ;
              tko:userEditedTimestampUsec  "1655859955399000"^^xs:long ;

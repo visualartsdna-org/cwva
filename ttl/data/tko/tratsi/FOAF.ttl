@@ -18,9 +18,9 @@
              tko:isPinned                 true ;
              tko:isTrashed                false ;
              tko:labels                   [ tko:name  "ontology" ] ;
-             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "l-system" ] ;
              tko:labels                   [ tko:name  "publish" ] ;
-             tko:tags                     "ontology" , "lsys" , "publish" ;
+             tko:tags                     "ontology" , "l-system" , "publish" ;
              tko:textContent              "[identifier=d4ea16e9-630e-4bbc-8931-864fc5aa1389]\n[color=Vermillion]\n[pattern=d14b1a26]\n\n" ;
              tko:title                    "FOAF" ;
              tko:userEditedTimestampUsec  "1655859974386000"^^xs:long ;

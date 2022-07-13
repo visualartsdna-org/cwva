@@ -17,9 +17,9 @@
              tko:isPinned                 true ;
              tko:isTrashed                false ;
              tko:labels                   [ tko:name  "ontology" ] ;
-             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "l-system" ] ;
              tko:labels                   [ tko:name  "publish" ] ;
-             tko:tags                     "lsys" , "publish" , "ontology" ;
+             tko:tags                     "l-system" , "publish" , "ontology" ;
              tko:textContent              "[identifier=078c9d0b-09ea-4ad1-a3bd-3b1ba481dbac]\n[color=Manganese blue]\n[pattern=fb4ffa31]\n" ;
              tko:title                    "Schema" ;
              tko:userEditedTimestampUsec  "1655859901956000"^^xs:long ;

@@ -20,14 +20,14 @@
              tko:labels                   [ tko:name  "informationalism" ] ;
              tko:labels                   [ tko:name  "algorithmicism" ] ;
              tko:labels                   [ tko:name  "technicalism" ] ;
-             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "l-system" ] ;
              tko:labels                   [ tko:name  "ontology" ] ;
              tko:labels                   [ tko:name  "gracefulness of form" ] ;
              tko:labels                   [ tko:name  "stochasticism" ] ;
              tko:labels                   [ tko:name  "publish" ] ;
              tko:labels                   [ tko:name  "digital" ] ;
              tko:labels                   [ tko:name  "fancy" ] ;
-             tko:tags                     "gracefulness of form" , "lsys" , "algorithmicism" , "digital" , "informationalism" , "fancy" , "technicalism" , "stochasticism" , "ontology" , "publish" ;
+             tko:tags                     "gracefulness of form" , "l-system" , "algorithmicism" , "digital" , "informationalism" , "fancy" , "technicalism" , "stochasticism" , "ontology" , "publish" ;
              tko:textContent              "NALS graphics of ontologies extended with Lindenmayer System fractal plants.\n\n[identifier=0b2ea129-63eb-421b-9ec0-c622e365a6da]\n\n\n" ;
              tko:title                    "Ontologies Extended Collection" ;
              tko:userEditedTimestampUsec  "1655409187940000"^^xs:long ;

@@ -16,10 +16,10 @@
              tko:isArchived               false ;
              tko:isPinned                 true ;
              tko:isTrashed                false ;
-             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "l-system" ] ;
              tko:labels                   [ tko:name  "publish" ] ;
              tko:labels                   [ tko:name  "ontology" ] ;
-             tko:tags                     "ontology" , "lsys" , "publish" ;
+             tko:tags                     "ontology" , "l-system" , "publish" ;
              tko:textContent              "[identifier=4a5ef421-39fd-42d3-81f5-1ac26088e207]\n[color=Indigo]\n[pattern=38c4e031]\n" ;
              tko:title                    "DC" ;
              tko:userEditedTimestampUsec  "1655859994974000"^^xs:long ;

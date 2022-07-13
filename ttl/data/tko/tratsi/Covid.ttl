@@ -18,11 +18,11 @@
              tko:isArchived               false ;
              tko:isPinned                 true ;
              tko:isTrashed                false ;
-             tko:labels                   [ tko:name  "lsys" ] ;
+             tko:labels                   [ tko:name  "l-system" ] ;
              tko:labels                   [ tko:name  "ontology" ] ;
              tko:labels                   [ tko:name  "fancy" ] ;
              tko:labels                   [ tko:name  "publish" ] ;
-             tko:tags                     "lsys" , "ontology" , "fancy" , "publish" ;
+             tko:tags                     "l-system" , "ontology" , "fancy" , "publish" ;
              tko:textContent              "\nThe color variations and concentrations are appealing.  The imagery is reminiscent of an insect-like form.\n\n[identifier=d8554014-f473-40ac-9a4e-363ac733ab06]\n[color=burnt umber]\n[pattern=2ff7743]\n@[z0:annotation=printProperties] see annotation properties\n[skos:historyNote=initial release] this note may be modified\n\n[z0:json={\"annotationMap\": {\t\"dc:subject\": \"graphical rendition of the molecular through epidemiological concepts and relations linked to Covid-19\",\t\"isBasedOn\": \"https://bioportal.bioontology.org/ontologies/COVID-19\"}} ]\nThis ontology is appealing for its topicality.\nMotivations\nThe burnt sienna is somber\nThe extended rule style is simple.\nThe domain is complex and gets a simplified design.\n\n\n\n\n" ;
              tko:title                    "Covid" ;
              tko:userEditedTimestampUsec  "1655409052572000"^^xs:long ;
