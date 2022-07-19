@@ -1,7 +1,0 @@
-
-Best practice in formalizing a SKOS vocabulary
-https://confluence.csiro.au/public/VOCAB/vocabulary-services/publishing-vocabularies/best-practice-in-formalizing-a-skos-vocabulary
-
-
-The intent in building this KOS is not to constrain works or practices to their respective buckets, but to see what is already known in order to find new concepts and relationships.
-
