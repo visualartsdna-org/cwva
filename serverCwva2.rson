@@ -7,11 +7,11 @@
 # base folder for all relative config references
 	"dir": "." ,
 # content
-	"data": "/cwvaContent/ttl/data" ,
-	"model": "/cwvaContentttl/model",
-	"vocab": "/cwvaContent/ttl/vocab" ,
-	"tags": "/cwvaContent/ttl/tags",
-	"images": "/cwvaContent",
+	"data": "../cwvaContent/ttl/data" ,
+	"model": "../cwvaContentttl/model",
+	"vocab": "../cwvaContent/ttl/vocab" ,
+	"tags": "../cwvaContent/ttl/tags",
+	"images": "../cwvaContent",
 # the domain of the server
 	"domain": "http://visualartsdna.org" ,
 # the namespace prefix for the domain
