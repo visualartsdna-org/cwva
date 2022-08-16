@@ -9,5 +9,5 @@ The cwva server management and configuration files are included.
 
 ##### Deployment
 
-Clone the repository and load into the cwva server jar into the bin.
+Clone the repository and load the cwva server jar into the bin.
 
