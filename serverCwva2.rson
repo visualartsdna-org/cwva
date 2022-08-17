@@ -8,7 +8,7 @@
 	"dir": "." ,
 # content
 	"data": "../cwvaContent/ttl/data" ,
-	"model": "../cwvaContentttl/model",
+	"model": "../cwvaContent/ttl/model",
 	"vocab": "../cwvaContent/ttl/vocab" ,
 	"tags": "../cwvaContent/ttl/tags",
 	"images": "../cwvaContent",
