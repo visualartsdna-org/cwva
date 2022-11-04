@@ -6,6 +6,24 @@
 	"host": "http://34.72.230.88:8080/",
 # base folder for all relative config references
 	"dir": "." ,
+# content
+	"data": "../cwvaContent/ttl/data" ,
+	"model": "../cwvaContent/ttl/model",
+	"vocab": "../cwvaContent/ttl/vocab/vocabulary.ttl" ,
+	"tags": "../cwvaContent/ttl/tags",
+    "images": "..",
 # the domain of the server
-	"domain": "http://34.72.230.88:8080/" 
+	"domain": "http://34.72.230.88:8080/" ,
+    "ns": "work",
+    "verbose": true ,
+	"verboseAll": false ,
+	"artist": {
+		"rspates": {
+			"dir": "../rspates",
+			"imageDir": "../rspates/images",
+			"path": "../rspates",
+			"cache": "../rspates/cache"
+		}
+	}
+
 }

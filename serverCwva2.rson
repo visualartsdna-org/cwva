@@ -11,9 +11,11 @@
 	"model": "../cwvaContent/ttl/model",
 	"vocab": "../cwvaContent/ttl/vocab" ,
 	"tags": "../cwvaContent/ttl/tags",
-	"images": "../cwvaContent",
+    "images": "..",
 # the domain of the server
 	"domain": "http://visualartsdna.org" ,
 # the namespace prefix for the domain
-	"ns": "work"
+    "ns": "work",
+    "verbose": true ,
+	"verboseAll": false
 }
