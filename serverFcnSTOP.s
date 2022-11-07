@@ -1,5 +1,5 @@
 #!/bin/sh
 #
 #
-wget http://www.visualartsdna.org/cestfini
+wget http://34.72.230.88:8080/cestfini
 
