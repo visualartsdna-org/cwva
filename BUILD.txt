@@ -6,3 +6,9 @@ To Build:
 3. place the current cwvaServer{version}.jar in bin. E.g., bin/cwvaServer-2.0.4.jar
 
 Ensure the cwaServer2.{platform extension} is configured correctly, and run
+
+
+Utilities
+
+gsutil.cmd lives in /usr/local/bin
+
