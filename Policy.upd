@@ -1,0 +1,39 @@
+# This file controls post-ttl-data load updates.
+# For example, one update assigns 
+# the same license to all creative works
+
+# Update to create the copyright notice 
+# for each creative work
+# that does not otherwise have a copyright assigned
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix vad: <http://visualartsdna.org/2021/07/16/model#>
+prefix work:	<http://visualartsdna.org/work/>
+prefix schema: <https://schema.org/>
+
+insert { ?s schema:copyrightNotice ?cw }
+where {
+	?s a vad:CreativeWork ;
+
+	vad:hasArtistProfile/vad:artist/rdfs:label ?artist ;
+	schema:datePublished ?d .
+	bind (year(?d) as ?y)
+	bind (concat("copyright &copy; ",str(?y)) as ?cw0)
+	bind (concat(?cw0," ") as ?cw1)
+	bind (concat(?cw1,?artist) as ?cw2)
+	bind (concat(?cw2,". All Rights Reserved.") as ?cw)
+	filter NOT EXISTS { ?s schema:copyrightNotice ?cr0 }
+
+}
+# update delimiter
+
+# Update to assign the license 
+# for each creative work
+# that does not otherwise have a license assigned
+prefix vad: <http://visualartsdna.org/2021/07/16/model#>
+prefix work:	<http://visualartsdna.org/work/>
+prefix schema: <https://schema.org/>
+insert { ?s schema:license work:CC-4-0 }
+where {
+	?s a vad:CreativeWork 
+	filter NOT EXISTS { ?s schema:license ?l }
+}
