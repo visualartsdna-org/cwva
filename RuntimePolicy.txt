@@ -1,0 +1,7 @@
+Runtime Policy 89/1/24
+
+Use the java command line parameter "clobber=true" to overwrite existing files in the target folder when retrieving files from gcp buckets.  The default is not to overwrite files.  This parameter is optional for use under test circumstances.
+
+E.g., -Dclobber=true
+
+
