@@ -21,6 +21,23 @@
 <tr><td><a href="translate">VIA Translate</a></td><td>Translate VIA projects to RDF</td></tr>
 -->
 </table>
+<br>
+<form id="myForm" action="/fileScale" method="get">
+Scale a file in /temp/scale:
+<table>
+<tr><td>
+<input type = "file" name = "fileupload" id = "file" accept = "image/*" /></td>
+<td>at <input type="text" id="scale" name="scale" size="4" value="0.25"></td>
+<td><label for="scale">scale.</label></td>
+<td>
+  <input type="checkbox" id="owverwrite" name="overwrite" value="false">
+<label for="owverwrite">Overwrite file</label><br>
+</td>
+</tr><tr>
+<td></td><td><input type = "submit" name = "submit" value = "Scale" /></td>
+</tr>
+</table>
+</form>
 <br/>
 <br/>
 <br/>
