@@ -7,13 +7,15 @@
 <h3>Content Management</h3>
 <br/>
 <table >
-<tr><td><a href="vocab">	Concepts</a></td><td>Create and manage concepts</td></tr>
 <tr><td><a href="rdf/entry">RDF</a></td><td>Create a new non-digital work instance</td></tr>
-<tr><td><a href="rdf/digital">RDF Digital</a></td><td>Create a new digital work instance</td></tr>
+<tr><td><a href="interpretation">Interpretation</a></td><td>Create interpretation for work</td></tr>
+<tr><td><a href="imageBrand">Brand Image</a></td><td>Brand image with QRC</td></tr>
 <tr><td><a href="related">Related Concepts</a></td><td>Select concepts for related assertion</td></tr>
 <tr><td><a href="distributeData">Distribute Data</a></td><td>Publish data related to a work</td></tr>
 <tr><td><a href="distributeMetadata">Distribute Metadata</a></td><td>Publish metadata related to keep notes</td></tr>
 <tr><td><a href="loadKeepData">Extract Keep Notes</a></td><td>Given a downloaded takeout file, extract keep notes</td></tr>
+<tr><td><a href="rdf/digital">RDF Digital</a></td><td>Create a new digital work instance</td></tr>
+<tr><td><a href="vocab">	Concepts</a></td><td>Create and manage concepts</td></tr>
 <!--
 <tr><td><a href="studies">	Studies</a></td><td>Review annotated images</td></tr>
 <tr><td><a href="tag">		Tagging</a></td><td>Tag works</td></tr>
@@ -42,18 +44,48 @@ Enter GUID to print Certificate of Authenticity (/temp/html/ca.html):
 </form>
 <br/>
 <form id="myForm" action="/fileScale" method="get">
-Scale a file in /temp/scale:
+Scale a file in <input type="text" id="directory" name="directory" size="40" value="/temp/scale">
+:
 <table>
 <tr><td>
 <input type = "file" name = "fileupload" id = "file" accept = "image/*" /></td>
 <td>at <input type="text" id="scale" name="scale" size="4" value="0.25"></td>
 <td><label for="scale">scale.</label></td>
 <td>
-  <input type="checkbox" id="owverwrite" name="overwrite" value="false">
-<label for="owverwrite">Overwrite file</label><br>
 </td>
 </tr><tr>
-<td></td><td><input type = "submit" name = "submit" value = "Scale" /></td>
+<td>
+  <input type="checkbox" id="owverwrite" name="overwrite" value="false">
+<label for="owverwrite">Overwrite file</label><br>
+</td><td><input type = "submit" name = "submit" value = "Scale" /></td>
+</tr>
+</table>
+</form>
+<br/>
+<form id="myForm2" action="/fileConvert" method="get">
+Convert graphic file in <input type="text" id="directory" name="directory" size="40" value="/temp/scale">
+:
+<table>
+<tr><td>
+<input type = "file" name = "fileupload" id = "file" accept = "image/*" /></td>
+<td><label for="to format">Choose target type:</label>
+<select name="format" id="types">
+<option value="JPG ">JPG</option>
+<option value="MPEG">MPEG</option>
+<option value="PDF ">PDF</option>
+<option value="PICT">PICT</option>
+<option value="PNG ">PNG</option>
+<option value="RGB ">RGB</option>
+<option value="RGBA">RGBA</option>
+<option value="SGI ">SGI</option>
+<option value="SVG ">SVG</option>
+<option value="TIFF">TIFF</option>
+</select></td>
+<td>
+</td>
+</tr><tr>
+<td>
+</td><td><input type = "submit" name = "submit" value = "Convert" /></td>
 </tr>
 </table>
 </form>

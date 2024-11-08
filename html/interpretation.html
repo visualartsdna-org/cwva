@@ -1,0 +1,59 @@
+<html>
+<head/>
+<body>
+
+<br/>
+<h2>Interpretation</h2>
+<br/>
+<form id="myForm" action="/interpretation" method="get">
+<table >
+<tr><td>
+label
+</td><td>
+<select name="kind" id="kind">
+<option value="Criticism ">Criticism</option>
+<option value="Evaluation">Evaluation</option>
+<option value="Assessment ">Assessment</option>
+<option value="Influences">Influences</option>
+<option value="Opinion ">Opinion</option>
+<option value="Other ">Other</option>
+<option value="Gallery Description">Gallery</option>
+<option value="Technical Assessment">Technical</option>
+</select>
+</td></tr>
+<tr><td>
+source
+</td><td>
+<select name="source" id="source">
+<option value="Google Gemini">Gemini</option>
+<option value="Chat GPT">ChatGPT</option>
+<option value="Other AI">OtherAI</option>
+<option value="Person">Person</option>
+</select>
+</td></tr>
+<tr><td>
+definition
+</td><td>
+<textarea id="definition" name="definition" rows="4" cols="50">
+</textarea>
+</td></tr>
+<tr><td>
+tag
+</td><td>
+<input type="text" id="tag" name="tag" size="44" value="">
+</td></tr>
+<tr><td>
+guid
+</td><td>
+<input type="text" id="guid" name="guid" size="44" value="">
+</td></tr>
+<tr><td>
+type
+</td><td>
+<input type="text" id="type" name="type" size="44" value="">
+</td></tr>
+</table>
+<tr><td><input type = "submit" name = "submit" value = "Create" /></td>
+</form>
+</body>
+</html>
