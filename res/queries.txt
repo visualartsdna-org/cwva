@@ -1,0 +1,43 @@
+# the queries
+# each query must be seperated from the next by one blank line
+#
+select * {
+ ?s a	schema:Organization 
+}
+
+describe the:LCornelissenSon
+
+DELETE { the:LCornelissenSon skos:altLabel 'LCS' }
+INSERT { the:LCornelissenSon skos:altLabel 'William' }
+WHERE
+  { the:LCornelissenSon skos:altLabel 'LCS'
+  } 
+
+select * {
+?s ?p ?o
+}
+
+select * {
+ ?s a	skos:Concept
+} order by ?s
+
+select * {
+ ?s a	owl:Class
+} order by ?s
+
+select (count(?s) as ?count) {
+ ?s a	owl:Class
+} 
+
+select (count(?s) as ?count) {
+ ?s a	skos:Concept
+} 
+
+select distinct ?tit ?def {
+ ?s a	skos:Concept .
+ ?s rdfs:label ?tit .
+ ?s the:tag ?int .
+ ?int skos:related ?gc .
+ ?int skos:definition ?def .
+ filter(?gc = the:GalleryDescription) 
+}
