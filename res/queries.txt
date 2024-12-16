@@ -1,18 +1,52 @@
-# the queries
-# each query must be seperated from the next by one blank line
-#
+## the queries
+## each query must be seperated from the next by one blank line
+##
+# Test1
 select * {
- ?s a	schema:Organization 
+work:1e404bc9-dd3e-479d-a715-456fb52a323d
+ ?p ?o
 }
 
+# Test2
+select * {
+?s ?p ?o
+filter(?o = 'Watercolor')
+}
+
+# Art Supply Provider
+select ?s {
+ ?s0 a	schema:Organization ;
+   rdfs:label 'Art Supply Provider' .
+ ?s skos:broader ?s0 .
+}
+
+# Watercolors
+select ?l ?s ?d ?f ?dt{
+?s a vad:Watercolor ;
+rdfs:label ?l ;
+schema:description ?d ;
+vad:hasPaperFinish ?f ;
+schema:dateCreated ?dt 
+} order by desc(?dt)
+
+# external link
+select * {
+work:d8554014-f473-40ac-9a4e-363ac733ab06 
+  rdfs:label ?l;
+  schema:contentUrl ?u
+}
+
+# some ttl
 describe the:LCornelissenSon
 
+# not enabled
 DELETE { the:LCornelissenSon skos:altLabel 'LCS' }
 INSERT { the:LCornelissenSon skos:altLabel 'William' }
 WHERE
   { the:LCornelissenSon skos:altLabel 'LCS'
   } 
 
+# memory error
 select * {
 ?s ?p ?o
 }
@@ -41,3 +75,7 @@ select distinct ?tit ?def {
  ?int skos:definition ?def .
  filter(?gc = the:GalleryDescription) 
 }
+
+select (count(?s) as ?count) {
+ ?s a vad:Watercolor
+} 
