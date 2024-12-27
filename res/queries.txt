@@ -1,6 +1,12 @@
 ## the queries
 ## each query must be seperated from the next by one blank line
 ##
+# Find by keywords
+select * {
+ ?s schema:keywords ?kw .
+ filter (contains(?kw,'process'))
+}
+
 # Test1
 select * {
 work:1e404bc9-dd3e-479d-a715-456fb52a323d
