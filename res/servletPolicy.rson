@@ -1,0 +1,18 @@
+# servlet path filter policy 
+# use a list of regex to match
+{
+	"main": {
+		"path": [
+			".*",
+			""
+		]
+	},
+	"function": {
+		"path": [
+			".*",
+			"/sparql",
+#			"/artist.*",
+			""
+		]
+	}
+}

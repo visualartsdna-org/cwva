@@ -4,6 +4,7 @@
 	"port":8080,
 # host
 	"host": "http://34.72.230.88:8080/",
+	"functionHost": "http://34.72.230.88:8080/",
 # base folder for all relative config references
 	"dir": "." ,
 # content

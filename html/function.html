@@ -6,25 +6,43 @@
 <h2>Function</h2>
 <h3>Content Management</h3>
 <br/>
+<table><tr><td>
 <table >
-<tr><td><a href="rdf/entry">RDF</a></td><td>Create a new non-digital work instance</td></tr>
-<tr><td><a href="entity_page">Entity</a></td><td>Create a new Entity instance</td></tr>
-<tr><td><a href="interpretation">Interpretation</a></td><td>Create interpretation for work</td></tr>
-<tr><td><a href="imageBrand">Brand Image</a></td><td>Brand image with QRC</td></tr>
-<tr><td><a href="related">Related Concepts</a></td><td>Select concepts for related assertion</td></tr>
-<tr><td><a href="distributeData">Distribute Data</a></td><td>Publish data related to a work</td></tr>
-<tr><td><a href="distributeMetadata">Distribute Metadata</a></td><td>Publish metadata related to keep notes</td></tr>
-<tr><td><a href="loadKeepData">Extract Keep Notes</a></td><td>Given a downloaded takeout file, extract keep notes</td></tr>
-<tr><td><a href="rdf/digital">RDF Digital</a></td><td>Create a new digital work instance</td></tr>
-<tr><td><a href="vocab">	Concepts</a></td><td>Create and manage concepts</td></tr>
 <tr><td><a href="sparql">SPARQL</a></td><td>Query</td></tr>
+<tr><td><a href="rdf/entry">RDF</a></td><td>Create a non-digital work record</td></tr>
+<tr><td><a href="entity_page">Entity</a></td><td>Create a new Entity record</td></tr>
+<tr><td><a href="interpretation">Interpretation</a></td><td>Create interpretation for work</td></tr>
+<tr><td><a href="related">Related Concepts</a></td><td>Select concepts for related assertion</td></tr>
+<tr><td><a href="imageBrand">Brand Image</a></td><td>Brand image with QRC</td></tr>
+<tr><td><a href="rdf/digital">RDF Digital</a></td><td>Create a new digital work record</td></tr>
+<tr><td><a href="vocab">Concepts</a></td><td>Create and manage concepts</td></tr>
+</table><br><table>Immediate action<br>
+<tr><td><a href="distributeData">Distribute Data</a></td><td>Publish data related to a work</td></tr>
+<tr><td><a href="distributeMetadata">Distribute Metadata</a></td><td>Publish metadata (e.g., keep notes)</td></tr>
+<tr><td><a href="loadKeepData">Extract Keep Notes</a></td><td>From downloaded takeout zip</td></tr>
+</table></td><td><table>
+<tr><td><a href="status?target=visualartsdna.org">Status visualartsdna.org</a></td><td>instance-1</td></tr>
+<tr><td><a href="status?target=visualartsdna.org:8080">Status visualartsdna.org:8080</a></td><td>instance-1</td></tr>
+<tr><td><a href="status?target=localhost">Status localhost</a></td><td>pc</td></tr>
+<tr><td><a href="status?target=localhost:8080">Status localhost:8080</a></td><td>pc</td></tr>
+</table><br><table>
+<tr><td><a href="reload?target=visualartsdna.org">Reload visualartsdna.org</a></td><td>instance-1</td></tr>
+<tr><td><a href="reload?target=visualartsdna.org:8080">Reload visualartsdna.org:8080</a></td><td>instance-1</td></tr>
+<tr><td><a href="reload?target=localhost">Reload localhost</a></td><td>pc</td></tr>
+<tr><td><a href="reload?target=localhost:8080">Reload localhost:8080</a></td><td>pc</td></tr>
+</table><br><table>
+<tr><td><a href="stop?target=visualartsdna.org">Stop visualartsdna.org</a></td><td>instance-1</td></tr>
+<tr><td><a href="stop?target=visualartsdna.org:8080">Stop visualartsdna.org:8080</a></td><td>instance-1</td></tr>
+<tr><td><a href="stop?target=localhost">Stop localhost</a></td><td>pc</td></tr>
+<tr><td><a href="stop?target=localhost:8080">Stop localhost:8080</a></td><td>pc</td></tr>
+</table>
+</td></tr></table>
 <!--
 <tr><td><a href="studies">	Studies</a></td><td>Review annotated images</td></tr>
 <tr><td><a href="tag">		Tagging</a></td><td>Tag works</td></tr>
 <tr><td><a href="html/via.html">VIA</a></td><td>Annotate images</td></tr>
 <tr><td><a href="translate">VIA Translate</a></td><td>Translate VIA projects to RDF</td></tr>
 -->
-</table>
 <br>
 <form id="myForm" action="/registry" method="get">
 Print registry of works (/temp/html/registry.html):
