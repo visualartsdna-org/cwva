@@ -52,36 +52,42 @@ WHERE
   { the:LCornelissenSon skos:altLabel 'LCS'
   } 
 
-# memory error
+# memory error?
 select * {
 ?s ?p ?o
 }
 
+# All the concepts
 select * {
  ?s a	skos:Concept
 } order by ?s
 
+# All the classes
 select * {
  ?s a	owl:Class
 } order by ?s
 
+# Number of classes
 select (count(?s) as ?count) {
  ?s a	owl:Class
 } 
 
+# Number of concepts
 select (count(?s) as ?count) {
  ?s a	skos:Concept
 } 
 
-select distinct ?tit ?def {
+# Find gallery descriptions
+select distinct ?title ?def {
  ?s a	skos:Concept .
- ?s rdfs:label ?tit .
+ ?s rdfs:label ?title .
  ?s the:tag ?int .
- ?int skos:related ?gc .
+ ?int skos:broader ?gc .
  ?int skos:definition ?def .
  filter(?gc = the:GalleryDescription) 
 }
 
+# Number of watercolors
 select (count(?s) as ?count) {
  ?s a vad:Watercolor
 } 

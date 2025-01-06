@@ -1,7 +1,38 @@
-Runtime Policy 89/1/24
+Runtime Policy 1/3/25
 
-Use the java command line parameter "clobber=true" to overwrite existing files in the target folder when retrieving files from gcp buckets.  The default is not to overwrite files.  This parameter is optional for use under test circumstances.
+Use the configuration "clobber=true" to overwrite existing files in the target folder when retrieving files from gcp buckets.  Use "clobber=false" to not overwrite files.
 
-E.g., -Dclobber=true
+Use configuration "multithreaded=true" to run clobber-mode load in multithreaded mode.
+
+If clobber and multithreaded are used then only one server startup at a time due to locking conflicts across the competing threads.
+
+Initial policy decision is to use clobber=true in live and clobber=false in dev.  However, given how infrequently live servers are restarted, no-clobber may be sufficient despite the longer startup time.
+
+Another option is to use clobber/multithreaded in the main server startup followed by NOclobber/NOmultithreaded in the function server.  This guarantees refresh of all data before second server start. However, the two startups cannot be run at the same time due to conflicts.
+
+Yet another option is to use some sort of lock (a .startupLock file?) that must be checked for not exists before continuing with startup.  That way they are both started at the same time but negotiate to avoid conflict.
+
+How to handle deletions, e.g., tko/.  Manual mgt, not generally an issue
+
+To deliver new files from gcp to target
+no clobber works
+
+To deliver updated files from gcp to target
+use clobber
+
+Concern for performance, if clobber and it's copying everything, how long does it take?
+These times on PC but might be faster on instance-1
+
+no clobber
+cwva	25s	23s
+cwvaFcn	23s	22s
+
+clobber
+cwva	50s	65s
+cwvaFcn	75s	66s
+
+clobber w/ -m (multithreaded)
+cwva	30s
+cwvaFcn	29s
 
 

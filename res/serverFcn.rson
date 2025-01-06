@@ -3,22 +3,26 @@
 # port
 	"port":8080,
 # host
-	"host": "http://34.72.230.88:8080/",
-	"functionHost": "http://34.72.230.88:8080/",
+	"host": "http://34.72.230.88:8080",
+	"functionHost": "http://34.72.230.88:8080",
 # base folder for all relative config references
 	"dir": "." ,
 # content
-        "cloud":{"src":"ttl","tgt":"/home/rick_spates/cwvaContent"},
+    "cloud":{"src":"ttl","tgt":"/home/rick_spates/cwvaContent"},
 	"data": "../cwvaContent/ttl/data" ,
 	"model": "../cwvaContent/ttl/model",
 	"vocab": "../cwvaContent/ttl/vocab/vocabulary.ttl" ,
 	"tags": "../cwvaContent/ttl/tags",
     "images": "../images",
 # the domain of the server
-	"domain": "http://34.72.230.88:8080/" ,
+	"domain": "http://34.72.230.88:8080" ,
     "ns": "work",
     "verbose": true ,
 	"verboseAll": false ,
+# instance ttl data overwritten from gcp
+	"clobber": false,
+# use multithreaded to load ttl from gcp, has risks!
+	"multithreaded": false,
 	"artist": {
 		"rspates": {
 			"dir": "../rspates",

@@ -20,6 +20,10 @@
     "ns": "work",
     "verbose": true ,
 	"verboseAll": false,
+# instance ttl data overwritten from gcp
+	"clobber": true,
+# use multithreaded to load ttl from gcp, has risks!
+	"multithreaded": false,
 # enable sparql-only server
-	"sparql": true
+	"sparql": false
 }

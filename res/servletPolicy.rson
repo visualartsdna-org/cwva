@@ -4,13 +4,23 @@
 	"main": {
 		"path": [
 			".*",
+			"/cmd",
+			"/status",
+			"/metrics",
+			"/cestfini",
+			"/favicon.ico",
 			""
 		]
 	},
 	"function": {
 		"path": [
-			".*",
+#			".*",
 			"/sparql",
+			"/cmd",
+			"/status",
+			"/metrics",
+			"/cestfini",
+			"/favicon.ico",
 #			"/artist.*",
 			""
 		]

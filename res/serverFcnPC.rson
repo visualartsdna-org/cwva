@@ -1,0 +1,35 @@
+# Configuration for the cwaServer
+{
+# port
+	"port":8080,
+# host
+	"host": "http://192.168.1.71:80",
+	"functionHost": "http://192.168.1.71:80",
+# base folder for all relative config references
+	"dir": "." ,
+# content
+	"cloud":{"src":"ttl","tgt":"/stage/server/cwvaContent"},
+	"data": "/stage/server/cwvaContent/ttl/data" ,
+	"model": "/stage/server/cwvaContent/ttl/model",
+	"vocab": "/stage/server/cwvaContent/ttl/vocab" ,
+	"tags": "/stage/server/cwvaContent/ttl/tags",
+    "images": "/temp/images",
+# the domain of the server
+	"domain": "http://192.168.1.71:8080/" ,
+    "ns": "work",
+    "verbose": true ,
+	"verboseAll": false ,
+# instance ttl data overwritten from gcp
+	"clobber": false,
+# use multithreaded to load ttl from gcp, has risks!
+	"multithreaded": false,
+	"artist": {
+		"rspates": {
+			"dir": "../rspates",
+			"imageDir": "../rspates/images",
+			"path": "../rspates",
+			"cache": "../rspates/cache"
+		}
+	}
+
+}
