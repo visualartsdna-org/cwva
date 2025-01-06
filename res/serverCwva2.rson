@@ -4,7 +4,7 @@
 	"port":80,
 # host
 	"host": "http://visualartsdna.org",
-	"functionHost": "http://34.72.230.88:8080/",
+	"functionHost": "http://34.72.230.88:8080",
 # base folder for all relative config references
 	"dir": "." ,
 # content

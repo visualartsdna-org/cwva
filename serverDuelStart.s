@@ -3,7 +3,7 @@
 cd /home/rick_spates/cwva
 #
 serverCwva2.s &
-sleep 2
+sleep 9
 serverFcn.s &
 
 
