@@ -4,7 +4,7 @@
 	"port":8080,
 # host
         "host": "http://34.72.230.88:8080",
-        "functionHost": "http://visualartsdna.org",
+        "twinHost": "http://visualartsdna.org",
 # base folder for all relative config references
 	"dir": "." ,
 # content
@@ -23,6 +23,7 @@
 	"clobber": false,
 # use multithreaded to load ttl from gcp, has risks!
 	"multithreaded": false,
+	"primaryHost": false,
 	"artist": {
 		"rspates": {
 			"dir": "../rspates",

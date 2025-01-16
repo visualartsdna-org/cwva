@@ -4,7 +4,7 @@
 	"port":80,
 # host
 	"host": "http://visualartsdna.org",
-	"functionHost": "http://34.72.230.88:8080",
+	"twinHost": "http://34.72.230.88:8080",
 # base folder for all relative config references
 	"dir": "." ,
 # content
@@ -24,6 +24,7 @@
 	"clobber": true,
 # use multithreaded to load ttl from gcp, has risks!
 	"multithreaded": false,
+	"primaryHost": true,
 # enable sparql-only server
 	"sparql": false
 }

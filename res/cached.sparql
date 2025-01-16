@@ -1,6 +1,8 @@
 ## the queries
 ## each query must be seperated from the next by one blank line
 ##
+## don't use double quotes in queries
+##
 # Find by keywords
 select * {
  ?s schema:keywords ?kw .
@@ -91,3 +93,16 @@ select distinct ?title ?def {
 select (count(?s) as ?count) {
  ?s a vad:Watercolor
 } 
+
+#implied model properties
+	select distinct ?p {
+		?s ?p ?o
+	 filter(strStarts(str(?p), 'http://visualartsdna.org/2021/07/16/model'))
+	} order by ?p
+
+#implied model classes
+	select distinct ?c {
+		?s a ?c
+	 filter(strStarts(str(?c), 'http://visualartsdna.org/2021/07/16/model'))
+	} order by ?c
+

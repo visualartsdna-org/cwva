@@ -1,0 +1,8 @@
+
+1/16/25
+
+After uploading new cwva dir, always:
+
+cd cwva
+chmod 755 *.s
+
