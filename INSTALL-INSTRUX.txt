@@ -1,8 +1,9 @@
 
-1/16/25
+2/16/25
 
 After uploading new cwva dir, always:
 
 cd cwva
 chmod 755 *.s
 
+Ensure res/servletPolicy.rson is set correctly for function server, i.e., no "/" access
