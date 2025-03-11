@@ -37,3 +37,296 @@ where {
 	?s a vad:CreativeWork 
 	filter NOT EXISTS { ?s schema:license ?l }
 }
+
+##
+# collection creation
+# could this be done with BNs?
+#
+# entity
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:EntityCollection skos:member ?s
+} where {
+	?s a the:Entity
+}
+
+# entity
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:EntityCollection a skos:Collection ;
+	skos:prefLabel "A collection of entities" ;
+	.
+}
+
+# notes
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:NotesCollection skos:member ?s
+} where {
+	?s skos:inScheme    the:paintingNotes
+}
+
+# notes
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:NotesCollection a skos:Collection ;
+	skos:prefLabel "A collection of notes" ;
+	.
+}
+
+# watercolor
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:WatercolorCollection skos:member ?s
+} where {
+	?s a vad:Watercolor
+}
+
+# watercolor
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:WatercolorCollection a skos:Collection ;
+	skos:prefLabel "A collection of watercolors" ;
+	.
+}
+
+# interpretation
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:InterpretationCollection skos:member ?s
+} where {
+	?s skos:broader*	the:Interpretation
+}
+
+# interpretation
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:InterpretationCollection a skos:Collection ;
+	skos:prefLabel "A collection of interpretations" ;
+	.
+}
+
+# paintingTerm
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:paintingTermCollection skos:member ?s
+} where {
+	?s skos:broader	the:paintingTerm
+}
+
+# paintingTerm
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:paintingTermCollection a skos:Collection ;
+	skos:prefLabel "A collection of painting terms" ;
+	.
+}
+
+# watercolorTerm
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:watercolorTermCollection skos:member ?s
+} where {
+	?s skos:broader	the:watercolorTerm
+}
+
+# watercolorTerm
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:watercolorTermCollection a skos:Collection ;
+	skos:prefLabel "A collection of watercolorTerms" ;
+	.
+}
+
+# watercolorMaterial
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:watercolorMaterialCollection skos:member ?s
+} where {
+	?s skos:broader	the:watercolorMaterial
+}
+
+# watercolorMaterial
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:watercolorMaterialCollection a skos:Collection ;
+	skos:prefLabel "A collection of watercolor materials" ;
+	.
+}
+
+# watercolorPaint
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:watercolorPaintCollection skos:member ?s
+} where {
+	?s skos:broader	the:WatercolorPaint
+}
+
+# watercolorPaint
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:watercolorPaintCollection a skos:Collection ;
+	skos:prefLabel "A collection of watercolor paints" ;
+	.
+}
+
+# watercolorTechnique
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:watercolorTechniqueCollection skos:member ?s
+} where {
+	?s skos:broader	the:watercolorTechnique
+}
+
+# update delimiter
+# watercolorTechnique
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:watercolorTechniqueCollection a skos:Collection ;
+	skos:prefLabel "A collection of watercolor techniques" ;
+	.
+}
+
+# update delimiter
+# watercolorTool
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:watercolorToolCollection skos:member ?s
+} where {
+	?s skos:broader	the:watercolorTool
+}
+
+# update delimiter
+# watercolorTool
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:watercolorToolCollection a skos:Collection ;
+	skos:prefLabel "A collection of watercolor tools" ;
+	.
+}
+
+# update delimiter
+# collection of collections
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:TopCollection skos:member ?s
+} where {
+	?s a skos:Collection
+}
+
+# update delimiter
+# collection of collections
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:TopCollection a skos:Collection ;
+	skos:prefLabel "A collection of collections" ;
+	.
+}
+
+# drawings
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:DrawingCollection skos:member ?s
+} where {
+	?s a vad:Drawing
+}
+
+# drawings
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:DrawingCollection a skos:Collection ;
+	skos:prefLabel "A collection of drawings" ;
+	.
+}
+
+# vad:LindenMayerSystemImage
+
+# LindenMayerSystemImage
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:LindenmayerSystemImageCollection skos:member ?s
+} where {
+	?s a vad:LindenmayerSystemImage
+}
+
+# LindenMayerSystemImage
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:LindenmayerSystemImageCollection a skos:Collection ;
+	skos:prefLabel "A collection of LS digital graphics" ;
+	.
+}
+
