@@ -198,3 +198,40 @@ select ?ip (sum(?cnt) as ?scnt){
 		st:link ?u .
 	filter(regex(?u,"sparql"))
 } group by ?ip order by desc(?scnt)
+
+# list of /model.graph refs by date and ip
+select ?dt ?ip ?l {
+	?s a st:Metric ;
+		st:date ?dt ;
+		st:ip ?ip ;
+		st:link ?u .
+	filter(regex(?u,"/model.graph"))
+} order by ?dt ?l
+
+# sum of /model.graph IP
+select ?ip (sum(?cnt) as ?scnt){
+	?s a st:Metric ;
+		st:ip ?ip ;
+		st:count ?cnt ;
+		st:link ?u .
+	filter(regex(?u,"/model.graph"))
+} group by ?ip order by desc(?scnt)
+
+# list of /vocab.graph refs by date and ip
+select ?dt ?ip ?l {
+	?s a st:Metric ;
+		st:date ?dt ;
+		st:ip ?ip ;
+		st:link ?u .
+	filter(regex(?u,"/vocab.graph"))
+} order by ?dt ?l
+
+# sum of /vocab.graph IP
+select ?ip (sum(?cnt) as ?scnt){
+	?s a st:Metric ;
+		st:ip ?ip ;
+		st:count ?cnt ;
+		st:link ?u .
+	filter(regex(?u,"/vocab.graph"))
+} group by ?ip order by desc(?scnt)
+
