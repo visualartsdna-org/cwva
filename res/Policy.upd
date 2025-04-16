@@ -240,6 +240,28 @@ INSERT DATA {
 	.
 }
 
+# watercolorTextureTechnique
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:watercolorTextureTechniqueCollection skos:member ?s
+} where {
+	?s skos:broader	the:watercolorTextureTechnique
+}
+
+# update delimiter
+# watercolorTextureTechnique
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/2021/07/16/model#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:watercolorTextureTechniqueCollection a skos:Collection ;
+	skos:prefLabel "A collection of watercolor texture techniques" ;
+	.
+}
+
 # update delimiter
 # watercolorTool
 prefix the:   <http://visualartsdna.org/thesaurus/> 
