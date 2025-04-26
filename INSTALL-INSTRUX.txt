@@ -7,3 +7,5 @@ cd cwva
 chmod 755 *.s
 
 Ensure res/servletPolicy.rson is set correctly for function server, i.e., no "/" access
+
+Secrets file is in the user's home directory

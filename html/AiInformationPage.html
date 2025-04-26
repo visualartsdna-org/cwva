@@ -1,0 +1,71 @@
+<html>
+<head>
+<style>
+.button {
+  background-color: #e7e7e7; color: steelblue;
+  border: none;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<button class="button" onclick="history.back()">Go Back</button><br/>
+<h3>AI Interpretation</h3>
+
+To use, select the type of interpretation in the dropdown box and hit the "Ask" button.
+A prompt about the current work is then submitted to the AI service and the AI interpretation results are displayed.
+<br/>
+<br/>
+With each "Ask," an encoded image file or a URI for the image is included, and a prompt template, similar to the following, is filled in and sent to the AI service:
+<br/>
+<pre><code>
+"Write a $m.kind 
+of the $m.media 
+with label '$m.label', 
+on $m.hasPaperWeight pound 
+$m.hasPaperFinish paper 
+with height=$m.height inches, width=$m.width inches 
+and description '$m.description'"
+</code></pre>
+<br/>
+
+Where, $m.kind can be any one of the following:
+Criticism, Evaluation, Assessment, Influences, Gallery Description and Technical Assessment.
+<br/>
+While $m.label, $m.description, etc., are taken from the data shown on the About (previous) page for the work.
+<br/>
+<br/>
+An example of an AI prompt,
+<pre><code>
+"Write a Criticism
+of the Watercolor 
+with label 'Rhino Study', 
+on 120 pound 
+cold press paper 
+with height=12 inches, width=9 inches 
+and description 'A white rhino visits a watering hole.'"
+</code></pre>
+<br/>
+<br/>
+Google gemini is currently the only destination for the "Ask" AI prompt.
+<br/>
+<br/>
+The web protocol for the google gemini API is:<br/>
+https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent,
+<br>
+using the gemini-2.0-flash ai model.
+<br/>
+<br/>
+Given the gemini protocol is in a "beta" stage of development there may be some hiccups along the way.
+<br/>
+Also, this site uses the free tier of the service, issues due to exceeding token limits may occur depending on traffic.
+</body>
+</html>
+
+

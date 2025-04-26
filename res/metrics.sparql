@@ -55,6 +55,22 @@ select (count(distinct ?ip) as ?scnt){
 	FILTER NOT EXISTS { ?s st:unknown ?u  }
 }
 
+# count of Index page refs
+select (count(?s) as ?sum){
+	?s a st:Metric ;
+		st:link ?u
+	filter(?u = "/")
+}
+
+# count of Index page referencing IPs by date
+select ?dt (count(distinct ?ip) as ?count){
+?s  a st:Metric ;
+		st:date ?dt ;
+		st:ip	?ip ;
+		st:link ?u
+	filter(?u = "/")
+} group by ?dt order by ?dt
+
 # count of work refs
 select (count(?s) as ?sum){
 	?s a st:Metric ;
@@ -107,19 +123,21 @@ select ?dt (count(distinct ?ip) as ?scnt){
 } group by ?dt order by ?dt
 
 # sum all unknown paths by ip
-select ?ip (sum(?u) as ?sum){
+select ?ip (sum(?cnt) as ?sum){
 ?s st:unknown ?u ;
 	st:ip	?ip ;
+	st:count ?cnt ;
 	st:date ?dt .
-	filter(?u > 10)
+	filter(?cnt > 10)
 } group by ?ip order by desc(?sum) limit 10
 
 # sum unknown paths by ip by date
-select ?dt ?ip (sum(?u) as ?sum){
+select ?dt ?ip (sum(?cnt) as ?sum){
 ?s st:unknown ?u ;
 	st:ip	?ip ;
+	st:count ?cnt ;
 	st:date ?dt .
-	filter(?u > 1)
+	filter(?cnt > 1)
 } group by ?dt ?ip order by ?dt desc(?sum)
 
 # list of thesaurus refs by date and ip
