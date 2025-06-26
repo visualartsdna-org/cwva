@@ -113,6 +113,21 @@ Load json or ttl file in /stage/tmp, also detects non-ASCII
 </table>
 </form>
 <br/>
+<form id="myForm" action="/validateFile" method="get">
+SHACL validate ttl file in /stage/tmp
+<input type="hidden" id="directory" name="directory" value="/stage/tmp">
+<table>
+<tr><td><br/>
+model: 
+<input type = "file" name = "fileupload" id = "file" accept = "*.ttl" /></td>
+<br/>
+shacl: 
+<input type = "file" name = "shaclupload" id = "shacl" accept = "*.ttl" /></td>
+</td><td><input type = "submit" name = "submit" value = "Validate" /></td>
+</tr>
+</table>
+</form>
+<br/>
 <form id="myForm" action="/queryTtl" method="get">
 Query ttl file in /stage/tmp
 <input type="hidden" id="directory" name="directory" value="/stage/tmp">
