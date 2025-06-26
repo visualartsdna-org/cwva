@@ -6,7 +6,7 @@
 # for each creative work
 # that does not otherwise have a copyright assigned
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix vad: <http://visualartsdna.org/2025/04/26/model/>
+prefix vad: <http://visualartsdna.org/model/>
 prefix work:	<http://visualartsdna.org/work/>
 prefix schema: <https://schema.org/>
 
@@ -29,7 +29,7 @@ where {
 # Update to assign the license 
 # for each creative work
 # that does not otherwise have a license assigned
-prefix vad: <http://visualartsdna.org/2025/04/26/model/>
+prefix vad: <http://visualartsdna.org/model/>
 prefix work:	<http://visualartsdna.org/work/>
 prefix schema: <https://schema.org/>
 insert { ?s schema:license work:CC-4-0 }
@@ -45,7 +45,7 @@ where {
 # entity
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:EntityCollection skos:member ?s
@@ -56,7 +56,7 @@ INSERT {
 # entity
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:EntityCollection a skos:Collection ;
@@ -67,7 +67,7 @@ INSERT DATA {
 # notes
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:NotesCollection skos:member ?s
@@ -78,7 +78,7 @@ INSERT {
 # notes
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:NotesCollection a skos:Collection ;
@@ -89,7 +89,7 @@ INSERT DATA {
 # watercolor
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:WatercolorCollection skos:member ?s
@@ -100,7 +100,7 @@ INSERT {
 # watercolor
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:WatercolorCollection a skos:Collection ;
@@ -111,7 +111,7 @@ INSERT DATA {
 # interpretation
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:InterpretationCollection skos:member ?s
@@ -122,7 +122,7 @@ INSERT {
 # interpretation
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:InterpretationCollection a skos:Collection ;
@@ -133,7 +133,7 @@ INSERT DATA {
 # paintingTerm
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:paintingTermCollection skos:member ?s
@@ -144,7 +144,7 @@ INSERT {
 # paintingTerm
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:paintingTermCollection a skos:Collection ;
@@ -155,7 +155,7 @@ INSERT DATA {
 # watercolorTerm
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:watercolorTermCollection skos:member ?s
@@ -166,7 +166,7 @@ INSERT {
 # watercolorTerm
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:watercolorTermCollection a skos:Collection ;
@@ -177,7 +177,7 @@ INSERT DATA {
 # watercolorMaterial
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:watercolorMaterialCollection skos:member ?s
@@ -188,7 +188,7 @@ INSERT {
 # watercolorMaterial
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:watercolorMaterialCollection a skos:Collection ;
@@ -199,7 +199,7 @@ INSERT DATA {
 # watercolorPaint
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:watercolorPaintCollection skos:member ?s
@@ -210,7 +210,7 @@ INSERT {
 # watercolorPaint
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:watercolorPaintCollection a skos:Collection ;
@@ -221,7 +221,7 @@ INSERT DATA {
 # watercolorTechnique
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:watercolorTechniqueCollection skos:member ?s
@@ -232,7 +232,7 @@ INSERT {
 # update delimiter
 # watercolorTechnique
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:watercolorTechniqueCollection a skos:Collection ;
@@ -243,7 +243,7 @@ INSERT DATA {
 # watercolorTextureTechnique
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:watercolorTextureTechniqueCollection skos:member ?s
@@ -254,7 +254,7 @@ INSERT {
 # update delimiter
 # watercolorTextureTechnique
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:watercolorTextureTechniqueCollection a skos:Collection ;
@@ -265,7 +265,7 @@ INSERT DATA {
 # update delimiter
 # watercolorTool
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:watercolorToolCollection skos:member ?s
@@ -276,7 +276,7 @@ INSERT {
 # update delimiter
 # watercolorTool
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:watercolorToolCollection a skos:Collection ;
@@ -287,7 +287,7 @@ INSERT DATA {
 # drawings
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:DrawingCollection skos:member ?s
@@ -298,7 +298,7 @@ INSERT {
 # drawings
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:DrawingCollection a skos:Collection ;
@@ -311,7 +311,7 @@ INSERT DATA {
 # LindenMayerSystemImage
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:LindenmayerSystemImageCollection skos:member ?s
@@ -322,7 +322,7 @@ INSERT {
 # LindenMayerSystemImage
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:LindenmayerSystemImageCollection a skos:Collection ;
@@ -334,7 +334,7 @@ INSERT DATA {
 # cwva classes
 # create the collection
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 prefix owl: <http://www.w3.org/2002/07/owl#> 
 INSERT {
@@ -346,7 +346,7 @@ INSERT {
 # update delimiter
 # update the collection
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:cwvaClassCollection a skos:Collection ;
@@ -357,7 +357,7 @@ INSERT DATA {
 # update delimiter
 # collection of collections
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
 	the:TopCollection skos:member ?s
@@ -368,7 +368,7 @@ INSERT {
 # update delimiter
 # collection of collections
 prefix the:   <http://visualartsdna.org/thesaurus/> 
-prefix vad: <http://visualartsdna.org/2025/04/26/model/> 
+prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
 	the:TopCollection a skos:Collection ;
