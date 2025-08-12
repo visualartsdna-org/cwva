@@ -26,5 +26,9 @@
 	"multithreaded": false,
 	"primaryHost": true,
 # enable sparql-only server
-	"sparql": false
+	"sparql": false,
+# AI version
+	"aiVersion": {
+		"gemini": "gemini-2.5-flash"
+	}
 }
