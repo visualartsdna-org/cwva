@@ -330,6 +330,30 @@ INSERT DATA {
 	.
 }
 
+# Background images
+
+# the:Background
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/model/> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:BackgroundImageCollection skos:member ?s
+} where {
+	?s a the:Background
+}
+
+# the:Background
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/model/> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:BackgroundImageCollection a skos:Collection ;
+	skos:prefLabel "A collection of panorama background images" ;
+	.
+}
+
 # update delimiter
 # cwva classes
 # create the collection
