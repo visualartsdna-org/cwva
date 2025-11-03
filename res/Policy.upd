@@ -354,6 +354,30 @@ INSERT DATA {
 	.
 }
 
+# Tensegrity terms
+
+# the:TensegrityVocabularyCollection
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/model/> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:TensegrityVocabularyCollection skos:member ?s
+} where {
+	?s skos:inScheme      the:tensegrityTerms
+}
+
+# the:TensegrityVocabularyCollection
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/model/> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:TensegrityVocabularyCollection a skos:Collection ;
+	skos:prefLabel "A collection of tensegrity terms" ;
+	.
+}
+
 # update delimiter
 # cwva classes
 # create the collection
