@@ -31,14 +31,14 @@ vad:WorkShape
 #		sh:nodeKind sh:IRI ;
 	] ;
 
-    # Constraint that a concept must belong to a defined concept scheme
-    sh:property [ 
-
-        sh:path skos:inScheme ;
-#		sh:minCount 1 ;
-        sh:in ( the:paintingNotes  the:EntityScheme  the:watercolorPainting  the:computerArtTerms  the:paintingProcesses   the:visualArtTerms  the:paintingTerms the:computerGraphicsProcesses the:digitalArtTerms the:visualArtsProcesses the:entities the:digitalNotes)
-
-    ] .
+#    # Constraint that a concept must belong to a defined concept scheme
+#    sh:property [ 
+#
+#        sh:path skos:inScheme ;
+##		sh:minCount 1 ;
+##        sh:in ( the:paintingNotes  the:EntityScheme  the:watercolorPainting  the:computerArtTerms  the:paintingProcesses   the:visualArtTerms  the:paintingTerms the:computerGraphicsProcesses the:digitalArtTerms the:visualArtsProcesses the:entities the:digitalNotes)
+#
+#    ] .
 
 #	sh:declare [
 #		sh:prefix "skos" ;
