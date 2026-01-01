@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch URL Header Status (CORS Workaround)</title>
+</head>
+<body>
+    <h1>Fetch HTTP Status Code (CORS Workaround)</h1>
+    
+    <label for="urlInput">Enter URL:</label>
+    <input type="text" id="urlInput" value="https://visualartsdna.org/favicon.png" size="40">
+    <button onclick="getStatusCode()">Get Status Code</button>
+    
+    <p>Status Result: <strong id="statusCode">...</strong></p>
+    <p id="errorMessage" style="color: red;"></p>
+
+    <script>
+        async function getStatusCode() {
+            const url = document.getElementById('urlInput').value;
+            const statusCodeElement = document.getElementById('statusCode');
+            const errorMessageElement = document.getElementById('errorMessage');
+            statusCodeElement.textContent = 'Fetching...';
+            errorMessageElement.textContent = '';
+
+            try {
+                // Use the 'GET' method with 'no-cors' mode
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'no-cors' // This prevents the browser from enforcing the CORS policy
+                });
+
+                // In 'no-cors' mode, the status is typically 0 (opaque) but it means the network request succeeded
+                // The browser successfully fetched the resource.
+                statusCodeElement.textContent = 'Network Success (Status is opaque due to "no-cors" mode)';
+                console.log("Response object in no-cors mode:", response);
+
+            } catch (error) {
+                // This catch block means a fundamental network error occurred (e.g., DNS error, server is truly down, invalid protocol)
+                statusCodeElement.textContent = 'Error';
+                errorMessageElement.textContent = `Network request failed: ${error.message}. The target server might be unreachable or has a strict security policy.`;
+            }
+        }
+    </script>
+
+<img src="https://visualartsdna.org/favicon.png" width="20"></img>
+</body>
+</html>
