@@ -271,24 +271,6 @@ select ?ip (sum(?cnt) as ?scnt){
 	filter(regex(?u,"/vocab.graph"))
 } group by ?ip order by desc(?scnt)
 
-# list of /metricTables refs by date and ip
-select ?dt ?ip ?l {
-	?s a st:Metric ;
-		st:date ?dt ;
-		st:ip ?ip ;
-		st:link ?u .
-	filter(regex(?u,"/metricTables"))
-} order by ?dt ?l
-
-# sum of /metricTables IP
-select ?ip (sum(?cnt) as ?scnt){
-	?s a st:Metric ;
-		st:ip ?ip ;
-		st:count ?cnt ;
-		st:link ?u .
-	filter(regex(?u,"/metricTables"))
-} group by ?ip order by desc(?scnt)
-
 # list of /modelviewer refs by date and ip
 select ?dt ?ip ?l {
 	?s a st:Metric ;
@@ -305,5 +287,23 @@ select ?ip (sum(?cnt) as ?scnt){
 		st:count ?cnt ;
 		st:link ?u .
 	filter(regex(?u,"/modelviewer"))
+} group by ?ip order by desc(?scnt)
+
+# list of /vocabTree refs by date and ip
+select ?dt ?ip ?l {
+	?s a st:Metric ;
+		st:date ?dt ;
+		st:ip ?ip ;
+		st:link ?u .
+	filter(regex(?u,"/vocabTree"))
+} order by ?dt ?l
+
+# sum of /vocabTree IP
+select ?ip (sum(?cnt) as ?scnt){
+	?s a st:Metric ;
+		st:ip ?ip ;
+		st:count ?cnt ;
+		st:link ?u .
+	filter(regex(?u,"/vocabTree"))
 } group by ?ip order by desc(?scnt)
 
