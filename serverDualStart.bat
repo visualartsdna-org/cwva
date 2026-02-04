@@ -10,3 +10,5 @@ start /b serverFcn.bat
 
 rem won't exit because two processes own this window
 rem CANNOT close window
+
+tail -f fout.log | grep "^\/.*"

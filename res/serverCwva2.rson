@@ -27,6 +27,8 @@
 	"primaryHost": true,
 # enable sparql-only server
 	"sparql": false,
+# Agent
+	"agentUrl": "http://localhost:8090",
 # AI version
 	"aiVersion": {
 		"gemini": "gemini-2.5-flash"

@@ -75,28 +75,12 @@ vad:WorkShape2
 #		sh:nodeKind sh:IRI ;
 	] ;
 	sh:property [
-		sh:path vad:hasPaperFinish ;
-		sh:maxCount 1 ;
-		sh:minCount 1 ;
-		sh:pattern "^[A-Za-z0-9 ]+" ;
-		sh:datatype xsd:string ;
-#		sh:nodeKind sh:IRI ;
-	] ;
-	sh:property [
 		sh:path vad:hasPaper ;
 		sh:maxCount 1 ;
 		sh:minCount 1 ;
-		sh:pattern "^[A-Za-z0-9\\- ]+" ;
-		sh:datatype xsd:string ;
-#		sh:nodeKind sh:IRI ;
-	] ;
-	sh:property [
-		sh:path vad:hasPaperWeight ;
-		sh:maxCount 1 ;
-		sh:minCount 1 ;
-#		sh:pattern "^[A-Za-z0-9 ]+" ;
-		sh:datatype xsd:int ;
-#		sh:nodeKind sh:IRI ;
+#		sh:pattern "^[A-Za-z0-9\\- ]+" ;
+#		sh:datatype xsd:string ;
+		sh:nodeKind sh:IRI ;
 	] ;
 	sh:property [
 		sh:path vad:workOnSite ;

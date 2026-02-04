@@ -4,6 +4,7 @@
 	"port":80,
 # host
 	"host": "http://192.168.1.71:80",
+#	"host": "https://172.29.35.139:8443",
 	"twinHost": "http://192.168.1.71:8080",
 # base folder for all relative config references
 	"dir": "." ,
@@ -27,6 +28,8 @@
 	"primaryHost": true,
 # enable sparql-only server
 	"sparql": true,
+# Agent
+	"agentUrl": "http://localhost:8090",
 # AI version
 	"aiVersion": {
 		"gemini": "gemini-2.5-flash"

@@ -11,3 +11,4 @@
 [typeAxiom6: -> (rdf:object    rdf:type rdf:Property) ]
 [typeAxiom7: -> (rdf:first     rdf:type rdf:Property) ]
 [typeAxiom8: -> (rdf:rest      rdf:type rdf:Property) ]
+

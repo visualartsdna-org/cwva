@@ -449,6 +449,16 @@ INSERT DATA {
 # update delimiter
 ##
 ##
+# Create symmetric tags
+insert {
+	?s the:tag ?o 
+} where {
+?o the:tag ?s .
+}
+
+# update delimiter
+##
+##
 # Create Concept Schemes
 #
 # tag existing thesaurus concept schemes

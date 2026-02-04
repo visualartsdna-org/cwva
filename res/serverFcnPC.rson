@@ -24,6 +24,8 @@
 # use multithreaded to load ttl from gcp, has risks!
 	"multithreaded": false,
 	"primaryHost": false,
+# Agent
+	"agentUrl": "http://localhost:8090",
 	"artist": {
 		"rspates": {
 			"dir": "../rspates",
