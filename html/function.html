@@ -201,6 +201,29 @@
             letter-spacing: 0.05em;
         }
 
+        /* Stage Queue Badges */
+        .queue-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .queue-badge.has-items {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 170, 0.08);
+        }
+        .queue-badge .queue-count {
+            font-weight: 600;
+        }
+
         /* Card Grid */
         .card-grid {
             display: grid;
@@ -594,8 +617,8 @@
                 <h1>Visual Arts<span>DNA</span></h1>
             </div>
             <nav class="header-nav">
-                <button class="nav-tab" data-tab="monitoring">Monitoring</button>
                 <button class="nav-tab active" data-tab="content">Content</button>
+                <button class="nav-tab" data-tab="monitoring">Monitoring</button>
                 <button class="nav-tab" data-tab="tools">Tools</button>
                 <button class="nav-tab" data-tab="files">Files</button>
             </nav>
@@ -606,10 +629,14 @@
         <!-- CONTENT TAB -->
         <div id="content" class="tab-content active">
             <section class="section">
-                <div class="section-header">
+                <div class="section-header" style="flex-wrap: wrap; gap: 0.5rem;">
                     <div class="section-icon blue">&#9998;</div>
                     <h2 class="section-title">Content Management</h2>
                     <span class="section-badge">Core</span>
+                    <div id="stageStatus" style="margin-left: auto; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+                        <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Queues</span>
+                        <span id="stageStatusItems" style="display: flex; gap: 0.3rem; flex-wrap: wrap;"></span>
+                    </div>
                 </div>
                 <div class="card-grid">
                     <a href="sparql" class="card blue">
@@ -636,14 +663,18 @@
                         <div class="card-title">Interpretation</div>
                         <div class="card-desc">Create interpretation for work</div>
                     </a>
-                    <a href="related" class="card cyan">
+                    <a href="annotateWork.html" class="card cyan">
+                        <div class="card-title">Annotate Work</div>
+                        <div class="card-desc">Select concepts for work annotation</div>
+                    </a>
+<!--                    <a href="related" class="card cyan">
                         <div class="card-title">Related Concepts</div>
                         <div class="card-desc">Select concepts for related assertion</div>
-                    </a>
-                    <a href="vocab" class="card cyan">
+                    </a> -->
+<!--                    <a href="vocab" class="card cyan">
                         <div class="card-title">Concepts</div>
                         <div class="card-desc">Create and manage concepts</div>
-                    </a>
+                    </a> -->
                     <a href="imageBrand" class="card purple">
                         <div class="card-title">Brand Image</div>
                         <div class="card-desc">Brand an image file</div>
@@ -1200,6 +1231,29 @@
 
         // Example: Uncomment to add a new instance dynamically
         // addInstance({ name: 'new-server.com', tag: 'prod', url: 'https://new-server.com' });
+        // Stage Queue Status
+        async function loadStageStatus() {
+            const container = document.getElementById('stageStatusItems');
+            if (!container) return;
+            try {
+                const res = await fetch('http://192.168.1.71:8082/stageStatus');
+                const data = await res.json();
+                container.innerHTML = '';
+                for (const [path, count] of Object.entries(data)) {
+                    const name = path.split('/').filter(Boolean).pop();
+                    const badge = document.createElement('span');
+                    badge.className = 'queue-badge' + (count > 0 ? ' has-items' : '');
+                    badge.innerHTML = `${name}<span class="queue-count">${count}</span>`;
+                    badge.title = path;
+                    container.appendChild(badge);
+                }
+            } catch (e) {
+                const el = document.getElementById('stageStatus');
+                if (el) el.style.display = 'none';
+            }
+        }
+        loadStageStatus();
+        setInterval(loadStageStatus, 30000);
     </script>
 </body>
 </html>
