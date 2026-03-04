@@ -22,7 +22,7 @@ vad:WorkShape2
 		sh:maxCount 1 ;
 		sh:minCount 1 ;
 		sh:datatype xsd:string ;
-		sh:pattern """^[A-Za-z0-9 _\t\n\r\\.,\\:;\\-'’“”"!#\\?\\$\\%\\&\\(\\)/\\\\]+$""" ;
+#		sh:pattern """^[A-Za-z0-9<> _\t\n\r\\.,\\:;\\-'’“”"!#\\?\\$\\%\\&\\(\\)/\\\\]+$""" ;
 	] ;
 	sh:property [
 		sh:path rdfs:label ;
@@ -33,7 +33,7 @@ vad:WorkShape2
 #		sh:nodeKind sh:IRI ;
 	] ;
 	sh:property [
-		sh:path the:media ;
+		sh:path the:topic ;
 #		sh:maxCount 1 ;
 		sh:minCount 1 ;
 		sh:pattern "^[A-Za-z0-9 ]+" ;

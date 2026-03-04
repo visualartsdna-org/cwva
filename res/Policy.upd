@@ -226,7 +226,7 @@ prefix skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT {
 	the:paperCollection skos:member ?s
 } where {
-	?s a	vad:Paper
+	?s a	vad:PaperSupport
 }
 
 # papers
@@ -328,27 +328,51 @@ INSERT DATA {
 	.
 }
 
-# vad:LindenMayerSystemImage
+# vad:LindenmayerSystemImage
 
-# LindenMayerSystemImage
+# LindenmayerSystemImage
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
 prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT {
-	the:LindenmayerSystemImageCollection skos:member ?s
+	the:LindenmayerSystemCollection skos:member ?s
 } where {
 	?s a vad:LindenmayerSystemImage
 }
 
-# LindenMayerSystemImage
+# LindenmayerSystemImage
 # update delimiter
 prefix the:   <http://visualartsdna.org/thesaurus/> 
 prefix vad: <http://visualartsdna.org/model/> 
 prefix skos: <http://www.w3.org/2004/02/skos/core#> 
 INSERT DATA {
-	the:LindenmayerSystemImageCollection a skos:Collection ;
+	the:LindenmayerSystemCollection a skos:Collection ;
 	skos:prefLabel "A collection of LS digital graphics" ;
+	.
+}
+
+# Operational Documents
+
+# Operational Documents
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/model/> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT {
+	the:OperationalCollection skos:member ?s
+} where {
+	?s a the:Operation
+}
+
+# Operational Documents
+# update delimiter
+prefix the:   <http://visualartsdna.org/thesaurus/> 
+prefix vad: <http://visualartsdna.org/model/> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+INSERT DATA {
+	the:OperationalCollection a skos:Collection ;
+	skos:prefLabel "A collection of Operational Documents" ;
 	.
 }
 
@@ -362,7 +386,8 @@ prefix skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT {
 	the:BackgroundImageCollection skos:member ?s
 } where {
-	?s a the:Background
+	?s a the:Image ;
+		the:topic	"Background" .
 }
 
 # the:Background

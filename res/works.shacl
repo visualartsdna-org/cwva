@@ -26,14 +26,13 @@ vad:WorkShape2
 		sh:datatype xsd:string ;
 #		sh:nodeKind sh:IRI ;
 	] ;
-	sh:property [
-		sh:path vad:media ;
-#		sh:maxCount 1 ;
-		sh:minCount 1 ;
-		sh:pattern "^[A-Za-z0-9 ]+" ;
-		sh:datatype xsd:string ;
+#	sh:property [
+#		sh:path vad:hasMedia ;
+##		sh:maxCount 1 ;
+#		sh:minCount 1 ;
+##		sh:datatype xsd:string ;
 #		sh:nodeKind sh:IRI ;
-	] ;
+#	] ;
 	sh:property [
 		sh:path schema:height ;
 		sh:maxCount 1 ;
