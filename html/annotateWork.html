@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annotate Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f1419;
+            --bg-secondary: #1a2332;
+            --bg-tertiary: #243044;
+            --bg-card: #1e2a3a;
+            --text-primary: #e8eef4;
+            --text-secondary: #8fa3b8;
+            --text-muted: #5d7085;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #60a5fa;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --border-color: #2d3e50;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 30px var(--accent-glow);
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .home-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color var(--transition-fast);
+        }
+
+        .home-link:hover {
+            color: var(--accent-secondary);
+        }
+
+        .home-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        /* Buttons */
+        .btn {
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all var(--transition-fast);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-secondary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+            border-color: var(--accent-primary);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .btn-success:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-danger {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        /* Textarea Section */
+        .textarea-section {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+        }
+
+        .textarea-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .textarea-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Work URI input row */
+        .work-uri-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .work-uri-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        #work-uri-input {
+            flex: 1;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+            padding: 0.6rem 1rem;
+            transition: border-color var(--transition-fast);
+        }
+
+        #work-uri-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        #work-uri-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .textarea-wrapper {
+            display: flex;
+            gap: 0.75rem;
+            align-items: stretch;
+        }
+
+        #related-input {
+            flex: 1;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+            padding: 0.75rem 1rem;
+            resize: vertical;
+            min-height: 60px;
+            transition: border-color var(--transition-fast);
+        }
+
+        #related-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .copy-feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: all var(--transition-fast);
+            z-index: 1000;
+        }
+
+        .copy-feedback.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Process feedback overlay */
+        .process-feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: all var(--transition-fast);
+            z-index: 1000;
+        }
+
+        .process-feedback.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .process-feedback.success {
+            background: var(--success);
+            color: white;
+        }
+
+        .process-feedback.error {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--accent-secondary);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+        }
+
+        /* Search */
+        .search-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 400px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 18px;
+            height: 18px;
+            pointer-events: none;
+        }
+
+        #concept-search {
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            transition: all var(--transition-fast);
+        }
+
+        #concept-search:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        #concept-search::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Concept Schemes Grid */
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Scheme Card */
+        .scheme-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .scheme-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .scheme-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            background: var(--bg-tertiary);
+            cursor: pointer;
+            user-select: none;
+            transition: background var(--transition-fast);
+        }
+
+        .scheme-header:hover {
+            background: #2a3d52;
+        }
+
+        .scheme-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .scheme-count {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .scheme-count.has-selected {
+            background: var(--success);
+        }
+
+        .scheme-toggle {
+            color: var(--text-muted);
+            transition: transform var(--transition-normal);
+        }
+
+        .scheme-card.collapsed .scheme-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .scheme-card.collapsed .scheme-content {
+            display: none;
+        }
+
+        .scheme-content {
+            padding: 0.75rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .scheme-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scheme-content::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+        }
+
+        .scheme-content::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        .scheme-content::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Broader Groups within Scheme */
+        .broader-group {
+            margin-bottom: 0.5rem;
+        }
+
+        .broader-header {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .broader-header:hover {
+            color: var(--text-secondary);
+        }
+
+        .broader-header svg {
+            width: 12px;
+            height: 12px;
+            transition: transform var(--transition-fast);
+        }
+
+        .broader-group.collapsed .broader-header svg {
+            transform: rotate(-90deg);
+        }
+
+        .broader-group.collapsed .concepts-list {
+            display: none;
+        }
+
+        /* Concept Items */
+        .concepts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .concept-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .concept-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .concept-item.selected {
+            background: var(--accent-glow);
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .concept-item.hidden {
+            display: none;
+        }
+
+        .concept-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .concept-item.selected .concept-checkbox {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .concept-checkbox svg {
+            width: 12px;
+            height: 12px;
+            color: white;
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .concept-item.selected .concept-checkbox svg {
+            opacity: 1;
+        }
+
+        .concept-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .concept-item:hover .concept-label,
+        .concept-item.selected .concept-label {
+            color: var(--text-primary);
+        }
+
+        .concept-brand {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            color: var(--text-muted);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            h1 {
+                font-size: 1.25rem;
+            }
+
+            .work-uri-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #work-uri-input {
+                width: 100%;
+            }
+
+            .textarea-wrapper {
+                flex-direction: column;
+            }
+
+            .schemes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .scheme-content {
+                max-height: 300px;
+            }
+        }
+
+        /* Touch improvements for mobile */
+        @media (hover: none) {
+            .concept-item {
+                padding: 0.75rem;
+            }
+
+            .scheme-header {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="/" class="home-link" id="home-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    Home
+                </a>
+                <h1>Annotate Work</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="toggle-all-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="7 13 12 18 17 13"/>
+                        <polyline points="7 6 12 11 17 6"/>
+                    </svg>
+                    Expand All
+                </button>
+                <button class="btn btn-secondary" id="copy-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    Copy
+                </button>
+                <button class="btn btn-primary" id="submit-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Select
+                </button>
+                <button class="btn btn-success" id="process-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14"/>
+                        <path d="m12 5 7 7-7 7"/>
+                    </svg>
+                    Process
+                </button>
+                <button class="btn btn-danger" id="reset-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                        <path d="M3 3v5h5"/>
+                    </svg>
+                    Reset
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="textarea-section">
+        <div class="textarea-container">
+            <div class="work-uri-row">
+                <label class="work-uri-label" for="work-uri-input">Work URI:</label>
+                <input type="text" id="work-uri-input" placeholder="work:abcd" />
+            </div>
+            <label class="textarea-label">
+                Select concepts below, then Select to generate references, or Process to submit directly to the server. Paste [related=...] text and Select to restore selections.
+            </label>
+            <div class="textarea-wrapper">
+                <textarea id="related-input" placeholder="[related=]" rows="2"></textarea>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value" id="selected-count">0</span>
+                <span class="stat-label">selected</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="total-count">0</span>
+                <span class="stat-label">total concepts</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="scheme-count">0</span>
+                <span class="stat-label">categories</span>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <div class="search-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="concept-search" placeholder="Search concepts...">
+            </div>
+        </div>
+
+        <div id="schemes-container" class="schemes-grid">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <span>Loading concepts...</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        Annotate Work v1.0 — SKOS Thesaurus Browser
+    </footer>
+
+    <div class="copy-feedback" id="copy-feedback">Copied to clipboard!</div>
+    <div class="process-feedback" id="process-feedback"></div>
+
+    <script>
+        // Application State
+        const state = {
+            concepts: {},        // All concepts indexed by CURI
+            schemes: {},         // Concepts grouped by conceptScheme
+            selected: new Set(), // Selected concept CURIs
+            searchTerm: ''
+        };
+
+        // Configuration - will be set from server config
+        let CONFIG = {
+            homeUrl: '/',
+            dataEndpoint: '/api/annotateWork'
+        };
+
+        // DOM Elements
+        const elements = {
+            schemesContainer: document.getElementById('schemes-container'),
+            relatedInput: document.getElementById('related-input'),
+            workUriInput: document.getElementById('work-uri-input'),
+            submitBtn: document.getElementById('submit-btn'),
+            processBtn: document.getElementById('process-btn'),
+            copyBtn: document.getElementById('copy-btn'),
+            resetBtn: document.getElementById('reset-btn'),
+            toggleAllBtn: document.getElementById('toggle-all-btn'),
+            searchInput: document.getElementById('concept-search'),
+            selectedCount: document.getElementById('selected-count'),
+            totalCount: document.getElementById('total-count'),
+            schemeCount: document.getElementById('scheme-count'),
+            copyFeedback: document.getElementById('copy-feedback'),
+            processFeedback: document.getElementById('process-feedback'),
+            homeLink: document.getElementById('home-link')
+        };
+        
+        // Track expand/collapse state
+        let allExpanded = false;
+
+        // Initialize application
+        async function init() {
+            try {
+                // Fetch configuration
+                const configResponse = await fetch('/api/config');
+                if (configResponse.ok) {
+                    const config = await configResponse.json();
+                    CONFIG.homeUrl = config.host || '/';
+                    elements.homeLink.href = CONFIG.homeUrl;
+                }
+            } catch (e) {
+                console.log('Using default config');
+            }
+
+            // Fetch concepts data
+            await loadConcepts();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Initialize textarea
+            updateTextarea();
+        }
+
+        // Fetch concepts from API
+        async function loadConcepts() {
+            try {
+                const response = await fetch(CONFIG.dataEndpoint);
+                if (!response.ok) throw new Error('Failed to load concepts');
+                
+                const data = await response.json();
+                processConceptsData(data);
+                renderSchemes();
+                updateStats();
+            } catch (error) {
+                console.error('Error loading concepts:', error);
+                elements.schemesContainer.innerHTML = `
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <p>Unable to load concepts. Please refresh the page.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Process raw concepts data into organized structure
+        function processConceptsData(data) {
+            // data format: { schemes: [ { name, label, concepts: [ { curi, label, brand?, broader? } ] } ] }
+            state.schemes = {};
+            state.concepts = {};
+            state.broaderTerms = new Set(); // Track which CURIs are used as broader terms
+            
+            // First pass: collect all concepts and identify broader terms
+            data.schemes.forEach(scheme => {
+                scheme.concepts.forEach(concept => {
+                    if (concept.broader) {
+                        state.broaderTerms.add(concept.broader);
+                    }
+                });
+            });
+            
+            // Second pass: build the structure
+            data.schemes.forEach(scheme => {
+                state.schemes[scheme.name] = {
+                    label: scheme.label,
+                    broaderGroups: {}
+                };
+                
+                scheme.concepts.forEach(concept => {
+                    state.concepts[concept.curi] = {
+                        ...concept,
+                        scheme: scheme.name,
+                        isLeaf: !state.broaderTerms.has(concept.curi) // Mark leaf nodes
+                    };
+                    
+                    // Group by broader concept
+                    const broader = concept.broader || '_root';
+                    if (!state.schemes[scheme.name].broaderGroups[broader]) {
+                        state.schemes[scheme.name].broaderGroups[broader] = [];
+                    }
+                    state.schemes[scheme.name].broaderGroups[broader].push(concept.curi);
+                });
+            });
+        }
+
+        // Render all scheme cards
+        function renderSchemes() {
+            const container = elements.schemesContainer;
+            container.innerHTML = '';
+            
+            Object.entries(state.schemes).forEach(([schemeName, scheme]) => {
+                const card = createSchemeCard(schemeName, scheme);
+                container.appendChild(card);
+            });
+        }
+
+        // Create a scheme card element
+        function createSchemeCard(schemeName, scheme) {
+            const card = document.createElement('div');
+            card.className = 'scheme-card collapsed';  // Start collapsed
+            card.dataset.scheme = schemeName;
+            
+            const conceptCount = Object.values(scheme.broaderGroups).flat().length;
+            const selectedInScheme = Object.values(scheme.broaderGroups)
+                .flat()
+                .filter(curi => state.selected.has(curi)).length;
+            
+            card.innerHTML = `
+                <div class="scheme-header">
+                    <span class="scheme-title">
+                        ${scheme.label}
+                        <span class="scheme-count ${selectedInScheme > 0 ? 'has-selected' : ''}">${selectedInScheme > 0 ? selectedInScheme : conceptCount}</span>
+                    </span>
+                    <svg class="scheme-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </div>
+                <div class="scheme-content">
+                    ${renderBroaderGroups(scheme.broaderGroups)}
+                </div>
+            `;
+            
+            // Toggle collapse
+            const header = card.querySelector('.scheme-header');
+            header.addEventListener('click', () => {
+                card.classList.toggle('collapsed');
+            });
+            
+            // Concept click handlers
+            card.querySelectorAll('.concept-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleConcept(item.dataset.curi);
+                });
+            });
+            
+            // Broader group toggle
+            card.querySelectorAll('.broader-header').forEach(header => {
+                header.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    header.parentElement.classList.toggle('collapsed');
+                });
+            });
+            
+            return card;
+        }
+
+        // Render broader concept groups
+        function renderBroaderGroups(broaderGroups) {
+            let entries = Object.entries(broaderGroups);
+            
+            // Filter out groups that have no leaf nodes
+            entries = entries.filter(([broader, curis]) => {
+                return curis.some(curi => state.concepts[curi]?.isLeaf);
+            });
+            
+            // If no groups have leaf nodes, return empty
+            if (entries.length === 0) {
+                return '';
+            }
+            
+            // If only one group (root), render concepts directly
+            if (entries.length === 1 && entries[0][0] === '_root') {
+                return `<div class="concepts-list">${renderConcepts(entries[0][1])}</div>`;
+            }
+            
+            // Sort entries by their label (with _root/General first if present)
+            entries.sort((a, b) => {
+                if (a[0] === '_root') return -1;
+                if (b[0] === '_root') return 1;
+                const labelA = (state.concepts[a[0]]?.label || a[0].replace('the:', '')).toLowerCase();
+                const labelB = (state.concepts[b[0]]?.label || b[0].replace('the:', '')).toLowerCase();
+                return labelA.localeCompare(labelB);
+            });
+            
+            return entries.map(([broader, curis]) => {
+                const broaderLabel = broader === '_root' ? 'General' : 
+                    (state.concepts[broader]?.label || broader.replace('the:', ''));
+                
+                return `
+                    <div class="broader-group collapsed">
+                        <div class="broader-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                            ${broaderLabel}
+                        </div>
+                        <div class="concepts-list">
+                            ${renderConcepts(curis)}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render concept items (only leaf nodes get checkboxes)
+        function renderConcepts(curis) {
+            // Filter to only leaf nodes
+            const leafCuris = curis.filter(curi => {
+                const concept = state.concepts[curi];
+                return concept && concept.isLeaf;
+            });
+            
+            return leafCuris.map(curi => {
+                const concept = state.concepts[curi];
+                const isSelected = state.selected.has(curi);
+                const brandSuffix = concept.brand ? `<span class="concept-brand">${concept.brand}</span>` : '';
+                
+                return `
+                    <div class="concept-item ${isSelected ? 'selected' : ''}" data-curi="${curi}">
+                        <div class="concept-checkbox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <span class="concept-label">${concept.label}</span>
+                        ${brandSuffix}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Toggle concept selection
+        function toggleConcept(curi) {
+            console.log('toggleConcept called with:', curi);
+            if (state.selected.has(curi)) {
+                state.selected.delete(curi);
+                console.log('Removed:', curi, 'Size now:', state.selected.size);
+            } else {
+                state.selected.add(curi);
+                console.log('Added:', curi, 'Size now:', state.selected.size);
+            }
+            updateConceptUI(curi);
+            updateStats();
+        }
+
+        // Update single concept UI
+        function updateConceptUI(curi) {
+            const item = document.querySelector(`.concept-item[data-curi="${curi}"]`);
+            if (item) {
+                item.classList.toggle('selected', state.selected.has(curi));
+            }
+            
+            // Update scheme count badge
+            const concept = state.concepts[curi];
+            if (concept) {
+                updateSchemeCount(concept.scheme);
+            }
+        }
+
+        // Update scheme card count badge
+        function updateSchemeCount(schemeName) {
+            const card = document.querySelector(`.scheme-card[data-scheme="${schemeName}"]`);
+            if (!card) return;
+            
+            const scheme = state.schemes[schemeName];
+            const selectedInScheme = Object.values(scheme.broaderGroups)
+                .flat()
+                .filter(curi => state.selected.has(curi)).length;
+            const totalInScheme = Object.values(scheme.broaderGroups).flat()
+                .filter(curi => state.concepts[curi]?.isLeaf).length;
+            
+            const countBadge = card.querySelector('.scheme-count');
+            countBadge.textContent = selectedInScheme > 0 ? selectedInScheme : totalInScheme;
+            countBadge.classList.toggle('has-selected', selectedInScheme > 0);
+        }
+
+        // Update statistics display
+        function updateStats() {
+            elements.selectedCount.textContent = state.selected.size;
+            // Only count leaf nodes in total
+            const leafCount = Object.values(state.concepts).filter(c => c.isLeaf).length;
+            elements.totalCount.textContent = leafCount;
+            elements.schemeCount.textContent = Object.keys(state.schemes).length;
+        }
+
+        // Update textarea with selected concepts
+        function updateTextarea() {
+            const curis = [...state.selected].sort();
+            const result = curis.length > 0 ? `[related=${curis.join(', ')}]` : '[related=]';
+            elements.relatedInput.value = result;
+            console.log('updateTextarea called, selected:', state.selected.size, 'result:', result);
+        }
+
+        // Parse textarea and MERGE with current selections
+        function parseTextarea() {
+            const text = elements.relatedInput.value;
+            const match = text.match(/\[related=([^\]]*)\]/);
+            
+            if (match) {
+                const curis = match[1].split(',')
+                    .map(s => s.trim())
+                    .filter(s => s && s.startsWith('the:'));
+                
+                // MERGE: Add parsed CURIs to existing selections (don't clear first)
+                curis.forEach(curi => {
+                    if (state.concepts[curi]) {
+                        state.selected.add(curi);
+                    }
+                });
+                
+                // Update all UI
+                document.querySelectorAll('.concept-item').forEach(item => {
+                    item.classList.toggle('selected', state.selected.has(item.dataset.curi));
+                });
+                
+                Object.keys(state.schemes).forEach(schemeName => {
+                    updateSchemeCount(schemeName);
+                });
+                
+                updateStats();
+            }
+        }
+
+        // Handle select button (formerly submit)
+        function handleSubmit() {
+            console.log('handleSubmit called, selected size:', state.selected.size);
+            
+            const text = elements.relatedInput.value.trim();
+            
+            // Check if textarea contains actual CURIs to parse (not just empty [related=])
+            const match = text.match(/\[related=([^\]]*)\]/);
+            const hasContentToParse = match && match[1].trim().length > 0 && match[1].includes('the:');
+            
+            // Only parse if there are actual CURIs in the textarea
+            // This handles the case where user pastes in selections to restore
+            if (hasContentToParse) {
+                console.log('Parsing textarea - found CURIs to restore');
+                parseTextarea();
+            }
+            
+            // Always update textarea with current selections
+            updateTextarea();
+            console.log('handleSubmit complete, textarea value:', elements.relatedInput.value);
+        }
+
+        // Handle process button - submit work URI + selected concepts to server
+        async function handleProcess() {
+            const workUri = elements.workUriInput.value.trim();
+            if (!workUri) {
+                showProcessFeedback('Work URI is required', 'error');
+                elements.workUriInput.focus();
+                return;
+            }
+
+            if (state.selected.size === 0) {
+                showProcessFeedback('No concepts selected', 'error');
+                return;
+            }
+
+            // Ensure textarea is up to date
+            updateTextarea();
+
+            const curis = [...state.selected].sort();
+
+            elements.processBtn.disabled = true;
+
+            try {
+                const response = await fetch('/annotateWork', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ work: workUri, related: curis })
+                });
+
+                if (response.ok) {
+                    showProcessFeedback('Annotations processed!', 'success');
+                } else {
+                    const msg = await response.text().catch(() => 'Server error');
+                    showProcessFeedback(`Error: ${msg}`, 'error');
+                }
+            } catch (e) {
+                console.error('Process error:', e);
+                showProcessFeedback('Network error', 'error');
+            } finally {
+                elements.processBtn.disabled = false;
+            }
+        }
+
+        // Show process feedback overlay
+        function showProcessFeedback(message, type) {
+            const el = elements.processFeedback;
+            el.textContent = message;
+            el.className = `process-feedback ${type} show`;
+            setTimeout(() => {
+                el.classList.remove('show');
+            }, 2000);
+        }
+
+        // Handle copy button
+        async function handleCopy() {
+            updateTextarea();
+            const text = elements.relatedInput.value;
+            
+            try {
+                await navigator.clipboard.writeText(text);
+            } catch (e) {
+                // Fallback for older browsers
+                elements.relatedInput.select();
+                elements.relatedInput.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+            }
+            
+            // Show feedback
+            elements.copyFeedback.classList.add('show');
+            setTimeout(() => {
+                elements.copyFeedback.classList.remove('show');
+            }, 1500);
+        }
+
+        // Handle reset button
+        function handleReset() {
+            state.selected.clear();
+            
+            document.querySelectorAll('.concept-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            Object.keys(state.schemes).forEach(schemeName => {
+                updateSchemeCount(schemeName);
+            });
+            
+            updateStats();
+            updateTextarea();
+        }
+
+        // Handle search
+        function handleSearch() {
+            const term = elements.searchInput.value.toLowerCase().trim();
+            state.searchTerm = term;
+            
+            document.querySelectorAll('.concept-item').forEach(item => {
+                const curi = item.dataset.curi;
+                const concept = state.concepts[curi];
+                const matches = !term || 
+                    concept.label.toLowerCase().includes(term) ||
+                    (concept.brand && concept.brand.toLowerCase().includes(term)) ||
+                    curi.toLowerCase().includes(term);
+                
+                item.classList.toggle('hidden', !matches);
+            });
+            
+            // Expand cards that have matching items
+            if (term) {
+                document.querySelectorAll('.scheme-card').forEach(card => {
+                    const hasVisible = card.querySelector('.concept-item:not(.hidden)');
+                    card.classList.toggle('collapsed', !hasVisible);
+                });
+            }
+        }
+
+        // Handle expand/collapse all toggle
+        function handleToggleAll() {
+            allExpanded = !allExpanded;
+            
+            document.querySelectorAll('.scheme-card').forEach(card => {
+                card.classList.toggle('collapsed', !allExpanded);
+            });
+            
+            // Update button text and icon
+            const btn = elements.toggleAllBtn;
+            if (allExpanded) {
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="17 11 12 6 7 11"/>
+                        <polyline points="17 18 12 13 7 18"/>
+                    </svg>
+                    Collapse All
+                `;
+            } else {
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="7 13 12 18 17 13"/>
+                        <polyline points="7 6 12 11 17 6"/>
+                    </svg>
+                    Expand All
+                `;
+            }
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            elements.submitBtn.addEventListener('click', handleSubmit);
+            elements.processBtn.addEventListener('click', handleProcess);
+            elements.copyBtn.addEventListener('click', handleCopy);
+            elements.resetBtn.addEventListener('click', handleReset);
+            elements.toggleAllBtn.addEventListener('click', handleToggleAll);
+            elements.searchInput.addEventListener('input', handleSearch);
+            
+            // Enter key in textarea triggers select
+            elements.relatedInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSubmit();
+                }
+            });
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
