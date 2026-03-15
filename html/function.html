@@ -584,6 +584,109 @@
             max-height: 0;
         }
 
+        /* Drop Zones */
+        .drop-zone {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            min-width: 360px;
+            min-height: 56px;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .drop-zone:hover {
+            border-color: var(--accent-blue);
+            background: rgba(74, 158, 255, 0.05);
+        }
+
+        .drop-zone.dragover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 212, 170, 0.08);
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.15);
+        }
+
+        .drop-zone.has-file {
+            border-color: var(--accent-cyan);
+            border-style: solid;
+            background: rgba(0, 212, 170, 0.06);
+        }
+
+        .drop-zone-icon {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1;
+            transition: var(--transition-fast);
+        }
+
+        .drop-zone:hover .drop-zone-icon,
+        .drop-zone.dragover .drop-zone-icon {
+            color: var(--accent-blue);
+        }
+
+        .drop-zone.has-file .drop-zone-icon {
+            color: var(--accent-cyan);
+        }
+
+        .drop-zone-text {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            pointer-events: none;
+            line-height: 1.3;
+        }
+
+        .drop-zone-input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .drop-zone-filename {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent-cyan);
+            margin-top: 0.3rem;
+            min-height: 1rem;
+            word-break: break-all;
+        }
+
+        /* Half-size drop zones for dual-file cards */
+        .drop-zone-pair {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .drop-zone-pair .drop-zone-slot {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .drop-zone.half {
+            min-width: 160px;
+            min-height: 56px;
+            width: 100%;
+        }
+
+        .drop-zone-pair .drop-zone-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
@@ -686,6 +789,10 @@
                     <a href="updateWorkOnSite" class="card purple">
                         <div class="card-title">Update workOnSite</div>
                         <div class="card-desc">Synch workOnSite data with websites</div>
+                    </a>
+                    <a href="html/rdf-graph-editor.html" class="card red">
+                        <div class="card-title">RDF Graph Editor</div>
+                        <div class="card-desc">Manage vocabulary hierarchies</div>
                     </a>
                 </div>
             </section>
@@ -959,30 +1066,95 @@
                 </div>
                 <div class="two-col">
                     <div class="form-card">
-                        <form id="loadForm" action="/loadFile" method="get">
-                            <input type="hidden" name="directory" value="/stage/tmp">
-                            <div class="form-card-title">Load File</div>
-                            <div class="form-card-desc">Load JSON or TTL file, also detects non-ASCII</div>
-                            <div class="form-row">
+                        <form id="loadTtl" action="/loadTtlBlob" method="post" enctype="multipart/form-data">
+                            <div class="form-card-title">Load TTL File</div>
+                            <div class="form-card-desc">Upload a Turtle (.ttl) file to the server</div>
+                            <div class="form-row" style="align-items: center;">
                                 <div class="form-group">
-                                    <label>File (optional)</label>
-                                    <input type="file" name="fileupload" accept=".ttl,.json">
+                                    <label>File</label>
+                                    <div class="drop-zone" id="drop-loadTtl" data-input="file-loadTtl" data-accept=".ttl">
+                                        <span class="drop-zone-icon">&#8681;</span>
+                                        <span class="drop-zone-text">Drop .ttl or click</span>
+                                        <input type="file" id="file-loadTtl" name="fileupload" accept=".ttl" class="drop-zone-input">
+                                    </div>
+                                    <div class="drop-zone-filename" id="name-loadTtl"></div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Load</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-card">
+                        <form id="loadJson" action="/loadJsonBlob" method="post" enctype="multipart/form-data">
+                            <div class="form-card-title">Load JSON File</div>
+                            <div class="form-card-desc">Upload a JSON file to the server</div>
+                            <div class="form-row" style="align-items: center;">
+                                <div class="form-group">
+                                    <label>File</label>
+                                    <div class="drop-zone" id="drop-loadJson" data-input="file-loadJson" data-accept=".json,.json-ld">
+                                        <span class="drop-zone-icon">&#8681;</span>
+                                        <span class="drop-zone-text">Drop .json or .json-ld or click</span>
+                                        <input type="file" id="file-loadJson" name="fileupload" accept=".json,.json-ld" class="drop-zone-input">
+                                    </div>
+                                    <div class="drop-zone-filename" id="name-loadJson"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-card">
+                        <form id="cvtForm" action="/md2htmlBlob" method="post" enctype="multipart/form-data">
+                            <div class="form-card-title">Markdown to HTML</div>
+                            <div class="form-card-desc">Convert a markdown file</div>
+                            <div class="form-row" style="align-items: center;">
+                                <div class="form-group">
+                                    <label>File</label>
+                                    <div class="drop-zone" id="drop-cvtForm" data-input="file-cvtForm" data-accept=".md">
+                                        <span class="drop-zone-icon">&#8681;</span>
+                                        <span class="drop-zone-text">Drop .md or click</span>
+                                        <input type="file" id="file-cvtForm" name="fileupload" accept=".md" class="drop-zone-input">
+                                    </div>
+                                    <div class="drop-zone-filename" id="name-cvtForm"></div>
+                                </div>
                             </div>
                         </form>
                     </div>
                     <div class="form-card">
                         <form id="queryForm" action="/queryTtl" method="get">
-                            <input type="hidden" name="directory" value="/stage/tmp">
                             <div class="form-card-title">Query TTL</div>
-                            <div class="form-card-desc">Execute query on TTL file</div>
+                            <div class="form-card-desc">Execute query on a TTL file or directory</div>
                             <div class="form-row">
-                                <div class="form-group">
-                                    <label>File (optional)</label>
-                                    <input type="file" name="fileupload" accept=".ttl">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="queryPathname">File or Directory Path</label>
+                                    <input type="text" id="queryPathname" name="pathname" class="wide" placeholder="/absolute/path/to/file.ttl or /directory">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Query</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-card" id="Difference">
+                        <form id="diffForm" action="/diffBlobs" method="post" enctype="multipart/form-data">
+                            <div class="form-card-title">Difference</div>
+                            <div class="form-card-desc">Drop two model files to diff</div>
+                            <div class="drop-zone-pair" style="margin-top: 0.5rem;">
+                                <div class="drop-zone-slot">
+                                    <div class="drop-zone-label">Blob1</div>
+                                    <div class="drop-zone half" id="drop-diff1" data-input="file-diff1" data-diff-role="blob1">
+                                        <span class="drop-zone-icon">&#8681;</span>
+                                        <span class="drop-zone-text">Drop model file</span>
+                                        <input type="file" id="file-diff1" name="modelFile1" class="drop-zone-input">
+                                    </div>
+                                    <div class="drop-zone-filename" id="name-diff1"></div>
+                                </div>
+                                <div class="drop-zone-slot">
+                                    <div class="drop-zone-label">Blob2</div>
+                                    <div class="drop-zone half" id="drop-diff2" data-input="file-diff2" data-diff-role="blob2">
+                                        <span class="drop-zone-icon">&#8681;</span>
+                                        <span class="drop-zone-text">Drop model file</span>
+                                        <input type="file" id="file-diff2" name="modelFile2" class="drop-zone-input">
+                                    </div>
+                                    <div class="drop-zone-filename" id="name-diff2"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 0.75rem; display: flex; justify-content: flex-end;">
+                                <button type="submit" id="diffSubmitBtn" class="btn btn-primary" style="display: none;">&#8596; Difference</button>
                             </div>
                         </form>
                     </div>
@@ -1236,7 +1408,7 @@
             const container = document.getElementById('stageStatusItems');
             if (!container) return;
             try {
-                const res = await fetch('http://192.168.1.71:8082/stageStatus');
+                const res = await fetch('/stageStatus');
                 const data = await res.json();
                 container.innerHTML = '';
                 for (const [path, count] of Object.entries(data)) {
@@ -1254,6 +1426,115 @@
         }
         loadStageStatus();
         setInterval(loadStageStatus, 30000);
+
+        // File Drop Zone Handling
+        function initDropZones() {
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                const inputId = zone.dataset.input;
+                const fileInput = document.getElementById(inputId);
+                const accept = zone.dataset.accept || '';
+                const nameDisplay = document.getElementById('name-' + zone.id.replace('drop-', ''));
+
+                if (!fileInput) return;
+
+                // Click on zone triggers file input (input is overlaid, this is a fallback)
+                zone.addEventListener('click', (e) => {
+                    if (e.target !== fileInput) fileInput.click();
+                });
+
+                // File selected via browser dialog
+                fileInput.addEventListener('change', () => {
+                    if (fileInput.files.length > 0) {
+                        setDropZoneFile(zone, nameDisplay, fileInput.files[0].name);
+                        updateDiffCard();
+                    }
+                });
+
+                // Drag events
+                zone.addEventListener('dragenter', (e) => {
+                    e.preventDefault();
+                    zone.classList.add('dragover');
+                });
+
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'copy';
+                    zone.classList.add('dragover');
+                });
+
+                zone.addEventListener('dragleave', (e) => {
+                    if (!zone.contains(e.relatedTarget)) {
+                        zone.classList.remove('dragover');
+                    }
+                });
+
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('dragover');
+
+                    const files = e.dataTransfer.files;
+                    if (!files || files.length === 0) return;
+
+                    const file = files[0];
+
+                    // Validate extension if accept is set
+                    if (accept) {
+                        const exts = accept.split(',').map(s => s.trim().toLowerCase());
+                        const fileExt = '.' + file.name.split('.').pop().toLowerCase();
+                        if (!exts.includes(fileExt)) {
+                            zone.classList.add('dragover');
+                            setTimeout(() => zone.classList.remove('dragover'), 600);
+                            if (nameDisplay) nameDisplay.textContent = '⚠ Expected: ' + exts.join(', ');
+                            return;
+                        }
+                    }
+
+                    // Assign dropped file to the hidden input via DataTransfer
+                    const dt = new DataTransfer();
+                    dt.items.add(file);
+                    fileInput.files = dt.files;
+
+                    setDropZoneFile(zone, nameDisplay, file.name);
+
+                    // Diff card: handle autosubmit and button visibility
+                    const diffRole = zone.dataset.diffRole;
+                    if (diffRole) {
+                        updateDiffCard();
+                        // Autosubmit on Blob2 drop if Blob1 is already ready
+                        if (diffRole === 'blob2') {
+                            const blob1Input = document.getElementById('file-diff1');
+                            if (blob1Input && blob1Input.files.length > 0) {
+                                document.getElementById('diffForm').submit();
+                                return;
+                            }
+                        }
+                        return; // Don't auto-submit the diff form on blob1 drop
+                    }
+
+                    // Auto-submit the parent form on drop (for non-diff zones)
+                    const form = zone.closest('form');
+                    if (form) form.submit();
+                });
+            });
+        }
+
+        function updateDiffCard() {
+            const blob1 = document.getElementById('file-diff1');
+            const blob2 = document.getElementById('file-diff2');
+            const btn = document.getElementById('diffSubmitBtn');
+            if (!btn) return;
+            const bothReady = blob1 && blob1.files.length > 0 && blob2 && blob2.files.length > 0;
+            btn.style.display = bothReady ? 'inline-flex' : 'none';
+        }
+
+        function setDropZoneFile(zone, nameDisplay, filename) {
+            zone.classList.add('has-file');
+            const textEl = zone.querySelector('.drop-zone-text');
+            if (textEl) textEl.textContent = '✓ File selected';
+            if (nameDisplay) nameDisplay.textContent = filename;
+        }
+
+        initDropZones();
     </script>
 </body>
 </html>
