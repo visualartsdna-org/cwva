@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RDF Graph Editor — Turtle I/O</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+:root {
+  --bg: #f5f2eb;
+  --bg2: #ece8df;
+  --surface: #ffffff;
+  --border: #d4cfc4;
+  --border2: #b8b2a6;
+  --ink: #1a1714;
+  --ink2: #5a5550;
+  --ink3: #9a9590;
+  --accent: #c0392b;
+  --accent2: #2980b9;
+  --accent3: #27ae60;
+  --selected-fill: #fdf3f2;
+  --selected-stroke: #c0392b;
+  --drop-target: #f0f8f0;
+  --drop-stroke: #27ae60;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'IBM Plex Sans',sans-serif; background:var(--bg); color:var(--ink); height:100vh; overflow:hidden; display:flex; flex-direction:column; }
+
+header { display:flex; align-items:center; justify-content:space-between; padding:0 16px; height:44px; background:var(--ink); color:#f5f2eb; flex-shrink:0; user-select:none; }
+.brand { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; letter-spacing:0.04em; }
+.brand em { color:#e74c3c; font-style:normal; }
+.htools { display:flex; gap:6px; align-items:center; }
+.hbtn { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; border-radius:2px; cursor:pointer; transition:all 0.12s; border:1px solid #444; background:transparent; color:#ccc; }
+.hbtn:hover { background:#333; color:#fff; border-color:#666; }
+.hbtn.go   { background:#c0392b; border-color:#c0392b; color:#fff; }
+.hbtn.go:hover   { background:#e74c3c; }
+.hbtn.save { background:#27ae60; border-color:#27ae60; color:#fff; }
+.hbtn.save:hover { background:#2ecc71; }
+.hsep { width:1px; height:20px; background:#444; margin:0 4px; }
+
+.workspace { flex:1; display:flex; overflow:hidden; }
+
+.panel { background:var(--surface); border-right:1px solid var(--border); display:flex; flex-direction:column; flex-shrink:0; overflow:hidden; }
+.panel-header { padding:8px 12px; background:var(--bg2); border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink2); flex-shrink:0; display:flex; align-items:center; justify-content:space-between; }
+
+.ttl-panel { width:300px; }
+.ttl-area { flex:1; padding:12px; overflow-y:auto; display:flex; flex-direction:column; gap:8px; }
+#ttl-input { font-family:'IBM Plex Mono',monospace; font-size:11px; line-height:1.6; background:var(--bg); border:1px solid var(--border); color:var(--ink); padding:10px; border-radius:3px; resize:none; flex:1; min-height:240px; outline:none; transition:border-color 0.15s; }
+#ttl-input:focus { border-color:var(--accent2); }
+.ttl-hint { font-size:10px; color:var(--ink3); line-height:1.5; padding:8px 10px; background:var(--bg2); border-radius:3px; border:1px solid var(--border); }
+.ttl-hint code { font-family:'IBM Plex Mono',monospace; font-size:9px; background:var(--border); padding:1px 4px; border-radius:2px; }
+
+/* File drop zone */
+.ttl-drop-zone { position:relative; }
+.ttl-drop-zone.drag-over #ttl-input { border-color:var(--accent2); background:rgba(41,128,185,0.05); }
+.ttl-drop-overlay { display:none; position:absolute; inset:0; border:2px dashed var(--accent2); border-radius:3px; background:rgba(41,128,185,0.08); align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent2); pointer-events:none; letter-spacing:0.04em; }
+.ttl-drop-zone.drag-over .ttl-drop-overlay { display:flex; }
+
+.edge-filter-box { background:var(--bg2); border:1px solid var(--border); border-radius:3px; padding:10px 12px; }
+.edge-filter-title { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:var(--ink3); margin-bottom:8px; }
+.ef-group-label { font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.10em; color:var(--ink3); margin:7px 0 3px 0; }
+.ef-group-label:first-of-type { margin-top:0; }
+.edge-filter-row { display:flex; align-items:center; gap:7px; padding:3px 0; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink2); user-select:none; }
+.edge-filter-row:hover { color:var(--ink); }
+.edge-filter-row input[type=checkbox] { width:13px; height:13px; cursor:pointer; accent-color:var(--ink); flex-shrink:0; }
+.ef-swatch { display:inline-block; width:22px; height:3px; border-radius:2px; flex-shrink:0; }
+.ef-dash { background: repeating-linear-gradient(90deg, var(--dc) 0, var(--dc) 4px, transparent 4px, transparent 7px); height:2px; border-radius:0; }
+
+#canvas-wrap { flex:1; position:relative; overflow:hidden; background:var(--bg); }
+#canvas-wrap::before { content:''; position:absolute; inset:0; background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px); background-size:32px 32px; opacity:0.5; pointer-events:none; }
+svg#graph { position:absolute; inset:0; width:100%; height:100%; }
+.canvas-hint { position:absolute; bottom:12px; left:50%; transform:translateX(-50%); font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink3); background:var(--surface); border:1px solid var(--border); padding:5px 14px; border-radius:20px; pointer-events:none; letter-spacing:0.04em; white-space:nowrap; }
+
+.props-panel { width:240px; border-right:none; border-left:1px solid var(--border); }
+.props-body { padding:12px; flex:1; overflow-y:auto; }
+.prop-group { margin-bottom:14px; }
+.prop-label { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:var(--ink3); margin-bottom:4px; }
+.prop-val { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink); word-break:break-all; line-height:1.5; }
+.prop-val.uri { color:var(--accent2); }
+.prop-val.empty { color:var(--ink3); font-style:italic; }
+.prop-divider { border:none; border-top:1px solid var(--border); margin:10px 0; }
+.rel-item { display:flex; align-items:flex-start; gap:5px; padding:3px 0; font-size:10px; color:var(--ink2); font-family:'IBM Plex Mono',monospace; flex-wrap:wrap; }
+.rel-arrow { font-size:9px; color:var(--ink3); flex-shrink:0; margin-top:1px; }
+.rel-pred { font-size:9px; color:var(--accent); padding:1px 5px; background:#fdf3f2; border-radius:2px; border:1px solid #f0c8c5; flex-shrink:0; }
+
+.prop-edit-row { display:flex; gap:4px; margin-bottom:5px; align-items:center; }
+.prop-edit-key { font-family:'IBM Plex Mono',monospace; font-size:10px; background:var(--bg); border:1px solid var(--border); color:var(--ink); padding:3px 6px; border-radius:2px; outline:none; width:80px; flex-shrink:0; }
+.prop-edit-val { font-family:'IBM Plex Mono',monospace; font-size:10px; background:var(--bg); border:1px solid var(--border); color:var(--ink); padding:3px 6px; border-radius:2px; outline:none; flex:1; min-width:0; }
+.prop-edit-key:focus,.prop-edit-val:focus { border-color:var(--accent2); }
+.prop-edit-del { font-size:10px; color:var(--ink3); background:none; border:none; cursor:pointer; padding:2px 5px; border-radius:2px; flex-shrink:0; }
+.prop-edit-del:hover { color:var(--accent); background:#fdf3f2; }
+.prop-add-btn { font-family:'IBM Plex Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.08em; padding:4px 8px; border-radius:2px; cursor:pointer; border:1px dashed var(--border2); background:none; color:var(--ink3); margin-top:4px; width:100%; }
+.prop-add-btn:hover { border-color:var(--accent2); color:var(--accent2); }
+.prop-uri-input,.prop-label-input { font-family:'IBM Plex Mono',monospace; font-size:10px; background:var(--bg); border:1px solid var(--border); color:var(--ink); padding:3px 6px; border-radius:2px; outline:none; width:100%; margin-bottom:4px; }
+.prop-uri-input:focus,.prop-label-input:focus { border-color:var(--accent2); }
+
+.g-node { cursor:grab; }
+.g-node.dragging-node { cursor:grabbing; }
+.node-rect { fill:#fff; stroke:#1a1714; stroke-width:1.5; }
+.node-rect.selected { fill:var(--selected-fill); stroke:var(--selected-stroke); stroke-width:2; }
+.node-rect.drop-target { fill:var(--drop-target); stroke:var(--drop-stroke); stroke-width:2; stroke-dasharray:4,3; }
+.node-label { font-family:'IBM Plex Mono',monospace; font-size:11px; fill:var(--ink); pointer-events:none; }
+.node-uri-text { font-family:'IBM Plex Mono',monospace; font-size:8.5px; fill:var(--ink3); pointer-events:none; }
+.edge { fill:none; stroke-width:1.5; }
+.edge-label { font-family:'IBM Plex Mono',monospace; font-size:8px; fill:var(--ink3); pointer-events:none; }
+
+#statusbar { height:24px; background:var(--ink); display:flex; align-items:center; padding:0 14px; gap:16px; flex-shrink:0; }
+.status-item { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#888; display:flex; align-items:center; gap:5px; }
+.status-item .dot { width:5px; height:5px; border-radius:50%; background:#888; }
+.status-item.ok .dot { background:#27ae60; }
+.status-item.err .dot { background:#c0392b; }
+#zoom-btn { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#888; background:none; border:none; cursor:pointer; padding:0; letter-spacing:0.04em; }
+#zoom-btn:hover { color:#ccc; }
+
+.modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none; align-items:center; justify-content:center; z-index:1000; }
+.modal-backdrop.open { display:flex; }
+.modal { background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:20px; width:580px; max-height:80vh; display:flex; flex-direction:column; gap:12px; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+.modal h2 { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:0.04em; }
+#ttl-output { font-family:'IBM Plex Mono',monospace; font-size:11px; line-height:1.6; background:var(--bg); border:1px solid var(--border); color:var(--ink); padding:12px; border-radius:3px; resize:none; height:380px; outline:none; }
+.modal-footer { display:flex; gap:8px; justify-content:flex-end; }
+.mbtn { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:6px 14px; border-radius:2px; cursor:pointer; border:1px solid var(--border); background:var(--bg2); color:var(--ink2); transition:all 0.12s; }
+.mbtn:hover { background:var(--bg); color:var(--ink); }
+.mbtn.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+.mbtn.primary:hover { background:#e74c3c; }
+
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:3px; }
+
+/* Find bar */
+#find-bar { display:none; align-items:center; gap:6px; background:#111; border:1px solid #444; border-radius:3px; padding:3px 8px; }
+#find-bar.open { display:flex; }
+#find-input { font-family:'IBM Plex Mono',monospace; font-size:11px; background:transparent; border:none; color:#ddd; outline:none; width:160px; }
+#find-input::placeholder { color:#555; }
+#find-count { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#888; white-space:nowrap; min-width:56px; }
+#find-prev, #find-next { font-size:12px; color:#888; background:none; border:none; cursor:pointer; padding:2px 5px; border-radius:2px; }
+#find-prev:hover, #find-next:hover { color:#fff; background:#333; }
+#find-close { font-size:11px; color:#666; background:none; border:none; cursor:pointer; padding:2px 6px; border-radius:2px; margin-left:2px; }
+#find-close:hover { color:#fff; }
+
+/* Match highlight on nodes */
+.node-rect.match       { fill:#fffbe6; stroke:#c8960c; stroke-width:2; }
+.node-rect.match-focus { fill:#fff3cd; stroke:#e67e22; stroke-width:2.5; }
+
+/* Pin indicator on nodes */
+.node-pin { pointer-events:none; }
+
+/* Context menu */
+#ctx-menu { position:fixed; z-index:900; background:var(--surface); border:1px solid var(--border); border-radius:3px; box-shadow:0 4px 16px rgba(0,0,0,0.18); min-width:150px; padding:4px 0; display:none; font-family:'IBM Plex Mono',monospace; }
+#ctx-menu.open { display:block; }
+.ctx-item { padding:7px 14px; font-size:11px; color:var(--ink2); cursor:pointer; display:flex; align-items:center; gap:8px; }
+.ctx-item:hover { background:var(--bg2); color:var(--ink); }
+.ctx-item.danger:hover { background:#fdf3f2; color:var(--accent); }
+.ctx-sep { border:none; border-top:1px solid var(--border); margin:3px 0; }
+
+/* Layout selector */
+.layout-select { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:500; letter-spacing:0.06em; padding:4px 8px; border-radius:2px; cursor:pointer; border:1px solid #444; background:#1a1714; color:#ccc; outline:none; height:26px; }
+.layout-select:hover { border-color:#666; color:#fff; }
+.layout-select option { background:#1a1714; color:#ccc; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">RDF<em>·</em>Graph<em>·</em>Editor</div>
+  <div class="htools">
+    <button class="hbtn go"   onclick="parseTTL()">&#9654; Parse TTL</button>
+    <div class="hsep"></div>
+    <button class="hbtn"      onclick="addNode()">+ Node</button>
+    <select class="layout-select" id="layout-algo" title="Layout algorithm" onchange="onAlgoChange()">
+      <option value="bfs">Layered BFS</option>
+      <option value="force">Force-directed</option>
+      <option value="radial">Compact Tree</option>
+    </select>
+    <button class="hbtn" id="tree-orient-btn" title="Toggle tree orientation" onclick="toggleTreeOrient()" style="display:none;font-size:13px;padding:4px 10px;">⇅</button>
+    <button class="hbtn"      onclick="autoLayout()">&#8635; Layout</button>
+    <div class="hsep"></div>
+    <button class="hbtn save" onclick="exportTTL()">&#8595; Export TTL</button>
+    <div class="hsep"></div>
+    <div id="find-bar">
+      <input id="find-input" type="text" placeholder="Find node…" oninput="findNodes()" onkeydown="findKey(event)"/>
+      <span id="find-count"></span>
+      <button id="find-prev" onclick="findStep(-1)" title="Previous">&#8593;</button>
+      <button id="find-next" onclick="findStep(1)"  title="Next">&#8595;</button>
+      <button id="find-close" onclick="closeFind()">&#10005;</button>
+    </div>
+    <button class="hbtn" onclick="openFind()" title="Find node  (Ctrl+F)">&#128269;</button>
+  </div>
+</header>
+
+<div class="workspace">
+
+  <div class="panel ttl-panel">
+    <div class="panel-header"><span>Turtle Input</span><span style="font-weight:300;color:var(--ink3)">*.ttl</span></div>
+    <div class="ttl-area">
+      <div class="ttl-drop-zone" id="ttl-drop-zone">
+        <textarea id="ttl-input" spellcheck="false" placeholder="Paste Turtle RDF here, or drop a .ttl file&#8230;"></textarea>
+        <div class="ttl-drop-overlay">Drop .ttl file here</div>
+      </div>
+      <div class="ttl-hint">
+        <strong>Drop</strong> a .ttl file onto the text area or paste directly.<br><br>
+        <strong>Drag</strong> a node onto another to reparent. Link type used follows checked order: broader &rsaquo; inScheme &rsaquo; topConceptOf &rsaquo; related &rsaquo; member.<br><br>
+        <strong>Pan</strong> canvas by dragging background. <strong>Scroll</strong> to zoom.<br><br>
+        <code>rdf:type</code> stored as property, not drawn as edge.
+      </div>
+
+      <div class="edge-filter-box" style="margin-bottom:0">
+        <div class="edge-filter-title">Node filters</div>
+        <label class="edge-filter-row" title="Hide nodes whose URI ends with an image/media file extension (.jpg, .png, .pdf, etc.)">
+          <input type="checkbox" id="filter-mimetypes" onchange="applyNodeFilters()">
+          <span style="font-size:13px;line-height:1">🚫</span>
+          <span>Hide media URIs (.jpg, .png…)</span>
+        </label>
+        <label class="edge-filter-row" title="Hide nodes whose URI is an external internet URL not in the visualartsdna.org namespace">
+          <input type="checkbox" id="filter-external" onchange="applyNodeFilters()">
+          <span style="font-size:13px;line-height:1">🌐</span>
+          <span>Hide external URLs</span>
+        </label>
+      </div>
+
+      <div class="edge-filter-box">
+        <div class="edge-filter-title">Show edge types</div>
+
+        <div class="ef-group-label">Semantic relations</div>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-broader"  checked onchange="render()">
+          <span class="ef-swatch" style="background:#8e44ad"></span>
+          <span>skos:broader</span>
+        </label>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-related"          onchange="render()">
+          <span class="ef-swatch ef-dash" style="--dc:#c0392b"></span>
+          <span>skos:related</span>
+        </label>
+
+        <div class="ef-group-label">Scheme &amp; collections</div>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-inscheme"         onchange="render()">
+          <span class="ef-swatch" style="background:#2980b9"></span>
+          <span>skos:inScheme</span>
+        </label>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-topconceptof"     onchange="render()">
+          <span class="ef-swatch" style="background:#1a6fa8"></span>
+          <span>skos:topConceptOf</span>
+        </label>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-member"           onchange="render()">
+          <span class="ef-swatch ef-dash" style="--dc:#d35400"></span>
+          <span>skos:member</span>
+        </label>
+
+        <div class="ef-group-label">Mapping</div>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-exactmatch"       onchange="render()">
+          <span class="ef-swatch" style="background:#16a085"></span>
+          <span>skos:exactMatch</span>
+        </label>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-closematch"       onchange="render()">
+          <span class="ef-swatch ef-dash" style="--dc:#16a085"></span>
+          <span>skos:closeMatch</span>
+        </label>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-broadnarrowmatch" onchange="render()">
+          <span class="ef-swatch ef-dash" style="--dc:#7f8c8d"></span>
+          <span>broad/narrowMatch</span>
+        </label>
+
+        <div class="ef-group-label" style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">Ontology</div>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-subclassof"         onchange="render()">
+          <span class="ef-swatch" style="background:none;border:1.5px solid #e67e22;width:22px;height:8px;border-radius:2px"></span>
+          <span>rdfs:subClassOf</span>
+        </label>
+
+        <div class="ef-group-label" style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">Other</div>
+        <label class="edge-filter-row">
+          <input type="checkbox" id="show-other"            onchange="render()">
+          <span class="ef-swatch ef-dash" style="--dc:#b8b2a6"></span>
+          <span>non-SKOS links</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div id="canvas-wrap">
+    <svg id="graph">
+      <defs>
+        <marker id="arr-broader"      markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#8e44ad"/></marker>
+        <marker id="arr-inscheme"     markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#2980b9"/></marker>
+        <marker id="arr-topconceptof" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#1a6fa8"/></marker>
+        <marker id="arr-related"      markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#c0392b"/></marker>
+        <marker id="arr-member"       markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#d35400"/></marker>
+        <marker id="arr-exactmatch"   markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#16a085"/></marker>
+        <marker id="arr-closematch"   markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#16a085"/></marker>
+        <marker id="arr-broadnarrow"  markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#7f8c8d"/></marker>
+        <marker id="arr-owl"          markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#27ae60"/></marker>
+        <marker id="arr-subclassof"   markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L0,9 L9,4.5 z" fill="none" stroke="#e67e22" stroke-width="1.5"/></marker>
+        <marker id="arr-other"        markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#b8b2a6"/></marker>
+      </defs>
+      <g id="pan-group">
+        <g id="edges-layer"></g>
+        <g id="nodes-layer"></g>
+      </g>
+    </svg>
+    <div class="canvas-hint">Drag canvas to pan &nbsp;&#183;&nbsp; Drag node→node to reparent &nbsp;&#183;&nbsp; Right-click node to pin/delete</div>
+  </div>
+
+  <div class="panel props-panel">
+    <div class="panel-header">Properties</div>
+    <div class="props-body" id="props-body">
+      <div class="prop-val empty">Select a node to inspect</div>
+    </div>
+  </div>
+
+</div>
+
+<div id="statusbar">
+  <div class="status-item ok" id="si-nodes"><div class="dot"></div><span id="s-nodes">0 nodes</span></div>
+  <div class="status-item"    id="si-edges"><div class="dot"></div><span id="s-edges">0 edges</span></div>
+  <div class="status-item"    id="si-msg"  ><div class="dot"></div><span id="s-msg">Ready</span></div>
+  <div style="flex:1"></div>
+  <button id="zoom-btn" onclick="resetZoom()" title="Click to reset zoom">zoom: <span id="s-zoom">100%</span></button>
+</div>
+
+<div class="modal-backdrop" id="export-modal">
+  <div class="modal">
+    <h2>Export &#8212; Turtle (TTL)</h2>
+    <textarea id="ttl-output" readonly spellcheck="false"></textarea>
+    <div class="modal-footer">
+      <button class="mbtn" onclick="copyTTL()">Copy</button>
+      <button class="mbtn" onclick="downloadTTL()">Download</button>
+      <button class="mbtn primary" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="ctx-menu">
+  <div class="ctx-item" id="ctx-pin"   onclick="ctxPin()">📌 <span id="ctx-pin-label">Pin node</span></div>
+  <hr class="ctx-sep">
+  <div class="ctx-item danger"         onclick="ctxDelete()">✕ Delete node</div>
+</div>
+
+<script>
+'use strict';
+
+// ============================================================
+//  STATE
+// ============================================================
+let nodes    = [];  // {id, label, x, y, props:{ln:[{value,type}]}}
+let edges    = [];  // {id, from, to, predicate}  — all full URIs
+let prefixes = {};  // prefix → namespace
+let predURImap = {}; // localname → full URI (for props round-trip)
+
+let selectedNode = null;
+let dragging = null, dragOffX = 0, dragOffY = 0;
+let dropTarget = null;
+let panX = 0, panY = 0, zoom = 1;
+let isPanning = false, panStartX = 0, panStartY = 0, panOriginX = 0, panOriginY = 0;
+let ctxNode = null;  // node targeted by context menu
+let treeOrient = 'H';  // 'H' = top-down (wide), 'V' = left-to-right (tall)
+let findMatches = [];   // nodes currently highlighted by find
+let findFocusIdx = 0;   // which match is the "focus" (panned-to) one
+
+function onAlgoChange() {
+  var algo = document.getElementById('layout-algo').value;
+  var btn  = document.getElementById('tree-orient-btn');
+  btn.style.display = (algo === 'radial') ? '' : 'none';
+}
+
+function toggleTreeOrient() {
+  treeOrient = (treeOrient === 'H') ? 'V' : 'H';
+  var btn = document.getElementById('tree-orient-btn');
+  btn.textContent = (treeOrient === 'H') ? '⇅' : '⇄';
+  btn.title = (treeOrient === 'H') ? 'Currently: top-down  (click for left-right)' : 'Currently: left-right  (click for top-down)';
+  autoLayout();
+}
+
+const NW = 148, NH = 46;
+
+const SKOS_BROADER       = 'http://www.w3.org/2004/02/skos/core#broader';
+const SKOS_INSCHEME      = 'http://www.w3.org/2004/02/skos/core#inScheme';
+const SKOS_RELATED       = 'http://www.w3.org/2004/02/skos/core#related';
+const SKOS_MEMBER        = 'http://www.w3.org/2004/02/skos/core#member';
+const SKOS_EXACTMATCH    = 'http://www.w3.org/2004/02/skos/core#exactMatch';
+const SKOS_CLOSEMATCH    = 'http://www.w3.org/2004/02/skos/core#closeMatch';
+const SKOS_BROADMATCH    = 'http://www.w3.org/2004/02/skos/core#broadMatch';
+const SKOS_NARROWMATCH   = 'http://www.w3.org/2004/02/skos/core#narrowMatch';
+const SKOS_RELATEDMATCH  = 'http://www.w3.org/2004/02/skos/core#relatedMatch';
+const SKOS_TOPCONCEPTOF  = 'http://www.w3.org/2004/02/skos/core#topConceptOf';
+const RDF_TYPE           = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
+const RDFS_SUBCLASSOF    = 'http://www.w3.org/2000/01/rdf-schema#subClassOf';
+
+// All SKOS predicate URIs — used to identify non-SKOS edges for suppression
+const SKOS_PREDS = new Set([
+  SKOS_BROADER, SKOS_INSCHEME, SKOS_RELATED, SKOS_MEMBER,
+  SKOS_EXACTMATCH, SKOS_CLOSEMATCH, SKOS_BROADMATCH, SKOS_NARROWMATCH, SKOS_RELATEDMATCH,
+  SKOS_TOPCONCEPTOF,
+  'http://www.w3.org/2004/02/skos/core#narrower',
+  'http://www.w3.org/2004/02/skos/core#broaderTransitive',
+  'http://www.w3.org/2004/02/skos/core#narrowerTransitive',
+  'http://www.w3.org/2004/02/skos/core#hasTopConcept',
+  'http://www.w3.org/2004/02/skos/core#mappingRelation',
+]);
+
+// Predicates rendered as graph edges (rdf:type excluded — stored as property)
+const STRUCTURAL = new Set([
+  // SKOS semantic relations
+  'http://www.w3.org/2004/02/skos/core#broader',
+  'http://www.w3.org/2004/02/skos/core#narrower',
+  'http://www.w3.org/2004/02/skos/core#related',
+  'http://www.w3.org/2004/02/skos/core#broaderTransitive',
+  'http://www.w3.org/2004/02/skos/core#narrowerTransitive',
+  // SKOS scheme / collection
+  'http://www.w3.org/2004/02/skos/core#inScheme',
+  'http://www.w3.org/2004/02/skos/core#topConceptOf',
+  'http://www.w3.org/2004/02/skos/core#hasTopConcept',
+  'http://www.w3.org/2004/02/skos/core#member',
+  // SKOS mapping
+  'http://www.w3.org/2004/02/skos/core#exactMatch',
+  'http://www.w3.org/2004/02/skos/core#closeMatch',
+  'http://www.w3.org/2004/02/skos/core#broadMatch',
+  'http://www.w3.org/2004/02/skos/core#narrowMatch',
+  'http://www.w3.org/2004/02/skos/core#relatedMatch',
+  'http://www.w3.org/2004/02/skos/core#mappingRelation',
+  // Non-SKOS (kept so they parse as edges, but hidden by default via show-other)
+  'http://www.w3.org/2002/07/owl#sameAs',
+  'http://www.w3.org/2002/07/owl#imports',
+  'http://www.w3.org/2000/01/rdf-schema#subClassOf',
+  'http://www.w3.org/2000/01/rdf-schema#subPropertyOf',
+  'http://www.w3.org/2000/01/rdf-schema#seeAlso',
+  'http://www.w3.org/2000/01/rdf-schema#isDefinedBy',
+]);
+
+const LABEL_PREDS = [
+  'http://www.w3.org/2000/01/rdf-schema#label',
+  'http://www.w3.org/2004/02/skos/core#prefLabel',
+  'http://xmlns.com/foaf/0.0/name',
+  'http://purl.org/dc/elements/1.1/title',
+  'http://purl.org/dc/terms/title',
+];
+
+const DEFAULT_PREFIXES = {
+  rdf:     'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+  rdfs:    'http://www.w3.org/2000/01/rdf-schema#',
+  owl:     'http://www.w3.org/2002/07/owl#',
+  skos:    'http://www.w3.org/2004/02/skos/core#',
+  xsd:     'http://www.w3.org/2001/XMLSchema#',
+  dc:      'http://purl.org/dc/elements/1.1/',
+  dcterms: 'http://purl.org/dc/terms/',
+  foaf:    'http://xmlns.com/foaf/0.0/',
+};
+
+// ============================================================
+//  TURTLE PARSER
+// ============================================================
+function parseTTL() {
+  const src = document.getElementById('ttl-input').value;
+  if (!src.trim()) { setStatus('err','No input'); return; }
+  try {
+    const result = turtleParse(src);
+    prefixes = result.prefixes;
+    buildGraph(result.triples);
+    autoLayout();
+    setStatus('ok', 'Parsed ' + result.triples.length + ' triples \u2192 ' + nodes.length + ' nodes, ' + edges.length + ' edges');
+  } catch(e) {
+    setStatus('err','Parse error: ' + e.message);
+    console.error(e);
+  }
+}
+
+function turtleParse(src) {
+  const pfx = Object.assign({}, DEFAULT_PREFIXES);
+
+  // Strip Turtle comments: # to end-of-line, but ONLY outside URI angle-brackets AND outside quoted strings.
+  // A naive regex destroys both fragment identifiers (#broader) and any # that appears inside a literal.
+  function stripComments(s) {
+    var out = '', inUri = false, inStr = false, strChar = '';
+    for (var i = 0; i < s.length; i++) {
+      var c = s[i];
+
+      if (inStr) {
+        // Inside a quoted literal — pass everything through, handle escape sequences
+        out += c;
+        if (c === '\\') { i++; if (i < s.length) out += s[i]; continue; }
+        if (c === strChar) {
+          // Could be end of triple-quote
+          if (s.slice(i, i+3) === strChar+strChar+strChar) {
+            out += s[i+1] + s[i+2]; i += 2;
+          }
+          inStr = false;
+        }
+        continue;
+      }
+
+      if (inUri) {
+        out += c;
+        if (c === '>') inUri = false;
+        continue;
+      }
+
+      // Check for string open (triple-quote takes priority)
+      if (c === '"' || c === "'") {
+        if (s.slice(i, i+3) === c+c+c) {
+          inStr = true; strChar = c;
+          out += c+c+c; i += 2;
+        } else {
+          inStr = true; strChar = c;
+          out += c;
+        }
+        continue;
+      }
+
+      if (c === '<') { inUri = true; out += c; continue; }
+
+      if (c === '#') {
+        // Real comment — skip to end of line
+        while (i < s.length && s[i] !== '\n') i++;
+        out += '\n';
+        continue;
+      }
+
+      out += c;
+    }
+    return out;
+  }
+  src = stripComments(src);
+
+  // Extract @prefix declarations first — must consume the full declaration including the dot
+  // Use a greedy approach: find @prefix ... <uri> then skip to the dot
+  src = src.replace(/@prefix\s+(\w*):\s*<([^>]*)>\s*\./gi, function(_,p,ns){ pfx[p]=ns.trim(); return ' '; });
+  // Also handle @prefix without trailing dot (non-conformant but seen in practice)
+  src = src.replace(/@prefix\s+(\w*):\s*<([^>]*)>/gi, function(_,p,ns){ pfx[p]=ns.trim(); return ' '; });
+  // SPARQL-style PREFIX (no dot)
+  src = src.replace(/PREFIX\s+(\w*):\s*<([^>]*)>/gi, function(_,p,ns){ pfx[p]=ns.trim(); return ' '; });
+
+  function expand(tok) {
+    tok = (tok||'').trim();
+    if (tok === 'a') return pfx.rdf + 'type';
+    if (tok.startsWith('<') && tok.endsWith('>')) return tok.slice(1,-1);
+    var m = tok.match(/^(\w+):(.+)$/);
+    if (m && pfx[m[1]]) return pfx[m[1]] + m[2];
+    return tok;
+  }
+
+  // Tokeniser
+  function tokenize(s) {
+    var toks = [], i = 0;
+    while (i < s.length) {
+      if (/\s/.test(s[i])) { i++; continue; }
+      if (s[i]==='"' || s[i]==="'") {
+        var q = s[i];
+        if (s.slice(i,i+3)===q+q+q) {
+          var j=i+3; while(j<s.length && s.slice(j,j+3)!==q+q+q) j++;
+          toks.push(s.slice(i,j+3)); i=j+3;
+        } else {
+          var j=i+1; while(j<s.length && s[j]!==q){ if(s[j]==='\\') j++; j++; }
+          toks.push(s.slice(i,j+1)); i=j+1;
+        }
+        // consume lang tag / datatype
+        // consume lang tag / datatype — KEEP them attached to the token
+        if (i<s.length && s[i]==='@') {
+          var k=i; while(k<s.length && /[a-zA-Z0-9-]/.test(s[k])) k++;
+          toks[toks.length-1] += s.slice(i,k);  // e.g. "foo"@en
+          i=k;
+        } else if (s.slice(i,i+2)==='^^') {
+          var k=i+2;
+          if(s[k]==='<'){ while(k<s.length&&s[k]!=='>') k++; k++; }
+          else { while(k<s.length&&!/[\s,;.]/.test(s[k])) k++; }
+          toks[toks.length-1] += s.slice(i,k);  // e.g. "foo"^^xsd:integer
+          i=k;
+        }
+      }
+      if (s[i]==='<') { var j=i+1; while(j<s.length && s[j]!=='>') j++; toks.push(s.slice(i,j+1)); i=j+1; continue; }
+      if (s[i]==='.'||s[i]===';'||s[i]===',') { toks.push(s[i]); i++; continue; }
+      var j=i; while(j<s.length && !/[\s,;.<>"']/.test(s[j])) j++;
+      if (j>i) toks.push(s.slice(i,j));
+      i=j;
+    }
+    return toks;
+  }
+
+  var tokens = tokenize(src), pos = 0;
+  var triples = [];
+
+  function peek()    { return tokens[pos]; }
+  function consume() { return tokens[pos++]; }
+
+  function parseTerm() {
+    var t = consume();
+    if (!t) return null;
+    if (t.startsWith('"') || t.startsWith("'")) {
+      var tripleQ = (t.startsWith('"""') || t.startsWith("'''"));
+      var q = tripleQ ? t.slice(0,3) : t[0];
+      var body = tripleQ ? t.slice(3) : t.slice(1);
+      var lang = null, datatype = null;
+
+      // Find the LAST closing quote to split content from optional suffix
+      var closeIdx = body.lastIndexOf(q);
+      var suffix = '';
+      if (closeIdx >= 0) { suffix = body.slice(closeIdx + q.length); body = body.slice(0, closeIdx); }
+
+      // Parse ^^<uri> / ^^prefix:local / @lang suffix
+      var dtM = suffix.match(/^\^\^(.+)$/);
+      var lgM = suffix.match(/^@([a-zA-Z0-9-]+)$/);
+      if (dtM) { var dts=dtM[1]; datatype = (dts.startsWith('<')&&dts.endsWith('>')) ? dts.slice(1,-1) : expand(dts); }
+      if (lgM) lang = lgM[1];
+
+      // Unescape Turtle escape sequences → clean stored value
+      var value = body
+        .replace(/\\"/g,  '"')
+        .replace(/\\'/g,  "'")
+        .replace(/\\\\/g, '\\')
+        .replace(/\\n/g,  '\n')
+        .replace(/\\r/g,  '\r')
+        .replace(/\\t/g,  '\t');
+
+      return { type:'literal', value:value, lang:lang, datatype:datatype };
+    }
+    if (t.startsWith('_:')) return { type:'bnode', value:t };
+
+    // Turtle bare numeric / boolean literals — must NOT be treated as URIs
+    // xsd:integer:  optional sign + digits only
+    if (/^[+-]?\d+$/.test(t))
+      return { type:'literal', value:t, lang:null, datatype:'http://www.w3.org/2001/XMLSchema#integer' };
+    // xsd:decimal:  digits with an embedded dot (no exponent)
+    if (/^[+-]?\d*\.\d+$/.test(t) || /^[+-]?\d+\.\d*$/.test(t))
+      return { type:'literal', value:t, lang:null, datatype:'http://www.w3.org/2001/XMLSchema#decimal' };
+    // xsd:double:   scientific notation
+    if (/^[+-]?(\d+\.?\d*|\d*\.\d+)[eE][+-]?\d+$/.test(t))
+      return { type:'literal', value:t, lang:null, datatype:'http://www.w3.org/2001/XMLSchema#double' };
+    // xsd:boolean
+    if (t === 'true' || t === 'false')
+      return { type:'literal', value:t, lang:null, datatype:'http://www.w3.org/2001/XMLSchema#boolean' };
+
+    return { type:'uri', value:expand(t) };
+  }
+
+  while (pos < tokens.length) {
+    var st = peek();
+    if (!st || st==='.') { consume(); continue; }
+    var subjTok = consume();
+    if (!subjTok || subjTok==='.') continue;
+    var subj = { type: subjTok.startsWith('_:') ? 'bnode' : 'uri', value: expand(subjTok) };
+
+    var pLoop = true;
+    while (pLoop && pos < tokens.length) {
+      var pt = peek();
+      if (!pt || pt==='.') { consume(); break; }
+      var pred = expand(consume());
+
+      var oLoop = true;
+      while (oLoop && pos < tokens.length) {
+        var obj = parseTerm();
+        if (obj) triples.push({ s:subj, p:{type:'uri',value:pred}, o:obj });
+        var nx = peek();
+        if (nx===',') consume();
+        else oLoop = false;
+      }
+
+      var nx2 = peek();
+      if (nx2===';')      { consume(); }
+      else if (nx2==='.')  { consume(); pLoop=false; }
+      else                 { pLoop=false; }
+    }
+  }
+
+  return { prefixes:pfx, triples:triples };
+}
+
+// ============================================================
+//  GRAPH BUILDER
+// ============================================================
+function buildGraph(triples) {
+  var nodeMap  = {};
+  var labelMap = {};
+  var edgeList = [];
+  predURImap   = {};
+  findMatches  = [];
+  findFocusIdx = 0;
+  document.getElementById('find-count').textContent = '';
+  document.getElementById('find-input').value = '';
+
+  // First pass: labels
+  for (var i=0; i<triples.length; i++) {
+    var t=triples[i];
+    if (t.s.type==='uri' && t.o.type==='literal' && LABEL_PREDS.indexOf(t.p.value)>=0) {
+      if (!labelMap[t.s.value]) labelMap[t.s.value] = t.o.value;
+    }
+  }
+
+  function ensureNode(uri) {
+    if (!nodeMap[uri]) nodeMap[uri] = { id:uri, label:labelMap[uri]||localName(uri), x:0, y:0, pinned:false, props:{} };
+  }
+
+  for (var i=0; i<triples.length; i++) {
+    var t=triples[i];
+    if (t.s.type!=='uri' && t.s.type!=='bnode') continue;
+    var sURI = t.s.value, pURI = t.p.value, ln = localName(pURI);
+    ensureNode(sURI);
+    predURImap[ln] = pURI;
+
+    if (pURI === RDF_TYPE) {
+      // Store as property, do NOT draw as edge (#4)
+      // Store object as full URI so export can re-abbreviate cleanly
+      predURImap[ln] = pURI;  // ensure rdf:type is in the map
+      var p=nodeMap[sURI].props;
+      if (!p[ln]) p[ln]=[];
+      var objVal = t.o.type==='uri' ? t.o.value : t.o.value;
+      p[ln].push({ value: objVal, type: t.o.type });
+    } else if (STRUCTURAL.has(pURI) && t.o.type==='uri') {
+      ensureNode(t.o.value);
+      edgeList.push({ from:sURI, to:t.o.value, predicate:pURI });
+    } else if (t.o.type==='literal') {
+      var p=nodeMap[sURI].props;
+      if (!p[ln]) p[ln]=[];
+      p[ln].push({ value:t.o.value, type:'literal', lang:t.o.lang||null, datatype:t.o.datatype||null });
+    } else if (t.o.type==='uri') {
+      // Other URI predicates → edge
+      ensureNode(t.o.value);
+      edgeList.push({ from:sURI, to:t.o.value, predicate:pURI });
+    }
+  }
+
+  // Deduplicate edges
+  var seen = new Set();
+  edges = [];
+  for (var i=0; i<edgeList.length; i++) {
+    var e=edgeList[i], k=e.from+'|'+e.predicate+'|'+e.to;
+    if (!seen.has(k)) { seen.add(k); edges.push({ id:k, from:e.from, to:e.to, predicate:e.predicate }); }
+  }
+
+  nodes = Object.values(nodeMap);
+  updateStatus();
+  render();
+}
+
+// ============================================================
+//  UTILITIES
+// ============================================================
+function localName(uri) {
+  if (!uri) return '?';
+  var h=uri.lastIndexOf('#'), s=uri.lastIndexOf('/'), p=Math.max(h,s);
+  return p>=0 ? uri.slice(p+1) : uri;
+}
+
+function abbreviate(uri) {
+  if (!uri) return '';
+  var sorted = Object.entries(prefixes).sort(function(a,b){ return b[1].length-a[1].length; });
+  for (var i=0; i<sorted.length; i++) {
+    var p=sorted[i][0], ns=sorted[i][1];
+    if (uri.startsWith(ns)) return p+':'+uri.slice(ns.length);
+  }
+  return '<'+uri+'>';
+}
+
+function truncate(s,n) { s=s||''; return s.length<=n ? s : s.slice(0,n-1)+'\u2026'; }
+
+function escH(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ============================================================
+//  LAYOUT  — dispatcher + three algorithms
+// ============================================================
+function autoLayout() {
+  if (!nodes.length) return;
+  var algo = document.getElementById('layout-algo').value;
+  if      (algo === 'force')  layoutForce();
+  else if (algo === 'radial') layoutRadial();
+  else                        layoutBFS();
+}
+
+// ── 1. Layered BFS — pin-aware: each pinned node anchors its subtree ──
+function layoutBFS() {
+  var W = document.getElementById('canvas-wrap').clientWidth  || 900;
+  var H = document.getElementById('canvas-wrap').clientHeight || 600;
+  var HGAP = 40, VGAP = 80;
+
+  // Build parent/child maps via skos:broader and rdfs:subClassOf
+  var children={}, parents={};
+  nodes.forEach(function(n){ children[n.id]=[]; parents[n.id]=[]; });
+  edges.forEach(function(e){
+    if (e.predicate===SKOS_BROADER || e.predicate===RDFS_SUBCLASSOF) {
+      if (!children[e.to])  children[e.to]=[];
+      if (!parents[e.from]) parents[e.from]=[];
+      children[e.to].push(e.from);
+      parents[e.from].push(e.to);
+    }
+  });
+
+  var pinned = nodes.filter(function(n){ return n.pinned; });
+
+  // ── No pinned nodes: classic centered BFS ────────────────────
+  if (!pinned.length) {
+    var roots = nodes.filter(function(n){ return (parents[n.id]||[]).length===0; });
+    var layer={};
+    nodes.forEach(function(n){ layer[n.id]=-1; });
+    var queue = roots.length ? roots.map(function(r){ return {id:r.id,l:0}; })
+                             : nodes.map(function(n){ return {id:n.id,l:0}; });
+    var maxL=0;
+    while (queue.length) {
+      var item=queue.shift(), nid=item.id, l=item.l;
+      if (layer[nid]>=l) continue;
+      layer[nid]=l; if(l>maxL) maxL=l;
+      (children[nid]||[]).forEach(function(c){ queue.push({id:c,l:l+1}); });
+    }
+    nodes.forEach(function(n){ if(layer[n.id]<0) layer[n.id]=0; });
+    var byLayer={};
+    nodes.forEach(function(n){ var l=layer[n.id]; if(!byLayer[l]) byLayer[l]=[]; byLayer[l].push(n); });
+    var totalH=(maxL+1)*(NH+VGAP)-VGAP;
+    var startY=Math.max(50,(H-totalH)/2);
+    Object.entries(byLayer).forEach(function(entry){
+      var l=+entry[0], group=entry[1];
+      var totalW=group.length*(NW+HGAP)-HGAP;
+      var startX=Math.max(50,(W-totalW)/2);
+      group.forEach(function(n,i){ n.x=startX+i*(NW+HGAP); n.y=startY+l*(NH+VGAP); });
+    });
+    panX=0; panY=0; zoom=1; applyTransform();
+    render(); setStatus('ok','BFS layout');
+    return;
+  }
+
+  // ── With pinned nodes: anchor each pinned node's subtree under it ──
+  // Each pinned node stays where it is.  Its descendants are laid out in
+  // BFS layers directly below it, centered on the pin's x position.
+  // Nodes not in any pinned subtree get a normal BFS block placed below.
+
+  var assigned = new Set();
+  pinned.forEach(function(p){ assigned.add(p.id); });
+
+  pinned.forEach(function(pin){
+    // BFS down through children[] to collect the subtree
+    var subLayer={};
+    subLayer[pin.id]=0;
+    var q=[pin.id];
+    while (q.length) {
+      var cur=q.shift();
+      (children[cur]||[]).forEach(function(cid){
+        if (subLayer[cid]==null) { subLayer[cid]=subLayer[cur]+1; q.push(cid); }
+      });
+    }
+
+    // Group subtree nodes by relative layer (skip layer 0 = the pin itself)
+    var bySubLayer={};
+    Object.entries(subLayer).forEach(function(e2){
+      var nid=e2[0], sl=e2[1];
+      if (sl===0) return;
+      if (!bySubLayer[sl]) bySubLayer[sl]=[];
+      bySubLayer[sl].push(nid);
+    });
+
+    // Place each layer centered on the pin, below it
+    Object.entries(bySubLayer).forEach(function(e2){
+      var sl=+e2[0];
+      var group=e2[1].filter(function(id){ return !assigned.has(id); });
+      if (!group.length) return;
+      var totalW=group.length*(NW+HGAP)-HGAP;
+      var startX=(pin.x+NW/2)-totalW/2;
+      var y=pin.y + sl*(NH+VGAP);
+      group.forEach(function(nid,i){
+        var n=nodes.find(function(x){ return x.id===nid; });
+        if (n){ n.x=startX+i*(NW+HGAP); n.y=y; assigned.add(nid); }
+      });
+    });
+  });
+
+  // ── Remaining free nodes: normal BFS block placed below all pinned subtrees ──
+  var free=nodes.filter(function(n){ return !assigned.has(n.id); });
+  if (free.length) {
+    var maxUsedY=0;
+    nodes.filter(function(n){ return assigned.has(n.id); })
+         .forEach(function(n){ if(n.y+NH>maxUsedY) maxUsedY=n.y+NH; });
+    var freeStartY = maxUsedY + VGAP*2;
+
+    var freeSet = new Set(free.map(function(n){ return n.id; }));
+    var fRoots = free.filter(function(n){
+      return (parents[n.id]||[]).every(function(p){ return !freeSet.has(p); });
+    });
+    if (!fRoots.length) fRoots = [free[0]];
+
+    var fLayer={};
+    free.forEach(function(n){ fLayer[n.id]=-1; });
+    var fq=fRoots.map(function(r){ return {id:r.id,l:0}; });
+    var fMaxL=0;
+    while (fq.length){
+      var fi=fq.shift(), fid=fi.id, fl=fi.l;
+      if (fLayer[fid]>=fl) continue;
+      fLayer[fid]=fl; if(fl>fMaxL) fMaxL=fl;
+      (children[fid]||[]).filter(function(c){ return freeSet.has(c); })
+        .forEach(function(c){ fq.push({id:c,l:fl+1}); });
+    }
+    free.forEach(function(n){ if(fLayer[n.id]<0) fLayer[n.id]=0; });
+
+    var fByLayer={};
+    free.forEach(function(n){ var l=fLayer[n.id]; if(!fByLayer[l]) fByLayer[l]=[]; fByLayer[l].push(n); });
+    Object.entries(fByLayer).forEach(function(entry){
+      var l=+entry[0], group=entry[1];
+      var totalW=group.length*(NW+HGAP)-HGAP;
+      var startX=Math.max(50,(W-totalW)/2);
+      group.forEach(function(n,i){ n.x=startX+i*(NW+HGAP); n.y=freeStartY+l*(NH+VGAP); });
+    });
+  }
+
+  panX=0; panY=0; zoom=1; applyTransform();
+  render();
+  setStatus('ok','BFS layout — '+pinned.length+' pinned anchor'+(pinned.length>1?'s':''));
+}
+
+// ── 2. Force-directed — stable with cooling + gravity + bounded step ──
+function layoutForce() {
+  var W = document.getElementById('canvas-wrap').clientWidth  || 900;
+  var H = document.getElementById('canvas-wrap').clientHeight || 600;
+  var cx = W/2, cy = H/2;
+
+  // Reinitialise free nodes on a tight grid so simulation starts bounded.
+  var freeNodes = nodes.filter(function(n){ return !n.pinned; });
+  var cols = Math.max(1, Math.ceil(Math.sqrt(freeNodes.length * 1.4)));
+  freeNodes.forEach(function(n, i){
+    var col = i % cols, row = Math.floor(i / cols);
+    n.x = cx - (cols*(NW+20))/2 + col*(NW+20) + (Math.random()-0.5)*8;
+    n.y = cy - (Math.ceil(freeNodes.length/cols)*(NH+20))/2 + row*(NH+20) + (Math.random()-0.5)*8;
+  });
+
+  // Scale ideal distance to graph density so result isn't too sparse/dense
+  var N = nodes.length;
+  var IDEAL = Math.min(180, Math.max(70, Math.sqrt(W*H*0.55 / Math.max(N,1)) * 0.85));
+  var KS    = 0.05;
+  var KR    = IDEAL * IDEAL * Math.min(N, 80);
+  var ITERS = 350;
+
+  // Use index-based typed arrays for speed
+  var nodeIdx={};
+  nodes.forEach(function(n,i){ nodeIdx[n.id]=i; });
+  var vx = new Float64Array(N), vy = new Float64Array(N);
+
+  for (var iter=0; iter<ITERS; iter++) {
+    var fx = new Float64Array(N), fy = new Float64Array(N);
+    var temp = Math.max(0.02, 1 - iter/ITERS);   // linear cooling 1→0
+    var maxStep = Math.max(4, IDEAL * temp * 0.45);
+
+    // Repulsion
+    for (var i=0; i<N; i++){
+      for (var j=i+1; j<N; j++){
+        var a=nodes[i], b=nodes[j];
+        var dx=(b.x+NW/2)-(a.x+NW/2), dy=(b.y+NH/2)-(a.y+NH/2);
+        var dist2=dx*dx+dy*dy+1, dist=Math.sqrt(dist2);
+        var f=KR/dist2, ux=dx/dist, uy=dy/dist;
+        fx[i]-=f*ux; fy[i]-=f*uy;
+        fx[j]+=f*ux; fy[j]+=f*uy;
+      }
+    }
+
+    // Spring attraction along edges
+    edges.forEach(function(e){
+      var ai=nodeIdx[e.from], bi=nodeIdx[e.to];
+      if (ai==null||bi==null) return;
+      var a=nodes[ai], b=nodes[bi];
+      var dx=(b.x+NW/2)-(a.x+NW/2), dy=(b.y+NH/2)-(a.y+NH/2);
+      var dist=Math.sqrt(dx*dx+dy*dy)+0.01;
+      var f=KS*(dist-IDEAL), ux=dx/dist, uy=dy/dist;
+      fx[ai]+=f*ux; fy[ai]+=f*uy;
+      fx[bi]-=f*ux; fy[bi]-=f*uy;
+    });
+
+    // Weak gravity toward canvas centre (prevents drift off-screen)
+    for (var i=0; i<N; i++){
+      fx[i]+=(cx-(nodes[i].x+NW/2))*0.004;
+      fy[i]+=(cy-(nodes[i].y+NH/2))*0.004;
+    }
+
+    // Integrate with velocity damping + clamped step
+    for (var i=0; i<N; i++){
+      if (nodes[i].pinned) continue;
+      vx[i]=(vx[i]+fx[i])*0.60;
+      vy[i]=(vy[i]+fy[i])*0.60;
+      var spd=Math.sqrt(vx[i]*vx[i]+vy[i]*vy[i]);
+      if (spd>maxStep){ vx[i]=vx[i]/spd*maxStep; vy[i]=vy[i]/spd*maxStep; }
+      nodes[i].x+=vx[i]; nodes[i].y+=vy[i];
+    }
+  }
+
+  // Re-centre around canvas (pinned nodes excluded from centering offset)
+  var xs=nodes.map(function(n){ return n.x; }), ys=nodes.map(function(n){ return n.y; });
+  var minX=Math.min.apply(null,xs), minY=Math.min.apply(null,ys);
+  var maxX=Math.max.apply(null,xs)+NW, maxY=Math.max.apply(null,ys)+NH;
+  var offX=(W-(maxX-minX))/2-minX, offY=(H-(maxY-minY))/2-minY;
+  nodes.forEach(function(n){ if(!n.pinned){ n.x+=offX; n.y+=offY; } });
+
+  panX=0; panY=0; zoom=1; applyTransform();
+  render();
+  setStatus('ok','Force layout ('+N+' nodes, ideal '+Math.round(IDEAL)+'px)');
+}
+
+
+
+// ── 3. Compact Tree — Reingold-Tilford proportional subtree layout ──
+// Replaces radial (which produced overlapping nodes for dense hierarchies).
+// Each subtree gets column-width proportional to its leaf count → no overlaps.
+function layoutRadial() {
+  var W = document.getElementById('canvas-wrap').clientWidth  || 900;
+  var H = document.getElementById('canvas-wrap').clientHeight || 600;
+  var HGAP = 16, VGAP = 80;
+
+  // Build parent/child maps via skos:broader and rdfs:subClassOf
+  var children={}, parents={};
+  nodes.forEach(function(n){ children[n.id]=[]; parents[n.id]=[]; });
+  edges.forEach(function(e){
+    if (e.predicate===SKOS_BROADER || e.predicate===RDFS_SUBCLASSOF) {
+      if (!children[e.to])  children[e.to]=[];
+      if (!parents[e.from]) parents[e.from]=[];
+      children[e.to].push(e.from);
+      parents[e.from].push(e.to);
+    }
+  });
+
+  var roots = nodes.filter(function(n){ return (parents[n.id]||[]).length===0; });
+  if (!roots.length) roots = [nodes[0]];
+
+  // Step 1: BFS depth assignment
+  var depth={};
+  nodes.forEach(function(n){ depth[n.id]=-1; });
+  var bfsQ=roots.map(function(r){ return {id:r.id,d:0}; });
+  var maxDepth=0;
+  while (bfsQ.length){
+    var it=bfsQ.shift();
+    if (depth[it.id]>=0) continue;
+    depth[it.id]=it.d;
+    if(it.d>maxDepth) maxDepth=it.d;
+    (children[it.id]||[]).forEach(function(c){ bfsQ.push({id:c,d:it.d+1}); });
+  }
+  nodes.forEach(function(n){ if(depth[n.id]<0) depth[n.id]=0; });
+
+  // Step 2: post-order leaf count for subtree width
+  var leafCount={};
+  var visited=new Set();
+  function computeLeaves(id){
+    if(visited.has(id)){ leafCount[id]=leafCount[id]||1; return; }
+    visited.add(id);
+    var kids=(children[id]||[]).filter(function(c){ return depth[c]>depth[id]; });
+    if(!kids.length){ leafCount[id]=1; return; }
+    var total=0;
+    kids.forEach(function(cid){ computeLeaves(cid); total+=leafCount[cid]||1; });
+    leafCount[id]=total;
+  }
+  roots.forEach(function(r){ computeLeaves(r.id); });
+  nodes.forEach(function(n){ if(!leafCount[n.id]) leafCount[n.id]=1; });
+
+  // Step 3: pre-order slot assignment (each node owns a contiguous slot range)
+  var xSlot={};
+  var slotCursor=0;
+  function assignSlots(id){
+    var kids=(children[id]||[]).filter(function(c){ return depth[c]>depth[id]; });
+    if(!kids.length){
+      xSlot[id]=slotCursor+0.5;
+      slotCursor+=1;
+      return;
+    }
+    var start=slotCursor;
+    kids.forEach(function(cid){ assignSlots(cid); });
+    xSlot[id]=(start+slotCursor)/2;
+  }
+  roots.forEach(function(r){
+    assignSlots(r.id);
+    slotCursor+=0.5;  // small gap between root subtrees
+  });
+
+  // Disconnected nodes go in a final row
+  var unvisited=nodes.filter(function(n){ return xSlot[n.id]==null; });
+  unvisited.forEach(function(n,i){ xSlot[n.id]=slotCursor+i+0.5; });
+
+  // Step 4: slot → pixel — axis depends on treeOrient
+  // 'H' (top-down):   slot → x,  depth → y   (wide, many columns)
+  // 'V' (left-right): slot → y,  depth → x   (tall, many rows)
+  var totalSlots = slotCursor + unvisited.length;
+  var horiz = (treeOrient !== 'V');
+
+  var slotDim  = horiz ? W : H;  // canvas dimension along the slot axis
+  var depthDim = horiz ? H : W;  // canvas dimension along the depth axis
+  var nodeSlotSz  = horiz ? NW : NH;  // node size along slot axis
+  var nodeDepthSz = horiz ? NH : NW;  // node size along depth axis
+  var slotGap  = horiz ? HGAP : VGAP;
+  var depthGap = horiz ? VGAP : HGAP;
+
+  var slotW   = Math.max(nodeSlotSz + slotGap, (slotDim - 80) / Math.max(totalSlots, 1));
+  var totalDepthPx = (maxDepth + 1) * (nodeDepthSz + depthGap) - depthGap;
+  var startDepth   = Math.max(40, (depthDim - totalDepthPx) / 2);
+
+  var pinnedNodes = nodes.filter(function(n){ return n.pinned; });
+
+  // First pass: place everything ignoring pins
+  nodes.forEach(function(n){
+    var slotPx  = xSlot[n.id] * slotW - nodeSlotSz / 2;
+    var depthPx = startDepth + depth[n.id] * (nodeDepthSz + depthGap);
+    n._tmpX = horiz ? slotPx  : depthPx;
+    n._tmpY = horiz ? depthPx : slotPx;
+  });
+
+  // Centre along the slot axis
+  var slotAxis = nodes.map(function(n){ return horiz ? n._tmpX : n._tmpY; });
+  var slotMin  = Math.min.apply(null, slotAxis);
+  var slotMax  = Math.max.apply(null, slotAxis) + nodeSlotSz;
+  var globalOff = (slotDim - (slotMax - slotMin)) / 2 - slotMin;
+  nodes.forEach(function(n){
+    if (horiz) n._tmpX += globalOff;
+    else       n._tmpY += globalOff;
+  });
+
+  if (!pinnedNodes.length) {
+    nodes.forEach(function(n){ n.x = n._tmpX; n.y = n._tmpY; });
+  } else {
+    var subtreeShiftX = {}, subtreeShiftY = {};
+
+    pinnedNodes.forEach(function(pin){
+      var subtree = [pin.id], sq = [pin.id];
+      while (sq.length){
+        var cur = sq.shift();
+        (children[cur]||[]).filter(function(c){ return depth[c] > depth[cur]; })
+          .forEach(function(c){ subtree.push(c); sq.push(c); });
+      }
+      var dx = pin.x - pin._tmpX;
+      var dy = pin.y - pin._tmpY;
+      subtree.forEach(function(id){
+        if (!subtreeShiftX.hasOwnProperty(id)){ subtreeShiftX[id]=dx; subtreeShiftY[id]=dy; }
+      });
+    });
+
+    nodes.forEach(function(n){
+      if (n.pinned) return;
+      var dx = subtreeShiftX.hasOwnProperty(n.id) ? subtreeShiftX[n.id] : 0;
+      var dy = subtreeShiftY.hasOwnProperty(n.id) ? subtreeShiftY[n.id] : 0;
+      n.x = n._tmpX + dx;
+      n.y = n._tmpY + dy;
+    });
+  }
+
+  // Clean up temp props
+  nodes.forEach(function(n){ delete n._tmpX; delete n._tmpY; });
+
+  panX=0; panY=0; zoom=1; applyTransform();
+  render();
+  var orient = (treeOrient === 'V') ? ' [left-right]' : ' [top-down]';
+  setStatus('ok','Tree layout'+orient+' — '+nodes.length+' nodes, '+roots.length+' root'+(roots.length>1?'s':'')+', '+maxDepth+' levels deep');
+}
+
+
+
+
+// ============================================================
+//  RENDER
+// ============================================================
+function edgeStyle(pred) {
+  if (pred === SKOS_BROADER ||
+      pred === 'http://www.w3.org/2004/02/skos/core#narrower' ||
+      pred === 'http://www.w3.org/2004/02/skos/core#broaderTransitive' ||
+      pred === 'http://www.w3.org/2004/02/skos/core#narrowerTransitive')
+    return { stroke:'#8e44ad', marker:'arr-broader' };
+
+  if (pred === SKOS_INSCHEME)
+    return { stroke:'#2980b9', marker:'arr-inscheme' };
+
+  if (pred === SKOS_TOPCONCEPTOF ||
+      pred === 'http://www.w3.org/2004/02/skos/core#hasTopConcept')
+    return { stroke:'#1a6fa8', marker:'arr-topconceptof' };
+
+  if (pred === SKOS_RELATED)
+    return { stroke:'#c0392b', marker:'arr-related', dash:'5,4' };
+
+  if (pred === SKOS_MEMBER)
+    return { stroke:'#d35400', marker:'arr-member', dash:'4,3' };
+
+  if (pred === SKOS_EXACTMATCH)
+    return { stroke:'#16a085', marker:'arr-exactmatch' };
+
+  if (pred === SKOS_CLOSEMATCH ||
+      pred === 'http://www.w3.org/2004/02/skos/core#mappingRelation')
+    return { stroke:'#16a085', marker:'arr-closematch', dash:'5,4' };
+
+  if (pred === SKOS_BROADMATCH || pred === SKOS_NARROWMATCH || pred === SKOS_RELATEDMATCH)
+    return { stroke:'#7f8c8d', marker:'arr-broadnarrow', dash:'5,4' };
+
+  if (pred === RDFS_SUBCLASSOF)
+    return { stroke:'#e67e22', marker:'arr-subclassof', dash:'6,3' };
+
+  // Non-SKOS
+  return { stroke:'#b8b2a6', marker:'arr-other', dash:'3,4' };
+}
+
+function isEdgeVisible(pred) {
+  // Broader family
+  if (pred === SKOS_BROADER ||
+      pred === 'http://www.w3.org/2004/02/skos/core#narrower' ||
+      pred === 'http://www.w3.org/2004/02/skos/core#broaderTransitive' ||
+      pred === 'http://www.w3.org/2004/02/skos/core#narrowerTransitive')
+    return document.getElementById('show-broader').checked;
+
+  if (pred === SKOS_RELATED)
+    return document.getElementById('show-related').checked;
+
+  if (pred === SKOS_INSCHEME)
+    return document.getElementById('show-inscheme').checked;
+
+  if (pred === SKOS_TOPCONCEPTOF ||
+      pred === 'http://www.w3.org/2004/02/skos/core#hasTopConcept')
+    return document.getElementById('show-topconceptof').checked;
+
+  if (pred === SKOS_MEMBER)
+    return document.getElementById('show-member').checked;
+
+  if (pred === SKOS_EXACTMATCH)
+    return document.getElementById('show-exactmatch').checked;
+
+  if (pred === SKOS_CLOSEMATCH ||
+      pred === 'http://www.w3.org/2004/02/skos/core#mappingRelation')
+    return document.getElementById('show-closematch').checked;
+
+  if (pred === SKOS_BROADMATCH || pred === SKOS_NARROWMATCH || pred === SKOS_RELATEDMATCH)
+    return document.getElementById('show-broadnarrowmatch').checked;
+
+  if (pred === RDFS_SUBCLASSOF)
+    return document.getElementById('show-subclassof').checked;
+
+  // Anything else (rdfs:seeAlso, owl:sameAs, custom properties, etc.)
+  return document.getElementById('show-other').checked;
+}
+
+// ============================================================
+//  NODE FILTERS  — mimetype URIs and external URLs
+// ============================================================
+var MIME_EXTS = /\.(jpe?g|png|gif|webp|svg|bmp|tiff?|ico|pdf|mp3|mp4|wav|ogg|webm|avi|mov|ttf|woff2?|eot|zip|gz|tar|csv|xlsx?|docx?)$/i;
+var LOCAL_NS  = 'visualartsdna.org';
+
+function isNodeVisible(n) {
+  var filterMime = document.getElementById('filter-mimetypes').checked;
+  var filterExt  = document.getElementById('filter-external').checked;
+
+  var uri = n.id || '';
+
+  if (filterMime) {
+    // Strip query/fragment then check extension
+    var bare = uri.split(/[?#]/)[0];
+    if (MIME_EXTS.test(bare)) return false;
+  }
+
+  if (filterExt) {
+    // Visible if: not an http/https URI  OR  URI is in the local namespace
+    var isHttp = /^https?:\/\//i.test(uri);
+    if (isHttp && uri.indexOf(LOCAL_NS) === -1) return false;
+  }
+
+  return true;
+}
+
+function applyNodeFilters() {
+  render();
+  // Update status to reflect visible count
+  var vis = nodes.filter(isNodeVisible).length;
+  setStatus('ok', vis + ' / ' + nodes.length + ' nodes visible');
+}
+
+function render() {
+  var EL=document.getElementById('edges-layer'), NL=document.getElementById('nodes-layer');
+  EL.innerHTML=''; NL.innerHTML='';
+
+  // Build the set of currently visible node IDs (after node filters)
+  var visibleIds = new Set(nodes.filter(isNodeVisible).map(function(n){ return n.id; }));
+
+  // Edges
+  edges.forEach(function(e){
+    if (!isEdgeVisible(e.predicate)) return;   // ← filter by checkbox
+    if (!visibleIds.has(e.from) || !visibleIds.has(e.to)) return;  // ← node filter
+
+    var src=nodes.find(function(n){ return n.id===e.from; });
+    var tgt=nodes.find(function(n){ return n.id===e.to;   });
+    if (!src||!tgt) return;
+
+    var x1=src.x+NW/2, y1=src.y+NH, x2=tgt.x+NW/2, y2=tgt.y+NH;
+    var mx=(x1+x2)/2, my=(y1+y2)/2, dx=x2-x1, dy=y2-y1;
+    var len=Math.sqrt(dx*dx+dy*dy)||1;
+    var cpx=mx-(dy/len)*24, cpy=my+(dx/len)*24;
+
+    var style=edgeStyle(e.predicate);
+    var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d','M'+x1+','+y1+' Q'+cpx+','+cpy+' '+x2+','+(y2+7));
+    path.setAttribute('class','edge');
+    path.setAttribute('stroke',style.stroke);
+    if (style.dash) path.setAttribute('stroke-dasharray', style.dash);
+    path.setAttribute('marker-end','url(#'+style.marker+')');
+    EL.appendChild(path);
+
+    var txt=document.createElementNS('http://www.w3.org/2000/svg','text');
+    txt.setAttribute('x',cpx); txt.setAttribute('y',cpy-4);
+    txt.setAttribute('class','edge-label'); txt.setAttribute('text-anchor','middle');
+    txt.textContent=localName(e.predicate);
+    EL.appendChild(txt);
+  });
+
+  // Nodes
+  nodes.forEach(function(n){
+    if (!visibleIds.has(n.id)) return;  // ← node filter
+    var g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','g-node');
+    g.setAttribute('transform','translate('+n.x+','+n.y+')');
+    g.dataset.id=n.id;
+
+    var rect=document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('width',NW); rect.setAttribute('height',NH); rect.setAttribute('rx','3');
+    var cls='node-rect';
+    if (selectedNode && selectedNode.id===n.id) cls+=' selected';
+    if (dropTarget   && dropTarget.id===n.id)   cls+=' drop-target';
+    if (findMatches.length) {
+      var fi = findMatches.indexOf(n);
+      if (fi !== -1) cls += (fi === findFocusIdx) ? ' match-focus' : ' match';
+    }
+    rect.setAttribute('class',cls);
+
+    var lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('x',NW/2); lbl.setAttribute('y',NH/2-6);
+    lbl.setAttribute('text-anchor','middle'); lbl.setAttribute('class','node-label');
+    lbl.textContent=truncate(n.label,18);
+
+    var uri=document.createElementNS('http://www.w3.org/2000/svg','text');
+    uri.setAttribute('x',NW/2); uri.setAttribute('y',NH/2+10);
+    uri.setAttribute('text-anchor','middle'); uri.setAttribute('class','node-uri-text');
+    uri.textContent=truncate(abbreviate(n.id),22);
+
+    g.appendChild(rect); g.appendChild(lbl); g.appendChild(uri);
+
+    // Pin indicator
+    if (n.pinned) {
+      var pin=document.createElementNS('http://www.w3.org/2000/svg','text');
+      pin.setAttribute('x', NW-8); pin.setAttribute('y', 12);
+      pin.setAttribute('text-anchor','middle');
+      pin.setAttribute('class','node-pin');
+      pin.setAttribute('font-size','10');
+      pin.textContent='📌';
+      g.appendChild(pin);
+    }
+
+    g.addEventListener('mousedown', onNodeMouseDown);
+    g.addEventListener('contextmenu', onNodeContextMenu);
+    NL.appendChild(g);
+  });
+
+  updateStatus();
+}
+
+// ============================================================
+//  PROPERTIES PANEL  (#3 fix: selectNode now always calls renderProps)
+// ============================================================
+function selectNode(n) {
+  selectedNode = n;
+  renderProps(n);
+  render();
+}
+
+function renderProps(n) {
+  var body=document.getElementById('props-body');
+  if (!n) { body.innerHTML='<div class="prop-val empty">Select a node to inspect</div>'; return; }
+
+  var outgoing=edges.filter(function(e){ return e.from===n.id; });
+  var incoming=edges.filter(function(e){ return e.to===n.id;   });
+
+  var html = '<div class="prop-group">'
+    + '<div class="prop-label">URI</div>'
+    + '<input class="prop-uri-input" value="'+escH(n.id)+'" data-node-id="'+escH(n.id)+'" onchange="updateNodeURI(this.dataset.nodeId,this.value)"/>'
+    + '</div>'
+    + '<div class="prop-group">'
+    + '<div class="prop-label">Label</div>'
+    + '<input class="prop-label-input" value="'+escH(n.label)+'" data-node-id="'+escH(n.id)+'" oninput="updateNodeLabel(this.dataset.nodeId,this.value)"/>'
+    + '</div>'
+    + '<div class="prop-group" style="display:flex;gap:6px;">'
+    + '<button class="prop-add-btn" style="color:'+(n.pinned?'var(--accent2)':'var(--ink3)')+';border-color:'+(n.pinned?'var(--accent2)':'var(--border2)')+'" data-nid="'+escH(n.id)+'" onclick="togglePinNode(this.dataset.nid)">'+(n.pinned?'📌 Unpin':'📌 Pin')+'</button>'
+    + '<button class="prop-add-btn" style="color:var(--accent);border-color:#f0c8c5" data-nid="'+escH(n.id)+'" onclick="deleteNode(nodes.find(function(x){return x.id===\''+escH(n.id)+'\'}))">✕ Delete</button>'
+    + '</div>';
+
+  // Editable properties
+  html += '<hr class="prop-divider"><div class="prop-label">Properties</div><div id="props-edit-list">';
+  var propKeys=Object.keys(n.props);
+  for (var ki=0; ki<propKeys.length; ki++) {
+    var pred=propKeys[ki], vals=n.props[pred];
+    for (var vi=0; vi<vals.length; vi++) {
+      var v=vals[vi];
+      html += '<div class="prop-edit-row">'
+        + '<input class="prop-edit-key" value="'+escH(pred)+'" title="predicate" data-nid="'+escH(n.id)+'" data-pred="'+escH(pred)+'" data-val="'+escH(v.value)+'" onchange="updatePropKey(this.dataset.nid,this.dataset.pred,this.dataset.val,this.value)"/>'
+        + '<input class="prop-edit-val" value="'+escH(v.value)+'" title="'+escH(v.value)+'" data-nid="'+escH(n.id)+'" data-pred="'+escH(pred)+'" data-idx="'+vi+'" onchange="updatePropVal(this.dataset.nid,this.dataset.pred,+this.dataset.idx,this.value); this.title=this.value"/>'
+        + '<button class="prop-edit-del" data-nid="'+escH(n.id)+'" data-pred="'+escH(pred)+'" data-idx="'+vi+'" onclick="deleteProp(this.dataset.nid,this.dataset.pred,+this.dataset.idx)">&#10005;</button>'
+        + '</div>';
+    }
+  }
+  html += '</div><button class="prop-add-btn" data-nid="'+escH(n.id)+'" onclick="addProp(this.dataset.nid)">+ Add property</button>';
+
+  if (outgoing.length>0) {
+    html += '<hr class="prop-divider"><div class="prop-label">Outgoing edges</div>';
+    outgoing.forEach(function(e){
+      var tgt=nodes.find(function(x){ return x.id===e.to; });
+      html += '<div class="rel-item"><span class="rel-arrow">&rarr;</span><span class="rel-pred">'+escH(localName(e.predicate))+'</span><span>'+escH(tgt?tgt.label:localName(e.to))+'</span></div>';
+    });
+  }
+  if (incoming.length>0) {
+    html += '<hr class="prop-divider"><div class="prop-label">Incoming edges</div>';
+    incoming.forEach(function(e){
+      var src=nodes.find(function(x){ return x.id===e.from; });
+      html += '<div class="rel-item"><span class="rel-arrow">&larr;</span><span class="rel-pred">'+escH(localName(e.predicate))+'</span><span>'+escH(src?src.label:localName(e.from))+'</span></div>';
+    });
+  }
+
+  body.innerHTML = html;
+}
+
+function updateNodeLabel(id, val) {
+  var n=nodes.find(function(x){ return x.id===id; });
+  if (n) { n.label=val; render(); }
+}
+function updateNodeURI(oldId, newId) {
+  newId=(newId||'').trim();
+  if (!newId||newId===oldId) return;
+  var n=nodes.find(function(x){ return x.id===oldId; });
+  if (!n) return;
+  n.id=newId;
+  edges.forEach(function(e){ if(e.from===oldId) e.from=newId; if(e.to===oldId) e.to=newId; });
+  if (selectedNode && selectedNode.id===oldId) selectedNode.id=newId;
+  render(); renderProps(n);
+}
+function updatePropVal(nid, pred, idx, val) {
+  var n=nodes.find(function(x){ return x.id===nid; });
+  if (n && n.props[pred] && n.props[pred][idx]) n.props[pred][idx].value=val;
+}
+function updatePropKey(nid, oldPred, oldVal, newPred) {
+  var n=nodes.find(function(x){ return x.id===nid; });
+  if (!n) return;
+  var vals=n.props[oldPred]; if (!vals) return;
+  if (!n.props[newPred]) n.props[newPred]=[];
+  var moved=vals.filter(function(v){ return v.value===oldVal; });
+  moved.forEach(function(v){ n.props[newPred].push(v); });
+  n.props[oldPred]=vals.filter(function(v){ return v.value!==oldVal; });
+  if (!n.props[oldPred].length) delete n.props[oldPred];
+  renderProps(n);
+}
+function deleteProp(nid, pred, idx) {
+  var n=nodes.find(function(x){ return x.id===nid; });
+  if (!n||!n.props[pred]) return;
+  n.props[pred].splice(idx,1);
+  if (!n.props[pred].length) delete n.props[pred];
+  renderProps(n);
+}
+function addProp(nid) {
+  var n=nodes.find(function(x){ return x.id===nid; });
+  if (!n) return;
+  var k='prop', i=1, key=k;
+  while (n.props[key]) key=k+(i++);
+  n.props[key]=[{value:'',type:'literal'}];
+  renderProps(n);
+  setTimeout(function(){
+    var inputs=document.querySelectorAll('#props-edit-list .prop-edit-key');
+    if (inputs.length) inputs[inputs.length-1].focus();
+  },40);
+}
+
+// ============================================================
+//  DRAG (nodes) + PAN (canvas)  (#1 fix)
+// ============================================================
+var svgEl = document.getElementById('graph');
+
+function clientToCanvas(cx,cy) {
+  // Convert client coords to pan-group-local coords (accounting for pan and zoom)
+  var rect = canvasWrap.getBoundingClientRect();
+  return {
+    x: (cx - rect.left - panX) / zoom,
+    y: (cy - rect.top  - panY) / zoom
+  };
+}
+
+function applyTransform() {
+  document.getElementById('pan-group').setAttribute('transform',
+    'translate('+panX+','+panY+') scale('+zoom+')');
+  document.getElementById('s-zoom').textContent = Math.round(zoom*100)+'%';
+}
+// Keep applyPan as alias so existing callers still work
+function applyPan() { applyTransform(); }
+
+function onNodeMouseDown(e) {
+  if (e.button!==0) return;
+  e.stopPropagation();
+  var id=e.currentTarget.dataset.id;
+  dragging=nodes.find(function(n){ return n.id===id; });
+  if (!dragging) return;
+  var p=clientToCanvas(e.clientX,e.clientY);
+  dragOffX=p.x-dragging.x; dragOffY=p.y-dragging.y;
+  selectNode(dragging);
+  document.addEventListener('mousemove',onDragMove);
+  document.addEventListener('mouseup',  onDragUp);
+}
+
+function onDragMove(e) {
+  if (!dragging) return;
+  var p=clientToCanvas(e.clientX,e.clientY);
+  dragging.x=p.x-dragOffX; dragging.y=p.y-dragOffY;
+  dropTarget=null;
+  nodes.forEach(function(n){
+    if (dropTarget) return;
+    if (n.id===dragging.id) return;
+    if (p.x>=n.x && p.x<=n.x+NW && p.y>=n.y && p.y<=n.y+NH) dropTarget=n;
+  });
+  render();
+}
+
+function onDragUp(e) {
+  document.removeEventListener('mousemove',onDragMove);
+  document.removeEventListener('mouseup',  onDragUp);
+  if (dragging && dropTarget) reparent(dragging,dropTarget);
+  dragging=null; dropTarget=null;
+  render();
+}
+
+// Canvas pan — drag on background
+var canvasWrap=document.getElementById('canvas-wrap');
+
+canvasWrap.addEventListener('mousedown',function(e){
+  if (e.target.closest('.g-node')) return; // node drag takes over
+  isPanning=true;
+  panStartX=e.clientX; panStartY=e.clientY;
+  panOriginX=panX; panOriginY=panY;
+  canvasWrap.style.cursor='grabbing';
+  e.preventDefault();
+});
+canvasWrap.addEventListener('contextmenu',function(e){ e.preventDefault(); closeCtxMenu(); });
+
+// ============================================================
+//  CONTEXT MENU
+// ============================================================
+var ctxMenu = document.getElementById('ctx-menu');
+
+function openCtxMenu(n, clientX, clientY) {
+  ctxNode = n;
+  document.getElementById('ctx-pin-label').textContent = n.pinned ? 'Unpin node' : 'Pin node';
+  ctxMenu.style.left = clientX + 'px';
+  ctxMenu.style.top  = clientY + 'px';
+  ctxMenu.classList.add('open');
+}
+function closeCtxMenu() {
+  ctxMenu.classList.remove('open');
+  ctxNode = null;
+}
+document.addEventListener('click', function(e){
+  if (!e.target.closest('#ctx-menu')) closeCtxMenu();
+});
+document.addEventListener('keydown', function(e){
+  if (e.key==='Escape') closeCtxMenu();
+  if ((e.key==='Delete'||e.key==='Backspace') && selectedNode && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA') {
+    deleteNode(selectedNode);
+  }
+});
+
+function onNodeContextMenu(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var id = e.currentTarget.dataset.id;
+  var n = nodes.find(function(x){ return x.id===id; });
+  if (!n) return;
+  selectNode(n);
+  openCtxMenu(n, e.clientX, e.clientY);
+}
+
+function ctxPin() {
+  if (!ctxNode) return;
+  ctxNode.pinned = !ctxNode.pinned;
+  setStatus('ok', (ctxNode.pinned ? 'Pinned: ' : 'Unpinned: ') + ctxNode.label);
+  closeCtxMenu();
+  render();
+}
+
+function ctxDelete() {
+  if (!ctxNode) return;
+  deleteNode(ctxNode);
+  closeCtxMenu();
+}
+
+function togglePinNode(id) {
+  var n=nodes.find(function(x){ return x.id===id; });
+  if (!n) return;
+  n.pinned=!n.pinned;
+  setStatus('ok',(n.pinned?'Pinned: ':'Unpinned: ')+n.label);
+  render(); renderProps(n);
+}
+
+function deleteNode(n) {
+  nodes = nodes.filter(function(x){ return x.id !== n.id; });
+  edges = edges.filter(function(e){ return e.from !== n.id && e.to !== n.id; });
+  if (selectedNode && selectedNode.id === n.id) { selectedNode=null; renderProps(null); }
+  setStatus('ok', 'Deleted: ' + n.label);
+  render();
+}
+
+// ============================================================
+//  FIND
+// ============================================================
+function openFind() {
+  var bar = document.getElementById('find-bar');
+  bar.classList.add('open');
+  var inp = document.getElementById('find-input');
+  inp.focus();
+  inp.select();
+}
+
+function closeFind() {
+  document.getElementById('find-bar').classList.remove('open');
+  document.getElementById('find-input').value = '';
+  findMatches = [];
+  findFocusIdx = 0;
+  document.getElementById('find-count').textContent = '';
+  render();
+}
+
+function findNodes() {
+  var q = document.getElementById('find-input').value.trim().toLowerCase();
+  if (!q) {
+    findMatches = [];
+    findFocusIdx = 0;
+    document.getElementById('find-count').textContent = '';
+    render();
+    return;
+  }
+
+  findMatches = nodes.filter(function(n){
+    return n.label.toLowerCase().indexOf(q) !== -1 ||
+           localName(n.id).toLowerCase().indexOf(q) !== -1;
+  });
+  findFocusIdx = 0;
+  updateFindCount();
+  panToFocus();
+  render();
+}
+
+function findStep(dir) {
+  if (!findMatches.length) return;
+  findFocusIdx = (findFocusIdx + dir + findMatches.length) % findMatches.length;
+  updateFindCount();
+  panToFocus();
+  render();
+}
+
+function updateFindCount() {
+  var el = document.getElementById('find-count');
+  if (!findMatches.length) {
+    el.textContent = 'no match';
+    el.style.color = '#c0392b';
+  } else {
+    el.textContent = (findFocusIdx + 1) + ' / ' + findMatches.length;
+    el.style.color = '#888';
+  }
+}
+
+function panToFocus() {
+  if (!findMatches.length) return;
+  var n = findMatches[findFocusIdx];
+  var W = canvasWrap.clientWidth, H = canvasWrap.clientHeight;
+  // Pan so that the focused node is centred in the viewport
+  panX = W/2 - (n.x + NW/2) * zoom;
+  panY = H/2 - (n.y + NH/2) * zoom;
+  applyTransform();
+}
+
+function findKey(e) {
+  if (e.key === 'Escape')  { closeFind(); return; }
+  if (e.key === 'Enter')   { findStep(e.shiftKey ? -1 : 1); e.preventDefault(); }
+}
+
+// Global Ctrl+F shortcut
+document.addEventListener('keydown', function(e){
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    openFind();
+  }
+});
+
+document.addEventListener('mousemove',function(e){
+  if (!isPanning) return;
+  panX=panOriginX+(e.clientX-panStartX);
+  panY=panOriginY+(e.clientY-panStartY);
+  applyPan();
+});
+
+document.addEventListener('mouseup',function(e){
+  if (!isPanning) return;
+  isPanning=false;
+  canvasWrap.style.cursor='default';
+  var dx=Math.abs(e.clientX-panStartX), dy=Math.abs(e.clientY-panStartY);
+  if (dx<3 && dy<3 && !e.target.closest('.g-node')) {
+    selectedNode=null; renderProps(null); render();
+  }
+});
+
+// Mouse-wheel zoom — zoom toward the cursor position
+canvasWrap.addEventListener('wheel', function(e) {
+  e.preventDefault();
+  var rect = canvasWrap.getBoundingClientRect();
+  var mx = e.clientX - rect.left;   // mouse X in canvas-wrap coords
+  var my = e.clientY - rect.top;
+
+  var delta = e.deltaY < 0 ? 1.1 : 1/1.1;
+  var newZoom = Math.min(4, Math.max(0.1, zoom * delta));
+
+  // Adjust pan so the point under the cursor stays fixed
+  panX = mx - (mx - panX) * (newZoom / zoom);
+  panY = my - (my - panY) * (newZoom / zoom);
+  zoom = newZoom;
+  applyTransform();
+}, { passive: false });
+
+function resetZoom() {
+  panX = 0; panY = 0; zoom = 1;
+  applyTransform();
+}
+function reparent(child, newParent) {
+  if (!child || !newParent || child.id === newParent.id) return;
+  var childId  = child.id;
+  var parentId = newParent.id;
+
+  // Determine predicate by checkbox precedence: broader > inScheme > related
+  var showBroader      = document.getElementById('show-broader').checked;
+  var showInscheme     = document.getElementById('show-inscheme').checked;
+  var showTopconceptof = document.getElementById('show-topconceptof').checked;
+  var showRelated      = document.getElementById('show-related').checked;
+  var showMember       = document.getElementById('show-member').checked;
+
+  var predicate = null, label = '';
+  if      (showBroader)      { predicate = SKOS_BROADER;     label = 'skos:broader';      }
+  else if (showInscheme)     { predicate = SKOS_INSCHEME;    label = 'skos:inScheme';     }
+  else if (showTopconceptof) { predicate = SKOS_TOPCONCEPTOF;label = 'skos:topConceptOf'; }
+  else if (showRelated)      { predicate = SKOS_RELATED;     label = 'skos:related';      }
+  else if (showMember)       { predicate = SKOS_MEMBER;      label = 'skos:member';       }
+  else {
+    setStatus('err','No edge type checked — enable at least one to reparent');
+    return;
+  }
+
+  if (predicate === SKOS_BROADER) {
+    // Directed: replace any existing broader from child
+    edges = edges.filter(function(e) {
+      if (e.from !== childId) return true;
+      if (e.predicate === SKOS_BROADER) return false;
+      if (localName(e.predicate) === 'broader') return false;
+      return true;
+    });
+    var k = childId+'|'+SKOS_BROADER+'|'+parentId;
+    if (!edges.some(function(e){ return e.id===k; }))
+      edges.push({ id:k, from:childId, to:parentId, predicate:SKOS_BROADER });
+
+  } else if (predicate === SKOS_INSCHEME) {
+    // Directed: replace any existing inScheme from child
+    edges = edges.filter(function(e) {
+      if (e.from !== childId) return true;
+      if (e.predicate === SKOS_INSCHEME) return false;
+      return true;
+    });
+    var k = childId+'|'+SKOS_INSCHEME+'|'+parentId;
+    if (!edges.some(function(e){ return e.id===k; }))
+      edges.push({ id:k, from:childId, to:parentId, predicate:SKOS_INSCHEME });
+
+  } else if (predicate === SKOS_TOPCONCEPTOF) {
+    // Directed: replace any existing topConceptOf from child
+    edges = edges.filter(function(e) {
+      if (e.from !== childId) return true;
+      if (e.predicate === SKOS_TOPCONCEPTOF) return false;
+      return true;
+    });
+    var k = childId+'|'+SKOS_TOPCONCEPTOF+'|'+parentId;
+    if (!edges.some(function(e){ return e.id===k; }))
+      edges.push({ id:k, from:childId, to:parentId, predicate:SKOS_TOPCONCEPTOF });
+
+  } else if (predicate === SKOS_RELATED) {
+    // Symmetric: remove any existing related pair between these two, add both directions
+    edges = edges.filter(function(e) {
+      if (e.predicate !== SKOS_RELATED) return true;
+      if (e.from===childId  && e.to===parentId) return false;
+      if (e.from===parentId && e.to===childId)  return false;
+      return true;
+    });
+    var k1 = childId+'|'+SKOS_RELATED+'|'+parentId;
+    var k2 = parentId+'|'+SKOS_RELATED+'|'+childId;
+    if (!edges.some(function(e){ return e.id===k1; }))
+      edges.push({ id:k1, from:childId,  to:parentId, predicate:SKOS_RELATED });
+    if (!edges.some(function(e){ return e.id===k2; }))
+      edges.push({ id:k2, from:parentId, to:childId,  predicate:SKOS_RELATED });
+
+  } else if (predicate === SKOS_MEMBER) {
+    // Directed: collection → member (replace any existing member edge from child)
+    edges = edges.filter(function(e) {
+      if (e.from !== childId) return true;
+      if (e.predicate === SKOS_MEMBER) return false;
+      return true;
+    });
+    var k = childId+'|'+SKOS_MEMBER+'|'+parentId;
+    if (!edges.some(function(e){ return e.id===k; }))
+      edges.push({ id:k, from:childId, to:parentId, predicate:SKOS_MEMBER });
+  }
+
+  setStatus('ok','"'+child.label+'" \u2192 '+label+' \u2192 "'+newParent.label+'"');
+  render();
+  renderProps(child);
+}
+
+
+// ============================================================
+//  ADD NODE
+// ============================================================
+var nodeCounter=1;
+function addNode() {
+  var W=canvasWrap.clientWidth, H=canvasWrap.clientHeight;
+  var cx=W/2-panX-NW/2, cy=H/2-panY-NH/2;
+  var id='http://example.org/concept/new'+nodeCounter++;
+  var n={ id:id, label:'NewConcept'+(nodeCounter-1), x:cx, y:cy, props:{} };
+  nodes.push(n);
+  render(); selectNode(n);
+}
+
+// ============================================================
+//  EXPORT TTL  (#7 fix: no duplicate broader; #8 fix: clean URIs in prefix decls)
+// ============================================================
+function exportTTL() {
+  var lines = [];
+
+  // Collect used prefixes
+  var usedPfx = new Set();
+  function noteURI(uri) {
+    if (!uri || uri.startsWith('"')) return;
+    var sorted=Object.entries(prefixes).sort(function(a,b){ return b[1].length-a[1].length; });
+    for (var i=0;i<sorted.length;i++) {
+      if (uri.startsWith(sorted[i][1])) { usedPfx.add(sorted[i][0]); return; }
+    }
+  }
+  nodes.forEach(function(n){
+    noteURI(n.id);
+    Object.entries(n.props).forEach(function(entry){
+      noteURI(predURImap[entry[0]] || entry[0]);
+      entry[1].forEach(function(v){
+        if(v.type==='uri') noteURI(v.value);
+        if(v.datatype)     noteURI(v.datatype);
+      });
+    });
+  });
+  edges.forEach(function(e){ noteURI(e.from); noteURI(e.to); noteURI(e.predicate); });
+
+  // Emit prefix lines — strip any stray whitespace/newlines from namespace URIs
+  var sortedPfx=[...usedPfx].sort();
+  sortedPfx.forEach(function(p){
+    var ns=(prefixes[p]||'').replace(/[\r\n\t]/g,'').trim();
+    if (ns) lines.push('@prefix '+p+': <'+ns+'> .');
+  });
+  if (lines.length) lines.push('');
+
+  // One block per subject
+  nodes.forEach(function(n){
+    var pairs=[];
+
+    // Literal / URI properties stored in n.props
+    Object.entries(n.props).forEach(function(entry){
+      var localPred=entry[0], vals=entry[1];
+      var fullPred = predURImap[localPred] || ('http://example.org/prop/' + localPred);
+      var predAbbr = abbreviate(fullPred);
+      vals.forEach(function(v){
+        var objStr;
+        if (v.type === 'uri') {
+          // Value is a full URI — abbreviate it
+          objStr = abbreviate(v.value);
+        } else {
+          // Bare numeric / boolean literals — emit without quotes per Turtle spec
+          var XSD = 'http://www.w3.org/2001/XMLSchema#';
+          var bareTypes = {
+            [XSD+'integer']: true, [XSD+'decimal']: true,
+            [XSD+'double']:  true, [XSD+'boolean']: true
+          };
+          if (v.datatype && bareTypes[v.datatype]) {
+            objStr = v.value;  // e.g.  3  or  true  or  1.5
+          } else {
+            // Quoted string literal — re-escape for Turtle
+            var escaped = v.value
+              .replace(/\\/g, '\\\\')
+              .replace(/"/g,  '\\"')
+              .replace(/\n/g, '\\n')
+              .replace(/\r/g, '\\r')
+              .replace(/\t/g, '\\t');
+            objStr = '"' + escaped + '"';
+            if (v.lang)          objStr += '@' + v.lang;
+            else if (v.datatype) objStr += '^^' + abbreviate(v.datatype);
+          }
+        }
+        pairs.push([predAbbr, objStr]);
+      });
+    });
+
+    // Structural edges outgoing from this node
+    edges.filter(function(e){ return e.from===n.id; }).forEach(function(e){
+      pairs.push([abbreviate(e.predicate), abbreviate(e.to)]);
+    });
+
+    if (!pairs.length) return;
+
+    lines.push(abbreviate(n.id));
+    pairs.forEach(function(pair,i){
+      var sep = i<pairs.length-1 ? ' ;' : ' .';
+      lines.push('    '+pair[0]+' '+pair[1]+sep);
+    });
+    lines.push('');
+  });
+
+  document.getElementById('ttl-output').value = lines.join('\n');
+  document.getElementById('export-modal').classList.add('open');
+}
+
+function closeModal()    { document.getElementById('export-modal').classList.remove('open'); }
+function copyTTL()       { var t=document.getElementById('ttl-output'); t.select(); document.execCommand('copy'); setStatus('ok','Copied to clipboard'); }
+function downloadTTL()   {
+  var blob=new Blob([document.getElementById('ttl-output').value],{type:'text/turtle;charset=utf-8'});
+  var a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:'graph.ttl'});
+  a.click(); URL.revokeObjectURL(a.href);
+}
+document.getElementById('export-modal').addEventListener('click',function(e){ if(e.target===this) closeModal(); });
+
+// ============================================================
+//  STATUS
+// ============================================================
+function updateStatus() {
+  document.getElementById('s-nodes').textContent=nodes.length+' nodes';
+  document.getElementById('s-edges').textContent=edges.length+' edges';
+}
+function setStatus(type,msg) {
+  document.getElementById('si-msg').className='status-item '+type;
+  document.getElementById('s-msg').textContent=msg;
+}
+
+// ============================================================
+//  FILE DROP on TTL input area
+// ============================================================
+(function() {
+  var zone = document.getElementById('ttl-drop-zone');
+  var ta   = document.getElementById('ttl-input');
+
+  function highlight(on) {
+    zone.classList.toggle('drag-over', on);
+  }
+
+  ['dragenter','dragover'].forEach(function(evt) {
+    zone.addEventListener(evt, function(e) {
+      e.preventDefault(); e.stopPropagation();
+      highlight(true);
+    });
+  });
+  ['dragleave','dragend'].forEach(function(evt) {
+    zone.addEventListener(evt, function(e) {
+      e.preventDefault(); e.stopPropagation();
+      highlight(false);
+    });
+  });
+  zone.addEventListener('drop', function(e) {
+    e.preventDefault(); e.stopPropagation();
+    highlight(false);
+    var files = e.dataTransfer.files;
+    if (!files || !files.length) return;
+    var file = files[0];
+    if (!file.name.match(/\.(ttl|turtle|n3|rdf)$/i)) {
+      setStatus('err', 'Expected a .ttl file, got: '+file.name);
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      ta.value = ev.target.result;
+      parseTTL();
+    };
+    reader.onerror = function() { setStatus('err','Could not read file'); };
+    reader.readAsText(file);
+  });
+})();
+
+// ============================================================
+//  SAMPLE DATA
+// ============================================================
+document.getElementById('ttl-input').value = [
+'@prefix skos: <http://www.w3.org/2004/02/skos/core#> .',
+'@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .',
+'@prefix ex:   <http://example.org/> .',
+'',
+'ex:Animals a skos:ConceptScheme ; rdfs:label "Animal Kingdom" .',
+'ex:Vertebrates   a skos:Concept ; skos:prefLabel "Vertebrates"   ; skos:broader ex:Animals ; skos:inScheme ex:Animals .',
+'ex:Invertebrates a skos:Concept ; skos:prefLabel "Invertebrates" ; skos:broader ex:Animals ; skos:inScheme ex:Animals .',
+'ex:Mammals  a skos:Concept ; skos:prefLabel "Mammals"  ; skos:broader ex:Vertebrates ; skos:inScheme ex:Animals .',
+'ex:Birds    a skos:Concept ; skos:prefLabel "Birds"    ; skos:broader ex:Vertebrates ; skos:inScheme ex:Animals .',
+'ex:Reptiles a skos:Concept ; skos:prefLabel "Reptiles" ; skos:broader ex:Vertebrates ; skos:inScheme ex:Animals .',
+'ex:Insects  a skos:Concept ; skos:prefLabel "Insects"  ; skos:broader ex:Invertebrates ; skos:inScheme ex:Animals .',
+'ex:Dog a skos:Concept ; skos:prefLabel "Dog" ; skos:broader ex:Mammals ; skos:related ex:Cat .',
+'ex:Cat a skos:Concept ; skos:prefLabel "Cat" ; skos:broader ex:Mammals ; skos:related ex:Dog .',
+].join('\n');
+
+setTimeout(parseTTL,80);
+</script>
+</body>
+</html>
