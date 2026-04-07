@@ -116,7 +116,13 @@ prefix skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT {
 	the:InterpretationCollection skos:member ?s
 } where {
+{
 	?s skos:broader*	the:Interpretation
+} union {
+    ?s  a the:Entity ;
+		the:topic ?top .
+    filter(?top in (the:Criticism))
+}
 }
 
 # interpretation
@@ -387,7 +393,7 @@ INSERT {
 	the:BackgroundImageCollection skos:member ?s
 } where {
 	?s a the:Image ;
-		the:topic	"Background" .
+		the:topic	the:Background .
 }
 
 # the:Background
